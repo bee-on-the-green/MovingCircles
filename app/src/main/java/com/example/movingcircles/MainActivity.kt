@@ -22,53 +22,7 @@ import com.example.movingcircles.ui.theme.movingcirclesTheme
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 
-class WelcomeScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            movingcirclesTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    WelcomeContent {
-                        startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
-                        finish()
-                    }
-                }
-            }
-        }
-    }
-}
 
-@Composable
-fun WelcomeContent(onStartClicked: () -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Moving Circles",
-            fontSize = 24.sp,
-            modifier = Modifier.padding(bottom = 32.dp)
-        )
-
-        IconButton(
-            onClick = onStartClicked,
-            modifier = Modifier.size(120.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = android.R.drawable.ic_media_play),
-                contentDescription = "Start",
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-
-        Text(
-            text = "Tap to start",
-            fontSize = 16.sp,
-            modifier = Modifier.padding(top = 16.dp)
-        )
-    }
-}
 
 val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
