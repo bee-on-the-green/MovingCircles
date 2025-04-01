@@ -72,7 +72,7 @@ fun WelcomeContent(onStartClicked: () -> Unit) {
 
 val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
-val numberOfRows: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
+val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
 
 class MainActivity : ComponentActivity() {
@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
     private val matrixUpdater = MatrixUpdater(
         matrix = arrayOf(),
         lengthOfMatrix = lengthOfMatrix,
-        numberOfRows = numberOfRows
+        heightOfMatrix = heightOfMatrix
     )
 
     private var updateJob: Job? = null

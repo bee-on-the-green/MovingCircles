@@ -7,7 +7,7 @@ import kotlin.random.Random
 class MatrixUpdater(
     var matrix: Array<CharArray>, // Matrix is now mutable
     val lengthOfMatrix: Int,
-    val numberOfRows: Int,
+    val heightOfMatrix: Int,
     val sleepTime: Long = 10,
     val diameterToUse: Int = 11,
     val breakPoint: Int = 30,
@@ -44,7 +44,7 @@ class MatrixUpdater(
     }
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
-        val myRandomCoordinateY = Random.nextInt(0, numberOfRows)
+        val myRandomCoordinateY = Random.nextInt(0, heightOfMatrix)
         val myRandomCoordinateX = Random.nextInt(0, lengthOfMatrix)
         return Pair(myRandomCoordinateX, myRandomCoordinateY)
     }

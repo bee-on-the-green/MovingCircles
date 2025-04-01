@@ -12,7 +12,7 @@ import kotlin.random.Random
 class MatrixInitializer {
 
     suspend fun initializeMatrix(
-        rows: Int = numberOfRows,  // Use numberOfRows
+        rows: Int = heightOfMatrix,  // Use heightOfMatrix
         cols: Int = lengthOfMatrix // Use lengthOfMatrix
     ): MutableList<MutableList<Char>> {
         return withContext(Dispatchers.Default) {
