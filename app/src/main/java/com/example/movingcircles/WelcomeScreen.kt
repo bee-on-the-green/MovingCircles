@@ -1,4 +1,4 @@
-package com.example.movingcircles
+package com.example.movingcircles  // keeep this one 2 avril
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,5 +1,4 @@
 package com.example.movingcircles
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +23,7 @@ import java.text.NumberFormat
 
 
 
-val ratioBetweenLengthAndWidth: Int = 55
+val ratioBetweenLengthAndWidth: Int = 55  // keep this one 2 avril
 val lengthOfMatrix: Int = 102
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
