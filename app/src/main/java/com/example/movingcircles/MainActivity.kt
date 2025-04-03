@@ -71,6 +71,23 @@ class MainActivity : ComponentActivity() {
                             MatrixText(matrixString, innerPadding)
 
                             val numberFormat = NumberFormat.getInstance()
+
+                            Text(
+                                text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
+                                        "Refresh: ${Hz} Hz\n" +
+                                        "SwitchValue: ${"%.2f".format(SwitchValue)}%\n" +
+                                        "Updates: ${numberFormat.format(updateCount)}",
+                                modifier = Modifier
+                                    .align(Alignment.BottomStart)
+                                    .padding(6.dp)
+                                    .offset(y = (-200).dp),  // <- This comma was missing
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Normal,
+                                style = TextStyle(lineHeight = 12.sp)
+                            )
+
+
+                            /*
                             Text(
                                 text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
                                         "Refresh: ${Hz} Hz\n" +
@@ -83,6 +100,14 @@ class MainActivity : ComponentActivity() {
                                 fontWeight = FontWeight.Normal,
                                 style = TextStyle(lineHeight = 12.sp)
                             )
+
+
+                        */
+
+
+
+
+
                         }
 
                         IconButton(

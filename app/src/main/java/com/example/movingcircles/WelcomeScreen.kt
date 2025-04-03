@@ -1,20 +1,20 @@
-package com.example.movingcircles  // keeep this one 2 avril
+package com.example.movingcircles
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Thermostat // Changed to available icon
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movingcircles.ui.theme.movingcirclesTheme
 
-// Main Activity class for the Welcome Screen
 class WelcomeScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,6 @@ class WelcomeScreen : ComponentActivity() {
             movingcirclesTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     WelcomeContent {
-                        // When start is clicked, launch MainActivity and finish this activity
                         startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
                         finish()
                     }
@@ -32,7 +31,6 @@ class WelcomeScreen : ComponentActivity() {
     }
 }
 
-// Composable function for the Welcome Screen UI
 @Composable
 fun WelcomeContent(onStartClicked: () -> Unit) {
     Column(
@@ -41,7 +39,7 @@ fun WelcomeContent(onStartClicked: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Moving Circles",
+            text = "Circles",
             fontSize = 24.sp,
             modifier = Modifier.padding(bottom = 32.dp)
         )
@@ -51,14 +49,14 @@ fun WelcomeContent(onStartClicked: () -> Unit) {
             modifier = Modifier.size(120.dp)
         ) {
             Icon(
-                painter = painterResource(id = android.R.drawable.ic_media_play),
+                imageVector = Icons.Filled.Thermostat, // Using available thermostat icon
                 contentDescription = "Start",
                 modifier = Modifier.fillMaxSize()
             )
         }
 
         Text(
-            text = "Tap to start",
+            text = "start",
             fontSize = 16.sp,
             modifier = Modifier.padding(top = 16.dp)
         )
