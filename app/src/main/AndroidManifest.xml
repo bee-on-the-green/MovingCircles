@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MovingCircles"
         tools:targetApi="31">
 
-        <!-- WelcomeScreen should be the launcher activity -->
+        <!-- Welcome Screen (Launcher Activity) -->
         <activity
             android:name=".WelcomeScreen"
             android:exported="true"
@@ -25,10 +25,17 @@
             </intent-filter>
         </activity>
 
-        <!-- MainActivity should not be a launcher activity -->
+        <!-- Original Circles Activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <!-- New Squares Activity -->
+        <activity
+            android:name=".MainActivitySquare"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
 
     </application>
 </manifest>

@@ -6,7 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Thermostat // Changed to available icon
+import androidx.compose.material.icons.filled.Thermostat
+import androidx.compose.material.icons.filled.CropSquare
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,10 +22,16 @@ class WelcomeScreen : ComponentActivity() {
         setContent {
             movingcirclesTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    WelcomeContent {
-                        startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
-                        finish()
-                    }
+                    WelcomeContent(
+                        onCirclesClicked = {
+                            startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
+                            finish()
+                        },
+                        onSquaresClicked = {
+                            startActivity(Intent(this@WelcomeScreen, MainActivitySquare::class.java))
+                            finish()
+                        }
+                    )
                 }
             }
         }
@@ -32,33 +39,62 @@ class WelcomeScreen : ComponentActivity() {
 }
 
 @Composable
-fun WelcomeContent(onStartClicked: () -> Unit) {
+fun WelcomeContent(
+    onCirclesClicked: () -> Unit,
+    onSquaresClicked: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Circles",
+            text = "Choose Mode",
             fontSize = 24.sp,
             modifier = Modifier.padding(bottom = 32.dp)
         )
 
-        IconButton(
-            onClick = onStartClicked,
-            modifier = Modifier.size(120.dp)
+        Row(
+            modifier = Modifier.padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            Icon(
-                imageVector = Icons.Filled.Thermostat, // Using available thermostat icon
-                contentDescription = "Start",
-                modifier = Modifier.fillMaxSize()
-            )
-        }
+            // Circles Mode Button
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(
+                    onClick = onCirclesClicked,
+                    modifier = Modifier.size(120.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Thermostat,
+                        contentDescription = "Circles Mode",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+                Text(
+                    text = "Circles",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
 
-        Text(
-            text = "start",
-            fontSize = 16.sp,
-            modifier = Modifier.padding(top = 16.dp)
-        )
+            // Squares Mode Button
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(
+                    onClick = onSquaresClicked,
+                    modifier = Modifier.size(120.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.CropSquare,
+                        contentDescription = "Squares Mode",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+                Text(
+                    text = "Squares",
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+        }
     }
 }
