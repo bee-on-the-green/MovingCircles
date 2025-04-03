@@ -1,10 +1,13 @@
 package com.example.movingcircles
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.*
@@ -43,48 +45,72 @@ class MainActivitySquare : ComponentActivity() {
             val backgroundColor = Color.Black
             val textColor = Color.White
 
-            Surface(
+            Scaffold(
                 modifier = Modifier.fillMaxSize(),
-                color = backgroundColor
-            ) {
-                Column(modifier = Modifier.fillMaxSize()) {
-                    Box(modifier = Modifier.weight(1f)) {
-                        Text(
-                            text = matrixString,
-                            modifier = Modifier.padding(4.dp),
-                            fontSize = 9.sp,
-                            fontFamily = FontFamily.Monospace,
-                            style = TextStyle(lineHeight = 10.sp),
-                            color = textColor
-                        )
-
-                        Text(
-                            text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
-                                    "Refresh: ${Hz} Hz",
-                            modifier = Modifier
-                                .align(Alignment.BottomStart)
-                                .padding(16.dp),
-                            fontSize = 12.sp,
-                            color = textColor
-                        )
-                    }
-
-                    IconButton(
-                        onClick = { isPaused = !isPaused },
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .padding(50.dp), // was 16 ******
-                        colors = IconButtonDefaults.iconButtonColors(
-                            contentColor = textColor
-                        )
+                floatingActionButton = {
+                    FloatingActionButton(
+                        onClick = {
+                            startActivity(Intent(this@MainActivitySquare, WelcomeScreen::class.java))
+                            finish()
+                        },
+                        modifier = Modifier.padding(16.dp),
+                        containerColor = MaterialTheme.colorScheme.primary
                     ) {
                         Icon(
-                            painter = painterResource(id = if (isPaused)
-                                android.R.drawable.ic_media_play else
-                                android.R.drawable.ic_media_pause),
-                            contentDescription = if (isPaused) "Play" else "Pause",
-                            modifier = Modifier.size(48.dp)
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back to menu",
+                            tint = Color.White
                         )
+                    }
+                },
+                floatingActionButtonPosition = FabPosition.Start
+            ) { innerPadding ->
+                Surface(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    color = backgroundColor
+                ) {
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Spacer(modifier = Modifier.height(32.dp))
+                        Box(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = matrixString,
+                                modifier = Modifier.padding(4.dp),
+                                fontSize = 9.sp,
+                                fontFamily = FontFamily.Monospace,
+                                style = TextStyle(lineHeight = 10.sp),
+                                color = textColor
+                            )
+
+                            Text(
+                                text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
+                                        "Refresh: ${Hz} Hz",
+                                modifier = Modifier
+                                    .align(Alignment.BottomStart)
+                                    .padding(16.dp),
+                                fontSize = 12.sp,
+                                color = textColor
+                            )
+                        }
+
+                        IconButton(
+                            onClick = { isPaused = !isPaused },
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .padding(50.dp),
+                            colors = IconButtonDefaults.iconButtonColors(
+                                contentColor = textColor
+                            )
+                        ) {
+                            Icon(
+                                painter = painterResource(id = if (isPaused)
+                                    android.R.drawable.ic_media_play else
+                                    android.R.drawable.ic_media_pause),
+                                contentDescription = if (isPaused) "Play" else "Pause",
+                                modifier = Modifier.size(48.dp)
+                            )
+                        }
                     }
                 }
             }
