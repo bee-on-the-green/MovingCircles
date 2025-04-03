@@ -1,4 +1,5 @@
 package com.example.movingcircles
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,9 +22,7 @@ import com.example.movingcircles.ui.theme.movingcirclesTheme
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 
-
-
-val ratioBetweenLengthAndWidth: Int = 55  // keep this one 2 avril
+val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
@@ -46,6 +45,8 @@ class MainActivity : ComponentActivity() {
     private var isPaused by mutableStateOf(false)
     private var SwitchValue: Double by mutableStateOf(0.0)
     private var updateCount: Int by mutableStateOf(0)
+    private var exactUpdateTime: Long by mutableStateOf(0L)
+    private var lastUpdateTime: Long by mutableStateOf(0L) // Track last update time
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,9 +80,10 @@ class MainActivity : ComponentActivity() {
                                     else
                                         "${timeElapsed.second} sec"
                                 }\n" +
-                                        "Refresh: ${Hz} Hz\n" +
-                                        "SwitchValue: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Updates: ${numberFormat.format(updateCount)}",
+                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
+                                        "Cycles: ${numberFormat.format(updateCount)}\n",
+
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -90,9 +92,6 @@ class MainActivity : ComponentActivity() {
                                 fontWeight = FontWeight.Normal,
                                 style = TextStyle(lineHeight = 12.sp)
                             )
-                            
-
-
                         }
 
                         IconButton(
@@ -136,10 +135,16 @@ class MainActivity : ComponentActivity() {
         updateJob = lifecycleScope.launch {
             matrixUpdater.startUpdating { updatedMatrix, switchValue ->
                 launch(Dispatchers.Main) {
+                    val currentTime = System.currentTimeMillis()
+
                     if (isFirstUpdate) {
-                        startTime = System.currentTimeMillis()
+                        startTime = currentTime
                         isFirstUpdate = false
+                    } else {
+                        exactUpdateTime = currentTime - lastUpdateTime
                     }
+                    lastUpdateTime = currentTime
+
                     val newMatrix = updatedMatrix.map { it.toMutableList() }.toMutableList()
                     updateFn(newMatrix)
                     calculateElapsedTime()
@@ -203,3 +208,4 @@ class MainActivity : ComponentActivity() {
         )
     }
 }
+
