@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -38,57 +39,68 @@ class MainActivitySquare : ComponentActivity() {
         setContent {
             var matrixString by remember { mutableStateOf("") }
 
-            Column(modifier = Modifier.fillMaxSize()) {
-                Box(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = matrixString,
-                        modifier = Modifier.padding(4.dp),
-                        fontSize = 9.sp,
-                        fontFamily = FontFamily.Monospace,
-                        style = TextStyle(lineHeight = 10.sp)
-                    )
+            // Hardcoded colors
+            val backgroundColor = Color.Black
+            val textColor = Color.White
 
-                    Text(
-                        text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
-                                "Refresh: ${Hz} Hz",
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = backgroundColor
+            ) {
+                Column(modifier = Modifier.fillMaxSize()) {
+                    Box(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = matrixString,
+                            modifier = Modifier.padding(4.dp),
+                            fontSize = 9.sp,
+                            fontFamily = FontFamily.Monospace,
+                            style = TextStyle(lineHeight = 10.sp),
+                            color = textColor
+                        )
+
+                        Text(
+                            text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
+                                    "Refresh: ${Hz} Hz",
+                            modifier = Modifier
+                                .align(Alignment.BottomStart)
+                                .padding(16.dp),
+                            fontSize = 12.sp,
+                            color = textColor
+                        )
+                    }
+
+                    IconButton(
+                        onClick = { isPaused = !isPaused },
                         modifier = Modifier
-                            .align(Alignment.BottomStart)
-                            .padding(16.dp),
-                        fontSize = 12.sp
-                    )
-                }
-
-                IconButton(
-                    onClick = { isPaused = !isPaused },
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(16.dp)
-                ) {
-                    Icon(
-                        painter = painterResource(id = if (isPaused)
-                            android.R.drawable.ic_media_play else
-                            android.R.drawable.ic_media_pause),
-                        contentDescription = if (isPaused) "Play" else "Pause",
-                        modifier = Modifier.size(48.dp)
-                    )
+                            .align(Alignment.CenterHorizontally)
+                            .padding(50.dp), // was 16 ******
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = textColor
+                        )
+                    ) {
+                        Icon(
+                            painter = painterResource(id = if (isPaused)
+                                android.R.drawable.ic_media_play else
+                                android.R.drawable.ic_media_pause),
+                            contentDescription = if (isPaused) "Play" else "Pause",
+                            modifier = Modifier.size(48.dp)
+                        )
+                    }
                 }
             }
 
             LaunchedEffect(isPaused) {
                 if (!isPaused) {
-                    updateJob?.cancel() // Cancel any existing job
+                    updateJob?.cancel()
                     updateJob = lifecycleScope.launch {
-                        // Initialize matrix in IO context
                         matrix = withContext(Dispatchers.IO) {
                             matrixInitializer.initializeMatrix()
                         }
                         matrixString = matrixToString(matrix)
                         matrixUpdater.matrix = matrix.map { it.toCharArray() }.toTypedArray()
 
-                        // Start updates in IO context
                         withContext(Dispatchers.IO) {
                             matrixUpdater.startUpdating { updatedMatrix, _ ->
-                                // Update UI on Main thread
                                 launch(Dispatchers.Main) {
                                     if (isFirstUpdate) {
                                         startTime = System.currentTimeMillis()

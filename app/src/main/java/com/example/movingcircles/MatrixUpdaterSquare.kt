@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare(
     var matrix: Array<CharArray>,
-    private val squareMatrixLength: Int = 102,
+    private val squareMatrixLength: Int = 80,
     private val squareMatrixHeight: Int = squareMatrixLength * 55 / 100,
     val sleepTime: Long = 10,
     val lengthRectangle: Int = 15,
