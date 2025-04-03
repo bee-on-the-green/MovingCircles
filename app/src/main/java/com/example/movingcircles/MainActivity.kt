@@ -73,39 +73,24 @@ class MainActivity : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
 
                             Text(
-                                text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
+                                text = "Elapsed: ${
+                                    if (timeElapsed.first > 0)
+                                        "${timeElapsed.first} min, ${timeElapsed.second} sec"
+                                    else
+                                        "${timeElapsed.second} sec"
+                                }\n" +
                                         "Refresh: ${Hz} Hz\n" +
                                         "SwitchValue: ${"%.2f".format(SwitchValue)}%\n" +
                                         "Updates: ${numberFormat.format(updateCount)}",
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-200).dp),  // <- This comma was missing
+                                    .offset(y = (-200).dp),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Normal,
                                 style = TextStyle(lineHeight = 12.sp)
                             )
-
-
-                            /*
-                            Text(
-                                text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
-                                        "Refresh: ${Hz} Hz\n" +
-                                        "SwitchValue: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Updates: ${numberFormat.format(updateCount)}",
-                                modifier = Modifier
-                                    .align(Alignment.BottomStart)
-                                    .padding(16.dp),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Normal,
-                                style = TextStyle(lineHeight = 12.sp)
-                            )
-
-
-                        */
-
-
-
+                            
 
 
                         }
