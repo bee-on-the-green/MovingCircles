@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
     private var updateCount: Int by mutableStateOf(0)
     private var exactUpdateTime: Long by mutableStateOf(0L)
     private var lastUpdateTime: Long by mutableStateOf(0L) // Track last update time
+    private var updateCounterForRefresh: Int by mutableStateOf(0) // Counter for refresh updates
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,9 +149,16 @@ class MainActivity : ComponentActivity() {
                     val newMatrix = updatedMatrix.map { it.toMutableList() }.toMutableList()
                     updateFn(newMatrix)
                     calculateElapsedTime()
-                    Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
+
+                    // Only update Hz and exactUpdateTime every 20 updates
+                    updateCounterForRefresh++
+                    if (updateCounterForRefresh >= 20) {
+                        Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                        updateCounterForRefresh = 0
+                    }
+
                     println("Elapsed Time: ${timeElapsed.first} minutes, ${timeElapsed.second} seconds")
                 }
             }
@@ -208,4 +216,3 @@ class MainActivity : ComponentActivity() {
         )
     }
 }
-

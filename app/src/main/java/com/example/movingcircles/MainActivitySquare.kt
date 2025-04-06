@@ -6,21 +6,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.*
 import androidx.lifecycle.lifecycleScope
+import com.example.movingcircles.ui.theme.movingcirclesTheme
 import kotlin.math.roundToInt
+import java.text.NumberFormat
+import com.example.movingcircles.ui.theme.Purple40
+import com.example.movingcircles.ui.theme.Purple200
 
 class MainActivitySquare : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerSquare()
@@ -33,133 +35,169 @@ class MainActivitySquare : ComponentActivity() {
     private var timeElapsed: Pair<Int, Int> by mutableStateOf(Pair(0, 0))
     private var Hz: Int by mutableStateOf(0)
     private var isPaused by mutableStateOf(false)
+    private var SwitchValue: Double by mutableStateOf(0.0)
+    private var updateCount: Int by mutableStateOf(0)
+    private var exactUpdateTime: Long by mutableStateOf(0L)
+    private var lastUpdateTime: Long by mutableStateOf(0L)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         setContent {
-            var matrixString by remember { mutableStateOf("") }
+            movingcirclesTheme {
+                var matrixString by remember { mutableStateOf("") }
 
-            // Hardcoded colors
-            val backgroundColor = Color.Black
-            val textColor = Color.White
+                fun updateMatrixString(newMatrix: MutableList<MutableList<Char>>) {
+                    matrixString = matrixToString(newMatrix)
+                }
 
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                floatingActionButton = {
-                    FloatingActionButton(
-                        onClick = {
-                            startActivity(Intent(this@MainActivitySquare, WelcomeScreen::class.java))
-                            finish()
-                        },
-                        modifier = Modifier.padding(16.dp),
-                        containerColor = MaterialTheme.colorScheme.primary
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back to menu",
-                            tint = Color.White
-                        )
-                    }
-                },
-                floatingActionButtonPosition = FabPosition.Start
-            ) { innerPadding ->
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                    color = backgroundColor
-                ) {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    floatingActionButton = {
+                        BackToWelcomeButton()
+                    },
+                    floatingActionButtonPosition = FabPosition.Start
+                ) { innerPadding ->
                     Column(modifier = Modifier.fillMaxSize()) {
-                        Spacer(modifier = Modifier.height(32.dp))
                         Box(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = matrixString,
-                                modifier = Modifier.padding(4.dp),
-                                fontSize = 9.sp,
-                                fontFamily = FontFamily.Monospace,
-                                style = TextStyle(lineHeight = 10.sp),
-                                color = textColor
-                            )
+                            MatrixText(matrixString, innerPadding)
+
+                            val numberFormat = NumberFormat.getInstance()
 
                             Text(
-                                text = "Elapsed: ${timeElapsed.first} min, ${timeElapsed.second} sec\n" +
-                                        "Refresh: ${Hz} Hz",
+                                text = "Elapsed: ${
+                                    if (timeElapsed.first > 0)
+                                        "${timeElapsed.first} min, ${timeElapsed.second} sec"
+                                    else
+                                        "${timeElapsed.second} sec"
+                                }\n" +
+                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
+                                        "Cycles: ${numberFormat.format(updateCount)}\n",
+
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
-                                    .padding(16.dp),
+                                    .padding(6.dp)
+                                    .offset(y = (-200).dp),
                                 fontSize = 12.sp,
-                                color = textColor
+                                fontWeight = FontWeight.Normal,
+                                style = TextStyle(lineHeight = 12.sp)
                             )
                         }
 
                         IconButton(
-                            onClick = { isPaused = !isPaused },
+                            onClick = {
+                                isPaused = !isPaused
+                                if (isPaused) {
+                                    updateJob?.cancel()
+                                } else {
+                                    startMatrixUpdates(::updateMatrixString)
+                                }
+                            },
                             modifier = Modifier
                                 .align(Alignment.CenterHorizontally)
-                                .padding(50.dp),
-                            colors = IconButtonDefaults.iconButtonColors(
-                                contentColor = textColor
-                            )
+                                .weight(0.1f)
+                                .padding(bottom = 50.dp)
                         ) {
                             Icon(
-                                painter = painterResource(id = if (isPaused)
-                                    android.R.drawable.ic_media_play else
-                                    android.R.drawable.ic_media_pause),
+                                painter = painterResource(id = if (isPaused) android.R.drawable.ic_media_play else android.R.drawable.ic_media_pause),
                                 contentDescription = if (isPaused) "Play" else "Pause",
                                 modifier = Modifier.size(48.dp)
                             )
                         }
                     }
                 }
-            }
 
-            LaunchedEffect(isPaused) {
-                if (!isPaused) {
-                    updateJob?.cancel()
-                    updateJob = lifecycleScope.launch {
-                        matrix = withContext(Dispatchers.IO) {
-                            matrixInitializer.initializeMatrix()
-                        }
-                        matrixString = matrixToString(matrix)
+                LaunchedEffect(Unit) {
+                    launch(Dispatchers.Default) {
+                        matrix = matrixInitializer.initializeMatrix()
+                        updateMatrixString(matrix)
                         matrixUpdater.matrix = matrix.map { it.toCharArray() }.toTypedArray()
+                        Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
 
-                        withContext(Dispatchers.IO) {
-                            matrixUpdater.startUpdating { updatedMatrix, _ ->
-                                launch(Dispatchers.Main) {
-                                    if (isFirstUpdate) {
-                                        startTime = System.currentTimeMillis()
-                                        isFirstUpdate = false
-                                    }
-                                    matrixString = matrixToString(
-                                        updatedMatrix.map { it.toMutableList() }.toMutableList()
-                                    )
-                                    calculateElapsedTime()
-                                    Hz = (1000.0 / matrixUpdater.sleepTime).roundToInt()
-                                }
-                            }
-                        }
+                        startMatrixUpdates(::updateMatrixString)
                     }
-                } else {
-                    updateJob?.cancel()
                 }
             }
         }
     }
 
-    private fun matrixToString(matrix: MutableList<MutableList<Char>>): String {
-        return matrix.joinToString("\n") { row -> row.joinToString("") }
-    }
+    private fun startMatrixUpdates(updateFn: (MutableList<MutableList<Char>>) -> Unit) {
+        updateJob = lifecycleScope.launch {
+            matrixUpdater.startUpdating { updatedMatrix, switchValue ->
+                launch(Dispatchers.Main) {
+                    val currentTime = System.currentTimeMillis()
 
-    private fun calculateElapsedTime() {
-        val elapsed = (System.currentTimeMillis() - startTime) / 1000
-        timeElapsed = Pair((elapsed / 60).toInt(), (elapsed % 60).toInt())
+                    if (isFirstUpdate) {
+                        startTime = currentTime
+                        isFirstUpdate = false
+                    } else {
+                        exactUpdateTime = currentTime - lastUpdateTime
+                    }
+                    lastUpdateTime = currentTime
+
+                    val newMatrix = updatedMatrix.map { it.toMutableList() }.toMutableList()
+                    updateFn(newMatrix)
+                    calculateElapsedTime()
+                    Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                    SwitchValue = switchValue
+                    updateCount++
+                    println("Elapsed Time: ${timeElapsed.first} minutes, ${timeElapsed.second} seconds")
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         updateJob?.cancel()
         matrixUpdater.stopUpdating()
+    }
+
+    private fun matrixToString(matrix: MutableList<MutableList<Char>>): String {
+        return matrix.joinToString("\n") { row ->
+            row.joinToString("")
+        }
+    }
+
+    private fun calculateElapsedTime() {
+        val elapsedTimeMillis = System.currentTimeMillis() - startTime
+        val totalSeconds = elapsedTimeMillis / 1000
+        val minutes = (totalSeconds / 60).toInt()
+        val seconds = (totalSeconds % 60).toInt()
+        timeElapsed = Pair(minutes, seconds)
+    }
+
+    @Composable
+    fun BackToWelcomeButton() {
+        IconButton(
+            onClick = {
+                startActivity(Intent(this@MainActivitySquare, WelcomeScreen::class.java))
+                finish()
+            },
+            modifier = Modifier
+                .padding(16.dp)
+                .size(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = android.R.drawable.ic_menu_revert),
+                contentDescription = "Back to Welcome",
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+    }
+
+    @Composable
+    fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
+        Text(
+            text = matrixString,
+            modifier = Modifier.padding(innerPadding),
+            color = Purple200,  // Using the Purple40 color defined in Color.kt
+            fontSize = 13.sp,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Normal,
+            style = TextStyle(lineHeight = 13.sp)
+        )
     }
 }
