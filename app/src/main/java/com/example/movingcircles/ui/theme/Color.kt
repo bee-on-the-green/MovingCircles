@@ -57,3 +57,6 @@ val Orange200 = Color(0xFFFFCC80)  // Muted orange
 val Orange500 = Color(0xFFFF9800)  // Classic Material orange
 val Orange700 = Color(0xFFF57C00)  // Deep orange
 val Orange900 = Color(0xFFE65100)  // Dark burnt orange
+
+// Pure white
+val PureWhite = Color(0xFFFFFFFF)

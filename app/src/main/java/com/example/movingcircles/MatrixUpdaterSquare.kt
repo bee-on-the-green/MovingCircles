@@ -6,14 +6,14 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare(
     var matrix: Array<CharArray>,
-    private val squareMatrixLength: Int = 71,
-    private val squareMatrixHeight: Int = squareMatrixLength * 55 / 100,
-    val sleepTime: Long = 10,
+    private val squareMatrixLength: Int = 102,
+    private val squareMatrixHeight: Int = squareMatrixLength * 42 / 100,
+    val sleepTime: Long = 5,
     val lengthRectangle: Int = 15,
     val widthRectangles: Int = 1,
     val breakPoint: Int = 30,
     val poolOfChar: Array<Char> = arrayOf('0', '1'),  // Simplified primary chars
-    val poolOfChar2: Array<Char> = arrayOf(',', '°', '·')  // Simplified secondary chars
+    val poolOfChar2: Array<Char> = arrayOf('·', '·')  // Simplified secondary chars
 ) {
     private var isRunning = false
     private var updateCount: Int = 0

@@ -19,10 +19,9 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.*
 import androidx.lifecycle.lifecycleScope
 import com.example.movingcircles.ui.theme.movingcirclesTheme
+import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
-import com.example.movingcircles.ui.theme.Purple40
-import com.example.movingcircles.ui.theme.Purple200
 
 class MainActivitySquare : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerSquare()
@@ -75,7 +74,6 @@ class MainActivitySquare : ComponentActivity() {
                                         "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
                                         "Cycles: ${numberFormat.format(updateCount)}\n",
-
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -193,8 +191,8 @@ class MainActivitySquare : ComponentActivity() {
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
-            color = Purple200,  // Using the Purple40 color defined in Color.kt
-            fontSize = 13.sp,
+            color = PureWhite,
+            fontSize = 9.sp,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Normal,
             style = TextStyle(lineHeight = 13.sp)

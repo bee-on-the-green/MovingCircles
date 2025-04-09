@@ -5,8 +5,8 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixInitializerSquare {
-    private val squareMatrixLength: Int = 71  // Unique to squares
-    private val squareMatrixHeight: Int = squareMatrixLength * 55 / 100  // 55% aspect ratio
+    private val squareMatrixLength: Int = 102  // Unique to squares
+    private val squareMatrixHeight: Int = squareMatrixLength * 42 / 100  // 55% aspect ratio
     private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')  // Unique character pool
 
     suspend fun initializeMatrix(
