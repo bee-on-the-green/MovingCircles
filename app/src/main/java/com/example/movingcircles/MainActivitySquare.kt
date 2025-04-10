@@ -23,6 +23,8 @@ import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
+import com.example.movingcircles.R
+
 
 class MainActivitySquare : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerSquare()
@@ -189,16 +191,12 @@ class MainActivitySquare : ComponentActivity() {
 
     @Composable
     fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
-        val customFontFamily = FontFamily(
-            Font(resId = R.font.firacode_regular, weight = FontWeight.Normal)
-        )
-
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
             fontSize = 9.sp,
-            fontFamily = customFontFamily,
+            fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
             style = TextStyle(lineHeight = 13.sp)
         )
