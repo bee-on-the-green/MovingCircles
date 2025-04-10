@@ -29,6 +29,10 @@ class WelcomeScreen : ComponentActivity() {
                         onSquaresClicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivitySquare::class.java))
                             finish()
+                        },
+                        onSquaresSmallClicked = {
+                            startActivity(Intent(this@WelcomeScreen, MainActivitySquareSmall::class.java))
+                            finish()
                         }
                     )
                 }
@@ -40,7 +44,8 @@ class WelcomeScreen : ComponentActivity() {
 @Composable
 fun WelcomeContent(
     onCirclesClicked: () -> Unit,
-    onSquaresClicked: () -> Unit
+    onSquaresClicked: () -> Unit,
+    onSquaresSmallClicked: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -59,13 +64,13 @@ fun WelcomeContent(
         Text(
             text = "Choose a mode:",
             fontSize = 25.sp,
-            modifier = Modifier.padding(bottom = 80.dp) // Reduced from 95dp to 45dp to move icons up
+            modifier = Modifier.padding(bottom = 80.dp)
         )
 
         Row(
             modifier = Modifier
                 .padding(16.dp)
-                .offset(y = (-50).dp), // Added offset to move the entire row up by 50 pixels
+                .offset(y = (-50).dp),
             horizontalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             // Circles Mode Button
@@ -91,6 +96,20 @@ fun WelcomeContent(
                     Image(
                         painter = painterResource(id = R.drawable.square_icon),
                         contentDescription = "Squares Mode",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+
+            // Squares Small Mode Button
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(
+                    onClick = onSquaresSmallClicked,
+                    modifier = Modifier.size(120.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_square_purple),
+                        contentDescription = "Small Squares Mode",
                         modifier = Modifier.fillMaxSize()
                     )
                 }

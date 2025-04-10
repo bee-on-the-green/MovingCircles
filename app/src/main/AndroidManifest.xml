@@ -31,9 +31,15 @@
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- New Squares Activity -->
+        <!-- Squares Activity -->
         <activity
             android:name=".MainActivitySquare"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <!-- Small Squares Activity -->
+        <activity
+            android:name=".MainActivitySquareSmall"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
