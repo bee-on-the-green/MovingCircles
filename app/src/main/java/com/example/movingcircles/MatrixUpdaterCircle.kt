@@ -1,28 +1,31 @@
 package com.example.movingcircles
 
+import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixUpdaterCircle(
-    var matrix: Array<CharArray>, // Matrix is now mutable
+    var matrix: Array<Array<MatrixCell>>, // Changed to MatrixCell type
     val sleepTime: Long = 10,
     val diameterToUse: Int = 11,
     val breakPoint: Int = 30,
-
     val poolOfChar: Array<Char> = arrayOf('{', '}'),
     val poolOfChar2: Array<Char> = arrayOf('.', '·')
 ) {
+    private val Orange700 = Color(0xFFF57C00)
+    private val Pink500 = Color(0xFFE91E63)
+
     private var isRunning = false
 
-    suspend fun startUpdating(onMatrixUpdated: (Array<CharArray>, Double) -> Unit) {
+    suspend fun startUpdating(onMatrixUpdated: (Array<Array<MatrixCell>>, Double) -> Unit) {
         isRunning = true
         withContext(Dispatchers.IO) {
             while (isRunning) {
                 updateMatrix()
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
-                val switchValue = calculateCharacterPercentage(matrixCopy, poolOfChar) // Calculate SwitchValue
-                onMatrixUpdated(matrixCopy, switchValue) // Pass both the matrix and SwitchValue
+                val switchValue = calculateCharacterPercentage(matrixCopy, poolOfChar)
+                onMatrixUpdated(matrixCopy, switchValue)
                 Thread.sleep(sleepTime)
             }
         }
@@ -34,10 +37,10 @@ class MatrixUpdaterCircle(
 
     private fun updateMatrix() {
         val (myRandomX, myRandomY) = selectRandomCoordinate()
-        drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar)
+        drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange700)
         val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
         if (mainCharPercentageAtCurrentTime > breakPoint) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink500)
         }
     }
 
@@ -48,8 +51,12 @@ class MatrixUpdaterCircle(
     }
 
     private fun drawCircle(
-        matrix: Array<CharArray>, centerX: Int, centerY: Int,
-        diameter: Int, poolOfChar: Array<Char>
+        matrix: Array<Array<MatrixCell>>,
+        centerX: Int,
+        centerY: Int,
+        diameter: Int,
+        poolOfChar: Array<Char>,
+        color: Color
     ) {
         val radius = diameter / 2
         val yStart = maxOf(centerY - radius, 0)
@@ -64,20 +71,21 @@ class MatrixUpdaterCircle(
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {
                     val randomChar = poolOfChar[Random.nextInt(poolOfChar.size)]
-                    matrix[y][x] = randomChar
+                    matrix[y][x] = MatrixCell(randomChar, color)
                 }
             }
         }
     }
 
     private fun calculateCharacterPercentage(
-        matrix: Array<CharArray>, poolOfChar: Array<Char>
+        matrix: Array<Array<MatrixCell>>,
+        poolOfChar: Array<Char>
     ): Double {
         var count = 0
         val totalCells = matrix.size * if (matrix.isNotEmpty() && matrix[0].isNotEmpty()) matrix[0].size else 0
         matrix.forEach { row ->
-            row.forEach { char ->
-                if (char in poolOfChar) {
+            row.forEach { cell ->
+                if (cell.char in poolOfChar) {
                     count++
                 }
             }
