@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-class MatrixUpdaterSquareSmall(
+class MatrixUpdaterCircle(
     var matrix: Array<CharArray>, // Matrix is now mutable
     val sleepTime: Long = 10,
     val diameterToUse: Int = 11,

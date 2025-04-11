@@ -31,7 +31,7 @@ class WelcomeScreen : ComponentActivity() {
                             finish()
                         },
                         onSquaresSmallClicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivitySquareSmall::class.java))
+                            startActivity(Intent(this@WelcomeScreen, MainActivityCircle::class.java))
                             finish()
                         }
                     )

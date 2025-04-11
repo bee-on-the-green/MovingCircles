@@ -39,7 +39,7 @@
 
         <!-- Small Squares Activity -->
         <activity
-            android:name=".MainActivitySquareSmall"
+            android:name=".MainActivityCircle"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 

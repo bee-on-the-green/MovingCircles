@@ -23,13 +23,12 @@ import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
-import com.example.movingcircles.R
 
 
-class MainActivitySquareSmall : ComponentActivity() {
-    private val matrixInitializer = MatrixInitializerSquareSmall()
+class MainActivityCircle : ComponentActivity() {
+    private val matrixInitializer = MatrixInitializerCircle()
     private lateinit var matrix: MutableList<MutableList<Char>>
-    private val matrixUpdater = MatrixUpdaterSquareSmall(matrix = arrayOf())
+    private val matrixUpdater = MatrixUpdaterCircle(matrix = arrayOf())
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -174,7 +173,7 @@ class MainActivitySquareSmall : ComponentActivity() {
     fun BackToWelcomeButton() {
         IconButton(
             onClick = {
-                startActivity(Intent(this@MainActivitySquareSmall, WelcomeScreen::class.java))
+                startActivity(Intent(this@MainActivityCircle, WelcomeScreen::class.java))
                 finish()
             },
             modifier = Modifier
