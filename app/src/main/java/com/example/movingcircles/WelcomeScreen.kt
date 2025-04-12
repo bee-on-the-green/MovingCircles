@@ -33,6 +33,10 @@ class WelcomeScreen : ComponentActivity() {
                         onSquaresSmallClicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivityCircle::class.java))
                             finish()
+                        },
+                        onCircles2Clicked = {
+                            startActivity(Intent(this@WelcomeScreen, MainActivityCircles2::class.java))
+                            finish()
                         }
                     )
                 }
@@ -45,7 +49,8 @@ class WelcomeScreen : ComponentActivity() {
 fun WelcomeContent(
     onCirclesClicked: () -> Unit,
     onSquaresClicked: () -> Unit,
-    onSquaresSmallClicked: () -> Unit
+    onSquaresSmallClicked: () -> Unit,
+    onCircles2Clicked: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -101,7 +106,7 @@ fun WelcomeContent(
                 }
             }
 
-            // Squares Small Mode Button
+            // Small Squares Mode Button
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(
                     onClick = onSquaresSmallClicked,
@@ -110,6 +115,20 @@ fun WelcomeContent(
                     Image(
                         painter = painterResource(id = R.drawable.icon_square_purple),
                         contentDescription = "Small Squares Mode",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+
+            // Circles2 Mode Button
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(
+                    onClick = onCircles2Clicked,
+                    modifier = Modifier.size(120.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_sun),
+                        contentDescription = "Circles2 Mode",
                         modifier = Modifier.fillMaxSize()
                     )
                 }
