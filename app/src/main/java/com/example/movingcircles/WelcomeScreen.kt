@@ -37,6 +37,10 @@ class WelcomeScreen : ComponentActivity() {
                         onCircles2Clicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivityCircles2::class.java))
                             finish()
+                        },
+                        onSquares2Clicked = {
+                            startActivity(Intent(this@WelcomeScreen, MainActivitySquare2::class.java))
+                            finish()
                         }
                     )
                 }
@@ -50,7 +54,8 @@ fun WelcomeContent(
     onCirclesClicked: () -> Unit,
     onSquaresClicked: () -> Unit,
     onSquaresSmallClicked: () -> Unit,
-    onCircles2Clicked: () -> Unit
+    onCircles2Clicked: () -> Unit,
+    onSquares2Clicked: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -129,6 +134,20 @@ fun WelcomeContent(
                     Image(
                         painter = painterResource(id = R.drawable.icon_sun),
                         contentDescription = "Circles2 Mode",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+
+            // Squares2 Mode Button
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(
+                    onClick = onSquares2Clicked,
+                    modifier = Modifier.size(120.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.square_green_yellow),
+                        contentDescription = "Squares2 Mode",
                         modifier = Modifier.fillMaxSize()
                     )
                 }

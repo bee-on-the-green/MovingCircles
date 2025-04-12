@@ -49,5 +49,11 @@
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
+        <!-- New Squares2 Activity -->
+        <activity
+            android:name=".MainActivitySquare2"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
     </application>
 </manifest>
