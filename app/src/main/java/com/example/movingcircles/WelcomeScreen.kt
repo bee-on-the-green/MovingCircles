@@ -74,20 +74,23 @@ fun WelcomeContent(
         Text(
             text = "Choose a mode:",
             fontSize = 25.sp,
-            modifier = Modifier.padding(bottom = 80.dp)
+            modifier = Modifier.padding(bottom = 40.dp)
         )
 
         Row(
             modifier = Modifier
                 .padding(16.dp)
-                .offset(y = (-50).dp),
+                .offset(y = (-30).dp),
             horizontalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            // Circles Mode Button
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            // Circles Mode
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(100.dp)
+            ) {
                 IconButton(
                     onClick = onCirclesClicked,
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(80.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.circle_icon),
@@ -95,13 +98,21 @@ fun WelcomeContent(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+                Text(
+                    text = "Circles",
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
 
-            // Squares Mode Button
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            // Squares Mode
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(100.dp)
+            ) {
                 IconButton(
                     onClick = onSquaresClicked,
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(80.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.square_icon),
@@ -109,13 +120,21 @@ fun WelcomeContent(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+                Text(
+                    text = "Squares",
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
 
-            // Small Squares Mode Button
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            // Small Squares Mode
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(100.dp)
+            ) {
                 IconButton(
                     onClick = onSquaresSmallClicked,
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(80.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.icon_square_purple),
@@ -123,13 +142,21 @@ fun WelcomeContent(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+                Text(
+                    text = "Small circle",
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
 
-            // Circles2 Mode Button
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            // Circles2 Mode
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(100.dp)
+            ) {
                 IconButton(
                     onClick = onCircles2Clicked,
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(80.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.icon_sun),
@@ -137,13 +164,21 @@ fun WelcomeContent(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+                Text(
+                    text = "Circles2",
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
 
-            // Squares2 Mode Button
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            // Squares2 Mode
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(100.dp)
+            ) {
                 IconButton(
                     onClick = onSquares2Clicked,
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(80.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.square_green_yellow),
@@ -151,6 +186,11 @@ fun WelcomeContent(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+                Text(
+                    text = "Squares2",
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
         }
     }

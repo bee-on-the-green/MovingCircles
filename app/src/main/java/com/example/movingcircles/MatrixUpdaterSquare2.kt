@@ -6,8 +6,8 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare2(
     var matrix: Array<CharArray>,
-    private val square2MatrixLength: Int = 102,
-    private val square2MatrixHeight: Int = square2MatrixLength * 42 / 100,
+    private val MatrixLength: Int = 102,
+    private val MatrixHeight: Int = MatrixLength * 42 / 100,
     val sleepTime: Long = 5,
     val lengthRectangle: Int = 15,
     val widthRectangles: Int = 1,
@@ -49,8 +49,8 @@ class MatrixUpdaterSquare2(
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
         return Pair(
-            Random.nextInt(0, square2MatrixLength),
-            Random.nextInt(0, square2MatrixHeight)
+            Random.nextInt(0, MatrixLength),
+            Random.nextInt(0, MatrixHeight)
         )
     }
 
@@ -64,8 +64,8 @@ class MatrixUpdaterSquare2(
         val halfLength = length / 2
         val halfWidth = width / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, square2MatrixHeight - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, square2MatrixLength - 1)) {
+        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeight - 1)) {
+            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLength - 1)) {
                 matrix[y][x] = poolOfChar.random()
             }
         }

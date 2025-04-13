@@ -1,6 +1,7 @@
 package com.example.movingcircles
 
 import androidx.compose.ui.graphics.Color
+import com.example.movingcircles.ui.theme.Pink800
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
@@ -8,15 +9,28 @@ import kotlin.random.Random
 class MatrixUpdaterCircles2(
     var matrix: Array<Array<MatrixCell2>>,
     val sleepTime: Long = 10,
-    val diameterToUse: Int = 11,
+    val diameterToUse: Int = 9, // was 11
     val breakPoint: Int = 30,
     val poolOfChar: Array<Char> = arrayOf('{', '}'),
     val poolOfChar2: Array<Char> = arrayOf('.', '·')
 ) {
-    private val Orange700 = Color(0xFFF57C00)
+
+    private val Orange900 = Color(0xFFE65100)
+    private val Orange850 = Color(0xFFD84300)  // Custom (between 800-900)
+    private val Orange700 = Color(0xFFF57C00)  // Material Orange 700 (different hue)
+    private val Orange750 = Color(0xFFEF6C00)  // Custom (between 700-800)
+    private val Orange800 = Color(0xFFEF6C00)  // Burnt orange
+
+
     private val Pink500 = Color(0xFFE91E63)
+    private val Pink600 = Color(0xFFD81B60)
+    private val Pink700 = Color(0xFFC2185B)
+    private val Pink800 = Color(0xFFAD1457)
+    private val Pink900 = Color(0xFF880E4F)  // Deep magenta
+
 
     private var isRunning = false
+    private var updateCount: Int = 0
 
     suspend fun startUpdating(onMatrixUpdated: (Array<Array<MatrixCell2>>, Double) -> Unit) {
         isRunning = true
@@ -37,11 +51,24 @@ class MatrixUpdaterCircles2(
 
     private fun updateMatrix() {
         val (myRandomX, myRandomY) = selectRandomCoordinate()
-        drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange700)
-        val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
-        if (mainCharPercentageAtCurrentTime > breakPoint) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink500)
+
+        if (updateCount % 2 == 0) {
+            // Even count - use original colors
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange800)
+            val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
+            if (mainCharPercentageAtCurrentTime > breakPoint) {
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink600)
+            }
+        } else {
+            // Odd count - use alternate colors
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange900)
+            val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
+            if (mainCharPercentageAtCurrentTime > breakPoint) {
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink900)
+            }
         }
+
+        updateCount++
     }
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
@@ -66,7 +93,7 @@ class MatrixUpdaterCircles2(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 2.0
+                val aspectRatio = 1.9 // was 2.0
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {
