@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme for normal activities -->
+    <style name="Theme.MovingCircles" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Your existing theme attributes -->
+    </style>
 
-    <style name="Theme.MovingCircles" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Special theme for launcher activity to remove splash screen -->
+    <style name="Theme.MovingCircles.Launcher" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 </resources>

@@ -13,12 +13,12 @@
         android:theme="@style/Theme.MovingCircles"
         tools:targetApi="31">
 
-        <!-- Welcome Screen (Launcher Activity) -->
+        <!-- Welcome Screen (Launcher Activity) with transparent theme -->
         <activity
             android:name=".WelcomeScreen"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MovingCircles">
+            android:theme="@style/Theme.MovingCircles.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
