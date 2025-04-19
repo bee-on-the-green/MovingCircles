@@ -21,6 +21,7 @@ import com.example.movingcircles.ui.theme.movingcirclesTheme
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
 
 val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
@@ -69,16 +70,15 @@ class MainActivity : ComponentActivity() {
                     exactUpdateTime = exactUpdateTime,
                     SwitchValue = SwitchValue,
                     updateCount = updateCount,
-                    onPauseChange = { paused ->
-                        isPaused = paused
-                        if (paused) {
+                    onPauseToggled = {
+                        isPaused = !isPaused
+                        if (isPaused) {
                             updateJob?.cancel()
                         } else {
                             startMatrixUpdates(::updateMatrixString)
                         }
                     },
-                    onBackClick = { finish() },
-                    updateMatrix = { startMatrixUpdates(::updateMatrixString) }
+                    onBackClick = { finish() }
                 )
 
                 LaunchedEffect(Unit) {
@@ -95,6 +95,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startMatrixUpdates(updateFn: (MutableList<MutableList<Char>>) -> Unit) {
+        updateJob?.cancel() // Cancel any existing job first
         updateJob = lifecycleScope.launch {
             matrixUpdater.startUpdating { updatedMatrix, switchValue ->
                 launch(Dispatchers.Main) {
@@ -150,9 +151,8 @@ fun MatrixScreen(
     exactUpdateTime: Long,
     SwitchValue: Double,
     updateCount: Int,
-    onPauseChange: (Boolean) -> Unit,
-    onBackClick: () -> Unit,
-    updateMatrix: () -> Unit
+    onPauseToggled: () -> Unit,
+    onBackClick: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -164,12 +164,7 @@ fun MatrixScreen(
                 BackToWelcomeButton(onClick = onBackClick)
                 PlayPauseButton(
                     isPaused = isPaused,
-                    onPauseChange = { paused ->
-                        onPauseChange(paused)
-                        if (!paused) {
-                            updateMatrix()
-                        }
-                    }
+                    onPauseToggled = onPauseToggled
                 )
             }
         },
@@ -194,9 +189,15 @@ fun MatrixScreen(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(6.dp)
-                        .offset(y = (-200).dp),
+                        .offset(y = (-280).dp), // Adjusted to position stats higher
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Normal,  // change on th next line
+
+
+                    fontFamily = FontFamily(
+                        Font(R.font.firacode_regular), // Replace with your font file name
+
+                    ),
                     style = TextStyle(lineHeight = 12.sp)
                 )
             }
@@ -207,10 +208,10 @@ fun MatrixScreen(
 @Composable
 fun PlayPauseButton(
     isPaused: Boolean,
-    onPauseChange: (Boolean) -> Unit
+    onPauseToggled: () -> Unit
 ) {
     IconButton(
-        onClick = { onPauseChange(!isPaused) },
+        onClick = onPauseToggled,
         modifier = Modifier
             .padding(50.dp)
             .size(120.dp)
