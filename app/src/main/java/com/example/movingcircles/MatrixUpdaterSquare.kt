@@ -6,14 +6,14 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare(
     var matrix: Array<CharArray>,
-    private val squareMatrixLength: Int = 102,
+    private val squareMatrixLength: Int = 80,
     private val squareMatrixHeight: Int = squareMatrixLength * 42 / 100,
-    val sleepTime: Long = 5,
+    val sleepTime: Long = 4,
     val lengthRectangle: Int = 15,
     val widthRectangles: Int = 1,
-    val breakPoint: Int = 30,
-    val poolOfChar: Array<Char> = arrayOf('0', '1'),  // Simplified primary chars
-    val poolOfChar2: Array<Char> = arrayOf('·', '·')  // Simplified secondary chars
+    val breakPoint: Int = 19,
+    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),  // Simplified primary chars
+    val poolOfChar2: Array<Char> = arrayOf('·', '.', '²', '·', '.', '·', '.', '\'')  // Simplified secondary chars
 ) {
     private var isRunning = false
     private var updateCount: Int = 0
@@ -37,8 +37,8 @@ class MatrixUpdaterSquare(
 
     private fun updateMatrix() {
         val (randomX, randomY) = selectRandomCoordinate()
-        val currentLength = if (updateCount % 2 == 0) 20 else 1
-        val currentWidth = if (updateCount % 2 == 0) 1 else 20
+        val currentLength = if (updateCount % 2 == 0) 21 else 1
+        val currentWidth = if (updateCount % 2 == 0) 1 else 21
 
         drawRectangle(randomX, randomY, currentLength, currentWidth, poolOfChar)
         if (calculateCharacterPercentage(matrix, poolOfChar) > breakPoint) {

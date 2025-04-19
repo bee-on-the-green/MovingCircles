@@ -1,6 +1,5 @@
 package com.example.movingcircles
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.movingcircles.ui.theme.movingcirclesTheme
 import kotlin.math.roundToInt
 import java.text.NumberFormat
+import androidx.compose.ui.graphics.Color
 
 val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
@@ -46,8 +46,8 @@ class MainActivity : ComponentActivity() {
     private var SwitchValue: Double by mutableStateOf(0.0)
     private var updateCount: Int by mutableStateOf(0)
     private var exactUpdateTime: Long by mutableStateOf(0L)
-    private var lastUpdateTime: Long by mutableStateOf(0L) // Track last update time
-    private var updateCounterForRefresh: Int by mutableStateOf(0) // Counter for refresh updates
+    private var lastUpdateTime: Long by mutableStateOf(0L)
+    private var updateCounterForRefresh: Int by mutableStateOf(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,62 +61,25 @@ class MainActivity : ComponentActivity() {
                     matrixString = matrixToString(newMatrix)
                 }
 
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    floatingActionButton = {
-                        BackToWelcomeButton()
+                MatrixScreen(
+                    matrixString = matrixString,
+                    isPaused = isPaused,
+                    timeElapsed = timeElapsed,
+                    Hz = Hz,
+                    exactUpdateTime = exactUpdateTime,
+                    SwitchValue = SwitchValue,
+                    updateCount = updateCount,
+                    onPauseChange = { paused ->
+                        isPaused = paused
+                        if (paused) {
+                            updateJob?.cancel()
+                        } else {
+                            startMatrixUpdates(::updateMatrixString)
+                        }
                     },
-                    floatingActionButtonPosition = FabPosition.Start
-                ) { innerPadding ->
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        Box(modifier = Modifier.weight(1f)) {
-                            MatrixText(matrixString, innerPadding)
-
-                            val numberFormat = NumberFormat.getInstance()
-
-                            Text(
-                                text = "Elapsed: ${
-                                    if (timeElapsed.first > 0)
-                                        "${timeElapsed.first} min, ${timeElapsed.second} sec"
-                                    else
-                                        "${timeElapsed.second} sec"
-                                }\n" +
-                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n",
-
-                                modifier = Modifier
-                                    .align(Alignment.BottomStart)
-                                    .padding(6.dp)
-                                    .offset(y = (-200).dp),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Normal,
-                                style = TextStyle(lineHeight = 12.sp)
-                            )
-                        }
-
-                        IconButton(
-                            onClick = {
-                                isPaused = !isPaused
-                                if (isPaused) {
-                                    updateJob?.cancel()
-                                } else {
-                                    startMatrixUpdates(::updateMatrixString)
-                                }
-                            },
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .weight(0.1f)
-                                .padding(bottom = 50.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(id = if (isPaused) android.R.drawable.ic_media_play else android.R.drawable.ic_media_pause),
-                                contentDescription = if (isPaused) "Play" else "Pause",
-                                modifier = Modifier.size(48.dp)
-                            )
-                        }
-                    }
-                }
+                    onBackClick = { finish() },
+                    updateMatrix = { startMatrixUpdates(::updateMatrixString) }
+                )
 
                 LaunchedEffect(Unit) {
                     launch(Dispatchers.Default) {
@@ -124,7 +87,6 @@ class MainActivity : ComponentActivity() {
                         updateMatrixString(matrix)
                         matrixUpdater.matrix = matrix.map { it.toCharArray() }.toTypedArray()
                         Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
-
                         startMatrixUpdates(::updateMatrixString)
                     }
                 }
@@ -152,14 +114,11 @@ class MainActivity : ComponentActivity() {
                     SwitchValue = switchValue
                     updateCount++
 
-                    // Only update Hz and exactUpdateTime every 20 updates
-                    updateCounterForRefresh++
                     if (updateCounterForRefresh >= 20) {
                         Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
                         updateCounterForRefresh = 0
                     }
-
-                    println("Elapsed Time: ${timeElapsed.first} minutes, ${timeElapsed.second} seconds")
+                    updateCounterForRefresh++
                 }
             }
         }
@@ -172,47 +131,124 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun matrixToString(matrix: MutableList<MutableList<Char>>): String {
-        return matrix.joinToString("\n") { row ->
-            row.joinToString("")
-        }
+        return matrix.joinToString("\n") { row -> row.joinToString("") }
     }
 
     private fun calculateElapsedTime() {
         val elapsedTimeMillis = System.currentTimeMillis() - startTime
         val totalSeconds = elapsedTimeMillis / 1000
-        val minutes = (totalSeconds / 60).toInt()
-        val seconds = (totalSeconds % 60).toInt()
-        timeElapsed = Pair(minutes, seconds)
+        timeElapsed = Pair((totalSeconds / 60).toInt(), (totalSeconds % 60).toInt())
     }
+}
 
-    @Composable
-    fun BackToWelcomeButton() {
-        IconButton(
-            onClick = {
-                startActivity(Intent(this@MainActivity, WelcomeScreen::class.java))
-                finish()
-            },
-            modifier = Modifier
-                .padding(16.dp)
-                .size(48.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_revert),
-                contentDescription = "Back to Welcome",
-                modifier = Modifier.fillMaxSize()
-            )
+@Composable
+fun MatrixScreen(
+    matrixString: String,
+    isPaused: Boolean,
+    timeElapsed: Pair<Int, Int>,
+    Hz: Int,
+    exactUpdateTime: Long,
+    SwitchValue: Double,
+    updateCount: Int,
+    onPauseChange: (Boolean) -> Unit,
+    onBackClick: () -> Unit,
+    updateMatrix: () -> Unit
+) {
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        floatingActionButton = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                BackToWelcomeButton(onClick = onBackClick)
+                PlayPauseButton(
+                    isPaused = isPaused,
+                    onPauseChange = { paused ->
+                        onPauseChange(paused)
+                        if (!paused) {
+                            updateMatrix()
+                        }
+                    }
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.Start
+    ) { innerPadding ->
+        Column(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier.weight(1f)) {
+                MatrixText(matrixString, innerPadding)
+
+                val numberFormat = NumberFormat.getInstance()
+
+                Text(
+                    text = "Elapsed: ${
+                        if (timeElapsed.first > 0)
+                            "${timeElapsed.first} min, ${timeElapsed.second} sec"
+                        else
+                            "${timeElapsed.second} sec"
+                    }\n" +
+                            "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                            "Density: ${"%.2f".format(SwitchValue)}%\n" +
+                            "Cycles: ${numberFormat.format(updateCount)}\n",
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(6.dp)
+                        .offset(y = (-200).dp),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Normal,
+                    style = TextStyle(lineHeight = 12.sp)
+                )
+            }
         }
     }
+}
 
-    @Composable
-    fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
-        Text(
-            text = matrixString,
-            modifier = Modifier.padding(innerPadding),
-            fontSize = 9.sp,
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 10.sp)
+@Composable
+fun PlayPauseButton(
+    isPaused: Boolean,
+    onPauseChange: (Boolean) -> Unit
+) {
+    IconButton(
+        onClick = { onPauseChange(!isPaused) },
+        modifier = Modifier
+            .padding(50.dp)
+            .size(120.dp)
+    ) {
+        Icon(
+            painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
+            contentDescription = if (isPaused) "Play" else "Pause",
+            modifier = Modifier.size(120.dp),
+            tint = Color.Unspecified
         )
     }
+}
+
+@Composable
+fun BackToWelcomeButton(onClick: () -> Unit) {
+    IconButton(
+        onClick = onClick,
+        modifier = Modifier
+            .padding(50.dp)
+            .size(120.dp)
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.my_back_button_black),
+            contentDescription = "Back to Welcome",
+            modifier = Modifier.size(120.dp),
+            tint = Color.Unspecified
+        )
+    }
+}
+
+@Composable
+fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
+    Text(
+        text = matrixString,
+        modifier = Modifier.padding(innerPadding),
+        fontSize = 9.sp,
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.Normal,
+        style = TextStyle(lineHeight = 10.sp)
+    )
 }

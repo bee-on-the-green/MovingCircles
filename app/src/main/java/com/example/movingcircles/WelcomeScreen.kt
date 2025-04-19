@@ -24,23 +24,18 @@ class WelcomeScreen : ComponentActivity() {
                     WelcomeContent(
                         onCirclesClicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
-                            finish()
                         },
                         onSquaresClicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivitySquare::class.java))
-                            finish()
                         },
                         onSquaresSmallClicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivityCircle::class.java))
-                            finish()
                         },
                         onCircles2Clicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivityCircles2::class.java))
-                            finish()
                         },
                         onSquares2Clicked = {
                             startActivity(Intent(this@WelcomeScreen, MainActivitySquare2::class.java))
-                            finish()
                         }
                     )
                 }
@@ -67,14 +62,14 @@ fun WelcomeContent(
             painter = painterResource(id = R.drawable.welcome_image),
             contentDescription = "Welcome Image",
             modifier = Modifier
-                .size(850.dp)
-                .padding(bottom = 65.dp)
+                .size(600.dp) // was 850
+                .padding(bottom = 75.dp)  // was 65
         )
 
         Text(
-            text = "Choose a mode:",
+            text = "Circles and Squares:",
             fontSize = 25.sp,
-            modifier = Modifier.padding(bottom = 40.dp)
+            modifier = Modifier.padding(bottom = 60.dp)  // was 40
         )
 
         Row(
@@ -99,8 +94,8 @@ fun WelcomeContent(
                     )
                 }
                 Text(
-                    text = "Circles",
-                    fontSize = 12.sp,
+                    text = "B&W Circles",
+                    fontSize = 11.sp,
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
@@ -121,8 +116,8 @@ fun WelcomeContent(
                     )
                 }
                 Text(
-                    text = "Squares",
-                    fontSize = 12.sp,
+                    text = "One&Zero",
+                    fontSize = 11.sp,
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
@@ -137,13 +132,13 @@ fun WelcomeContent(
                     modifier = Modifier.size(80.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.icon_square_purple),
+                        painter = painterResource(id = R.drawable.icon_sun), // was icon_square_purple
                         contentDescription = "Small Squares Mode",
                         modifier = Modifier.fillMaxSize()
                     )
                 }
                 Text(
-                    text = "Small circle",
+                    text = "Orange",
                     fontSize = 12.sp,
                     modifier = Modifier.padding(top = 4.dp)
                 )
@@ -159,13 +154,13 @@ fun WelcomeContent(
                     modifier = Modifier.size(80.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.icon_sun),
+                        painter = painterResource(id = R.drawable.icon_square_purple), // was icon_sun
                         contentDescription = "Circles2 Mode",
                         modifier = Modifier.fillMaxSize()
                     )
                 }
                 Text(
-                    text = "Circles2",
+                    text = "Purple",
                     fontSize = 12.sp,
                     modifier = Modifier.padding(top = 4.dp)
                 )

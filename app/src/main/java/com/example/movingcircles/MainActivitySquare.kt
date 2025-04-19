@@ -195,10 +195,10 @@ class MainActivitySquare : ComponentActivity() {
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontSize = 9.sp,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 13.sp)
+            fontSize = 11.8.sp,
+            style = TextStyle(lineHeight = 16.3.sp) // was 13
         )
     }
 }

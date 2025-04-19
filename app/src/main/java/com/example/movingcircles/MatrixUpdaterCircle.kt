@@ -21,9 +21,9 @@ class MatrixUpdaterCircle(
     private val Orange850 = Color(0xFFD84300)  // Custom (between 800-900)
     private val Orange700 = Color(0xFFF57C00)  // Material Orange 700 (different hue)
     private val Orange750 = Color(0xFFEF6C00)  // Custom (between 700-800)
-    private val Orange800 = Color(0xFFEF6C00)  // Burnt orange
 
-    private val Red900 = Color(0xFFB71C1C)
+
+
     private val Red850 = Color(0xFFA01818)  // Custom (between 800-900)
     private val Red800 = Color(0xFFC62828)
     private val Red750 = Color(0xFFD32F2F)  // Custom (between 700-800)
@@ -36,7 +36,8 @@ class MatrixUpdaterCircle(
     private val Red400 = Color(0xFFEF5350)
     private val Red350 = Color(0xFFE57373)  // Custom (between 300-400)
     private val Red300 = Color(0xFFE57373)
-
+    //private val Violet200 = Color(0xFFCE93D8)
+    //private val Violet300 = Color(0xFFBA68C8)
 
 
 
@@ -73,6 +74,11 @@ class MatrixUpdaterCircle(
     private val Pink800 = Color(0xFF880E4F)   // Material Pink 800
     private val Pink850 = Color(0xFF7A0D47)   // Custom (between 800-900)
     private val Pink900 = Color(0xFF4A0A2A)   // Material Pink 900 (deep burgundy-pink)
+    private val Orange800 = Color(0xFFEF6C00)  // Burnt orange  new one
+    private val Red900 = Color(0xFFB71C1C)
+    private val Violet200 = Color(0xFFCE93D8)  // new one
+    private val Violet300 = Color(0xFFBA68C8)
+
 
 
 
@@ -103,17 +109,17 @@ class MatrixUpdaterCircle(
 
         if (updateCount % 2 == 0) {
             // Even count - use original colors
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Red750)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Red800)  // was Red750
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink600) // 300
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink650) // was Pink600
             }
         } else {
             // Odd count - use alternate colors
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange900)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange900)  // was Orange900
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink800)  // was 450
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink850)  // was Pink800
             }
         }
 
