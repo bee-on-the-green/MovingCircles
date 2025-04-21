@@ -24,7 +24,7 @@ import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
-
+// kkkkkk
 class MainActivityCircles2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircles2()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>

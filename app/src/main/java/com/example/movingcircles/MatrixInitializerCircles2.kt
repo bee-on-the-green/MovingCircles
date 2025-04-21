@@ -4,8 +4,6 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-data class MatrixCell2(val char: Char, val color: Color = Color.White)
-
 class MatrixInitializerCircles2 {
     private val MatrixLength: Int = 100
     private val MatrixHeight: Int = MatrixLength * 42 / 100
