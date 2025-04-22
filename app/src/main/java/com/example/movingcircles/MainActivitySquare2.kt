@@ -25,11 +25,13 @@ import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
 import com.example.movingcircles.R
+import com.example.movingcircles.ui.theme.PureWhite
 
 class MainActivitySquare2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerSquare2()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
-    private val matrixUpdater = MatrixUpdaterSquare2(matrix = Array(0) { Array(0) { MatrixCell2(' ') } })
+    private val matrixUpdater =
+        MatrixUpdaterSquare2(matrix = Array(0) { Array(0) { MatrixCell2(' ') } })
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -233,10 +235,14 @@ class MainActivitySquare2 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontSize = 9.sp,
-            fontFamily = FontFamily(Font(R.font.firacode_light)),
+            fontSize = 10.sp,
+            fontFamily = FontFamily(Font(R.font.noto_sans_mono)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 13.sp)
+            style = TextStyle(
+                lineHeight = 12.sp,
+                letterSpacing = 0.5.sp // Add this line to increase space between characters
+            )
         )
     }
+
 }
