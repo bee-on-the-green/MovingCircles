@@ -4,13 +4,12 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
-import com.example.movingcircles.ui.theme.PureWhite
 
 data class MatrixCell2(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerSquare2 {
-    private val MatrixLength: Int = 80  // Unique to squares
-    private val MatrixHeight: Int = MatrixLength * 55 / 100  // 55% aspect ratio
+    private val MatrixLength: Int = 90  // Unique to squares
+    private val MatrixHeight: Int = MatrixLength * 58 / 100  // 55% aspect ratio
     private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')  // Unique character pool
     private val defaultColor = Color.White
 

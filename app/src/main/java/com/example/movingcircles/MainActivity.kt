@@ -157,18 +157,24 @@ fun MatrixScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(end = 25.dp),
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.End
             ) {
+                Spacer(modifier = Modifier.height(750.dp)) // was 700
                 BackToWelcomeButton(onClick = onBackClick)
+                Spacer(modifier = Modifier.height(5.dp))
                 PlayPauseButton(
                     isPaused = isPaused,
                     onPauseToggled = onPauseToggled
                 )
+                Spacer(modifier = Modifier.height(32.dp))
             }
         },
-        floatingActionButtonPosition = FabPosition.Start
+        floatingActionButtonPosition = FabPosition.End
     ) { innerPadding ->
         Column(modifier = Modifier.fillMaxSize()) {
             Box(modifier = Modifier.weight(1f)) {
@@ -189,14 +195,11 @@ fun MatrixScreen(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(6.dp)
-                        .offset(y = (-280).dp), // Adjusted to position stats higher
+                        .offset(y = (-280).dp),
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.Normal,  // change on th next line
-
-
+                    fontWeight = FontWeight.Normal,
                     fontFamily = FontFamily(
-                        Font(R.font.firacode_regular), // Replace with your font file name
-
+                        Font(R.font.firacode_regular),
                     ),
                     style = TextStyle(lineHeight = 12.sp)
                 )
@@ -213,13 +216,14 @@ fun PlayPauseButton(
     IconButton(
         onClick = onPauseToggled,
         modifier = Modifier
-            .padding(50.dp)
-            .size(120.dp)
+            .padding(42.dp)
+            .size(80.dp)
+            .offset(x = 50.dp, y = 40.dp)  //  .offset(x = 50.dp, y = 50.dp)
     ) {
         Icon(
             painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
             contentDescription = if (isPaused) "Play" else "Pause",
-            modifier = Modifier.size(120.dp),
+            modifier = Modifier.size(80.dp),
             tint = Color.Unspecified
         )
     }
@@ -230,13 +234,14 @@ fun BackToWelcomeButton(onClick: () -> Unit) {
     IconButton(
         onClick = onClick,
         modifier = Modifier
-            .padding(50.dp)
-            .size(120.dp)
+            .padding(42.dp)
+            .size(80.dp)
+            .offset(x = 50.dp, y = 50.dp)  //was   .offset(x = 50.dp)
     ) {
         Icon(
             painter = painterResource(id = R.drawable.my_back_button_black),
             contentDescription = "Back to Welcome",
-            modifier = Modifier.size(120.dp),
+            modifier = Modifier.size(80.dp),
             tint = Color.Unspecified
         )
     }
