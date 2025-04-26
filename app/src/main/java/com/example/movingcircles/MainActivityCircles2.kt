@@ -24,7 +24,7 @@ import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
-// kkkkkk
+
 class MainActivityCircles2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircles2()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
@@ -59,9 +59,31 @@ class MainActivityCircles2 : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     floatingActionButton = {
-                        BackToWelcomeButton()
+                        Column(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(end = 25.dp),
+                            verticalArrangement = Arrangement.Bottom,
+                            horizontalAlignment = Alignment.End
+                        ) {
+                            Spacer(modifier = Modifier.height(750.dp))
+                            BackToWelcomeButton()
+                            Spacer(modifier = Modifier.height(5.dp))
+                            PlayPauseButton(
+                                isPaused = isPaused,
+                                onPauseToggled = {
+                                    isPaused = !isPaused
+                                    if (isPaused) {
+                                        updateJob?.cancel()
+                                    } else {
+                                        startMatrixUpdates(::updateMatrixState)
+                                    }
+                                }
+                            )
+                            Spacer(modifier = Modifier.height(32.dp))
+                        }
                     },
-                    floatingActionButtonPosition = FabPosition.Start
+                    floatingActionButtonPosition = FabPosition.End
                 ) { innerPadding ->
                     Column(modifier = Modifier.fillMaxSize()) {
                         Box(modifier = Modifier.weight(1f)) {
@@ -82,31 +104,13 @@ class MainActivityCircles2 : ComponentActivity() {
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-200).dp),
+                                    .offset(y = (-280).dp),
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Normal,
+                                fontFamily = FontFamily(
+                                    Font(R.font.firacode_regular),
+                                ),
                                 style = TextStyle(lineHeight = 12.sp)
-                            )
-                        }
-
-                        IconButton(
-                            onClick = {
-                                isPaused = !isPaused
-                                if (isPaused) {
-                                    updateJob?.cancel()
-                                } else {
-                                    startMatrixUpdates(::updateMatrixState)
-                                }
-                            },
-                            modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .weight(0.1f)
-                                .padding(bottom = 50.dp)
-                        ) {
-                            Icon(
-                                painter = painterResource(id = if (isPaused) android.R.drawable.ic_media_play else android.R.drawable.ic_media_pause),
-                                contentDescription = if (isPaused) "Play" else "Pause",
-                                modifier = Modifier.size(48.dp)
                             )
                         }
                     }
@@ -200,13 +204,36 @@ class MainActivityCircles2 : ComponentActivity() {
                 finish()
             },
             modifier = Modifier
-                .padding(16.dp)
-                .size(48.dp)
+                .padding(42.dp)
+                .size(80.dp)
+                .offset(x = 50.dp, y = 50.dp)
         ) {
             Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_revert),
+                painter = painterResource(id = R.drawable.my_back_button_black),
                 contentDescription = "Back to Welcome",
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.size(80.dp),
+                tint = Color.Unspecified
+            )
+        }
+    }
+
+    @Composable
+    fun PlayPauseButton(
+        isPaused: Boolean,
+        onPauseToggled: () -> Unit
+    ) {
+        IconButton(
+            onClick = onPauseToggled,
+            modifier = Modifier
+                .padding(42.dp)
+                .size(80.dp)
+                .offset(x = 50.dp, y = 40.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
+                contentDescription = if (isPaused) "Play" else "Pause",
+                modifier = Modifier.size(80.dp),
+                tint = Color.Unspecified
             )
         }
     }
