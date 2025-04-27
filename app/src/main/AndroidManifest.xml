@@ -31,6 +31,9 @@
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
+
+
+
         <!-- Squares Activity -->
         <activity
             android:name=".MainActivitySquare"
@@ -54,6 +57,18 @@
             android:name=".MainActivitySquare2"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
+
+
+
+        <!-- Add this inside the <application> tag -->
+        <activity
+            android:name=".MainActivitySquare3"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+
+
+
 
     </application>
 </manifest>
