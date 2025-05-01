@@ -51,6 +51,38 @@ class WelcomeScreen : ComponentActivity() {
 }
 
 @Composable
+fun IconButtonWithLabel(
+    onClick: () -> Unit,
+    iconResId: Int,
+    label: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.width(80.dp)
+    ) {
+        IconButton(
+            onClick = onClick,
+            modifier = Modifier.size(70.dp)
+        ) {
+            Image(
+                painter = painterResource(id = iconResId),
+                contentDescription = "$label Mode",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RectangleShape)
+            )
+        }
+        Text(
+            text = label,
+            fontSize = 11.sp,
+            modifier = Modifier.padding(top = 4.dp)
+        )
+    }
+}
+
+@Composable
 fun WelcomeContent(
     onCirclesClicked: () -> Unit,
     onSquaresClicked: () -> Unit,
@@ -64,100 +96,70 @@ fun WelcomeContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Welcome image at the top
         Image(
             painter = painterResource(id = R.drawable.welcome_image),
             contentDescription = "Welcome Image",
             modifier = Modifier
-                .size(500.dp)  // Reduced size to make more room for icons
+                .size(500.dp)
                 .padding(bottom = 50.dp)
         )
 
         Text(
             text = "Circles and Squares:",
             fontSize = 22.sp,
-            modifier = Modifier.padding(bottom = 50.dp) // was 40
+            modifier = Modifier.padding(bottom = 50.dp)
         )
 
-        Row(
+        // Main container for both rows
+        Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp)  // Reduced horizontal padding
+                .padding(horizontal = 8.dp)
                 .offset(y = (-20).dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)  // Reduced spacing between icons
+            horizontalAlignment = Alignment.Start
         ) {
-            // Circles Mode
-            IconButtonWithLabel(
-                onClick = onCirclesClicked,
-                iconResId = R.drawable.circle_icon,
-                label = "B&W"
-            )
+            // First row with 5 icons
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                IconButtonWithLabel(
+                    onClick = onCirclesClicked,
+                    iconResId = R.drawable.circle_icon,
+                    label = "B&W"
+                )
 
-            // Squares Mode
-            IconButtonWithLabel(
-                onClick = onSquaresClicked,
-                iconResId = R.drawable.square_icon,
-                label = "One&Zero"
-            )
+                IconButtonWithLabel(
+                    onClick = onSquaresClicked,
+                    iconResId = R.drawable.square_icon,
+                    label = "One&Zero"
+                )
 
-            // Small Squares Mode
-            IconButtonWithLabel(
-                onClick = onSquaresSmallClicked,
-                iconResId = R.drawable.icon_sun,
-                label = "Orange"
-            )
+                IconButtonWithLabel(
+                    onClick = onSquaresSmallClicked,
+                    iconResId = R.drawable.icon_sun,
+                    label = "Orange"
+                )
 
-            // Circles2 Mode
-            IconButtonWithLabel(
-                onClick = onCircles2Clicked,
-                iconResId = R.drawable.icon_square_purple,
-                label = "Purple"
-            )
+                IconButtonWithLabel(
+                    onClick = onCircles2Clicked,
+                    iconResId = R.drawable.icon_square_purple,
+                    label = "Purple"
+                )
 
-            // Squares2 Mode
-            IconButtonWithLabel(
-                onClick = onSquares2Clicked,
-                iconResId = R.drawable.square_green_yellow,
-                label = "Squares2"
-            )
+                IconButtonWithLabel(
+                    onClick = onSquares2Clicked,
+                    iconResId = R.drawable.square_green_yellow,
+                    label = "Squares2"
+                )
+            }
 
-            // Squares3 Mode
+            // Second row with Squares3 icon aligned below B&W
+            Spacer(modifier = Modifier.height(16.dp))
             IconButtonWithLabel(
                 onClick = onSquares3Clicked,
                 iconResId = R.drawable.labirynte,
-                label = "Squares3"
+                label = "Squares3",
+                modifier = Modifier.padding(start = 0.dp)
             )
         }
-    }
-}
-
-@Composable
-fun IconButtonWithLabel(
-    onClick: () -> Unit,
-    iconResId: Int,
-    label: String,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.width(80.dp)  // Reduced width to fit more icons
-    ) {
-        IconButton(
-            onClick = onClick,
-            modifier = Modifier.size(70.dp)  // Slightly reduced icon size // was 50
-        ) {
-            Image(
-                painter = painterResource(id = iconResId),
-                contentDescription = "$label Mode",
-                contentScale = ContentScale.Fit,  // Changed to Fit to ensure full visibility
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RectangleShape)
-            )
-        }
-        Text(
-            text = label,
-            fontSize = 11.sp,  // Slightly reduced text size
-            modifier = Modifier.padding(top = 4.dp)
-        )
     }
 }
