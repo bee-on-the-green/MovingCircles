@@ -5,13 +5,14 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixInitializerSquare3 {
-    private val squareMatrixLength: Int = 80  // Unique to squares
-    private val squareMatrixHeight: Int = squareMatrixLength * 42 / 100  // 55% aspect ratio
-    private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')  // Unique character pool
+    // Made internal for access from MatrixUpdaterSquare3
+    internal val MatrixLength: Int = 80
+    internal val MatrixHeight: Int = MatrixLength * 42 / 100
+    private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')
 
     suspend fun initializeMatrix3(
-        rows: Int = squareMatrixHeight,
-        cols: Int = squareMatrixLength
+        rows: Int = MatrixHeight,
+        cols: Int = MatrixLength
     ): MutableList<MutableList<Char>> {
         return withContext(Dispatchers.Default) {
             MutableList(rows) {

@@ -6,14 +6,13 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare3(
     var matrix: Array<CharArray>,
-    private val squareMatrixLength: Int = 80,
-    private val squareMatrixHeight: Int = squareMatrixLength * 42 / 100,
+    private val MatrixLength: Int = MatrixInitializerSquare3().MatrixLength,  // Reference from Initializer
+    private val MatrixHeight: Int = MatrixInitializerSquare3().MatrixHeight,  // Reference from Initializer
     val sleepTime: Long = 4,
-    val lengthRectangle: Int = 15,
-    val widthRectangles: Int = 1,
+
     val breakPoint: Int = 19,
-    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),  // Simplified primary chars
-    val poolOfChar2: Array<Char> = arrayOf('·', '.', '²', '·', '.', '·', '.', '\'')  // Simplified secondary chars
+    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),
+    val poolOfChar2: Array<Char> = arrayOf('.', '·', '\''),
 ) {
     private var isRunning = false
     private var updateCount: Int = 0
@@ -49,8 +48,8 @@ class MatrixUpdaterSquare3(
 
     private fun selectRandomCoordinate3(): Pair<Int, Int> {
         return Pair(
-            Random.nextInt(0, squareMatrixLength),
-            Random.nextInt(0, squareMatrixHeight)
+            Random.nextInt(0, MatrixLength),
+            Random.nextInt(0, MatrixHeight)
         )
     }
 
@@ -64,8 +63,8 @@ class MatrixUpdaterSquare3(
         val halfLength = length / 2
         val halfWidth = width / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, squareMatrixHeight - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, squareMatrixLength - 1)) {
+        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeight - 1)) {
+            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLength - 1)) {
                 matrix[y][x] = poolOfChar.random()
             }
         }

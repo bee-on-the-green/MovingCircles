@@ -215,12 +215,20 @@ class MainActivitySquare : ComponentActivity() {
         }
     }
 
+
+    // Different shades of gray (from light to dark)
+    private val lightGray = Color(0xFFD3D3D3) // 80% gray
+    private val mediumGray = Color(0xFFA9A9A9) // 60% gray
+    private val darkGray = Color(0xFF696969) // 40% gray
+
+
+
     @Composable
     fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
-            color = PureWhite,
+            color = mediumGray,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
             fontSize = 11.8.sp,

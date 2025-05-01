@@ -8,9 +8,10 @@ import kotlin.random.Random
 data class MatrixCell2(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerSquare2 {
-    private val MatrixLength: Int = 90  // Unique to squares
-    private val MatrixHeight: Int = MatrixLength * 58 / 100  // 55% aspect ratio
-    private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')  // Unique character pool
+    // Hardcoded dimensions (now internal for access)
+    internal val MatrixLength: Int = 90
+    internal val MatrixHeight: Int = MatrixLength * 58 / 100
+    private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')
     private val defaultColor = Color.White
 
     suspend fun initializeMatrix(
