@@ -8,11 +8,11 @@ class MatrixUpdaterSquare3(
     var matrix: Array<CharArray>,
     private val MatrixLength: Int = MatrixInitializerSquare3().MatrixLength,  // Reference from Initializer
     private val MatrixHeight: Int = MatrixInitializerSquare3().MatrixHeight,  // Reference from Initializer
-    val sleepTime: Long = 4,
+    val sleepTime: Long = 2,
 
-    val breakPoint: Int = 19,
-    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),
-    val poolOfChar2: Array<Char> = arrayOf('.', '·', '\''),
+    val breakPoint: Int = 80,
+    val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•'),
+    val poolOfChar: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\''),  // ˆ • ¸
 ) {
     private var isRunning = false
     private var updateCount: Int = 0
@@ -34,17 +34,36 @@ class MatrixUpdaterSquare3(
         isRunning = false
     }
 
-    private fun updateMatrix3() {
-        val (randomX, randomY) = selectRandomCoordinate3()
-        val currentLength = if (updateCount % 2 == 0) 21 else 1
-        val currentWidth = if (updateCount % 2 == 0) 1 else 21
 
-        drawRectangle3(randomX, randomY, currentLength, currentWidth, poolOfChar)
-        if (calculateCharacterPercentage3(matrix, poolOfChar) > breakPoint) {
-            drawRectangle3(randomX, randomY, currentLength, currentWidth, poolOfChar2)
+
+
+
+        private fun updateMatrix3() {
+            val (randomX, randomY) = selectRandomCoordinate3()
+            val currentLength = 3
+            val currentWidth = 5
+
+
+
+            drawRectangle3(randomX, randomY, currentLength, currentWidth, poolOfChar)
+            //drawRectangle3(randomX, randomY, currentWidth, currentLength, poolOfChar)
+
+            if (calculateCharacterPercentage3(matrix, poolOfChar) > breakPoint) {
+
+               // val (randomA, randomB) = selectRandomCoordinate3()
+
+            drawRectangle3(randomX, randomY, currentWidth, currentLength, poolOfChar2)
+            //drawRectangle3(randomB, randomY, currentWidth, currentLength, poolOfChar2)
+
+
+            }
+            updateCount++
         }
-        updateCount++
-    }
+
+
+
+
+
 
     private fun selectRandomCoordinate3(): Pair<Int, Int> {
         return Pair(
@@ -52,6 +71,8 @@ class MatrixUpdaterSquare3(
             Random.nextInt(0, MatrixHeight)
         )
     }
+
+
 
     private fun drawRectangle3(
         centerX: Int,
@@ -69,6 +90,11 @@ class MatrixUpdaterSquare3(
             }
         }
     }
+
+
+
+
+
 
     private fun calculateCharacterPercentage3(
         matrix: Array<CharArray>,

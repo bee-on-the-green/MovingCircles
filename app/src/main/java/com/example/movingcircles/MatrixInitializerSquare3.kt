@@ -6,9 +6,9 @@ import kotlin.random.Random
 
 class MatrixInitializerSquare3 {
     // Made internal for access from MatrixUpdaterSquare3
-    internal val MatrixLength: Int = 80
-    internal val MatrixHeight: Int = MatrixLength * 42 / 100
-    private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')
+    internal val MatrixLength: Int = 130
+    internal val MatrixHeight: Int = MatrixLength * 33 / 100
+    private val squarePoolOfChars: Array<Char> = arrayOf(' ', ' ')
 
     suspend fun initializeMatrix3(
         rows: Int = MatrixHeight,

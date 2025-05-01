@@ -25,24 +25,12 @@ class WelcomeScreen : ComponentActivity() {
             movingcirclesTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     WelcomeContent(
-                        onCirclesClicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivity::class.java))
-                        },
-                        onSquaresClicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivitySquare::class.java))
-                        },
-                        onSquaresSmallClicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivityCircle::class.java))
-                        },
-                        onCircles2Clicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivityCircles2::class.java))
-                        },
-                        onSquares2Clicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivitySquare2::class.java))
-                        },
-                        onSquares3Clicked = {
-                            startActivity(Intent(this@WelcomeScreen, MainActivitySquare3::class.java))
-                        }
+                        onCirclesClicked = { startActivity(Intent(this, MainActivity::class.java)) },
+                        onSquaresClicked = { startActivity(Intent(this, MainActivitySquare::class.java)) },
+                        onSquaresSmallClicked = { startActivity(Intent(this, MainActivityCircle::class.java)) },
+                        onCircles2Clicked = { startActivity(Intent(this, MainActivityCircles2::class.java)) },
+                        onSquares2Clicked = { startActivity(Intent(this, MainActivitySquare2::class.java)) },
+                        onSquares3Clicked = { startActivity(Intent(this, MainActivitySquare3::class.java)) }
                     )
                 }
             }
@@ -61,14 +49,16 @@ fun IconButtonWithLabel(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.width(80.dp)
     ) {
-        IconButton(
+        Surface(
             onClick = onClick,
-            modifier = Modifier.size(70.dp)
+            shape = RectangleShape,
+            modifier = Modifier.size(70.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
                 painter = painterResource(id = iconResId),
                 contentDescription = "$label Mode",
-                contentScale = ContentScale.Fit,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RectangleShape)
@@ -110,14 +100,12 @@ fun WelcomeContent(
             modifier = Modifier.padding(bottom = 50.dp)
         )
 
-        // Main container for both rows
         Column(
             modifier = Modifier
                 .padding(horizontal = 8.dp)
                 .offset(y = (-20).dp),
             horizontalAlignment = Alignment.Start
         ) {
-            // First row with 5 icons
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
@@ -126,25 +114,21 @@ fun WelcomeContent(
                     iconResId = R.drawable.circle_icon,
                     label = "B&W"
                 )
-
                 IconButtonWithLabel(
                     onClick = onSquaresClicked,
                     iconResId = R.drawable.square_icon,
                     label = "One&Zero"
                 )
-
                 IconButtonWithLabel(
                     onClick = onSquaresSmallClicked,
                     iconResId = R.drawable.icon_sun,
                     label = "Orange"
                 )
-
                 IconButtonWithLabel(
                     onClick = onCircles2Clicked,
                     iconResId = R.drawable.icon_square_purple,
                     label = "Purple"
                 )
-
                 IconButtonWithLabel(
                     onClick = onSquares2Clicked,
                     iconResId = R.drawable.square_green_yellow,
@@ -152,7 +136,6 @@ fun WelcomeContent(
                 )
             }
 
-            // Second row with Squares3 icon aligned below B&W
             Spacer(modifier = Modifier.height(16.dp))
             IconButtonWithLabel(
                 onClick = onSquares3Clicked,
