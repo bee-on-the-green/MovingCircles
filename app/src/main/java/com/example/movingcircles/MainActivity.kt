@@ -27,6 +27,9 @@ val ratioBetweenLengthAndWidth: Int = 55
 val lengthOfMatrix: Int = 102
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
+val resolution: Int = lengthOfMatrix * heightOfMatrix
+val diameterToBeUsed: Int = 11
+val shapeSize: Int = diameterToBeUsed * 3
 
 class MainActivity : ComponentActivity() {
 
@@ -189,19 +192,26 @@ fun MatrixScreen(
                         else
                             "${timeElapsed.second} sec"
                     }\n" +
-                            "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                            "Cycles: ${numberFormat.format(updateCount)}\n" +
+                            "\n" +
+                            "Frequency: ${Hz} Hz\n" +
+                            "Loop runtime: ${exactUpdateTime} ms\n" +
                             "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                            "Cycles: ${numberFormat.format(updateCount)}\n",
+                            "\n" +
+                            "Resolution: ${resolution} px (${lengthOfMatrix}x${heightOfMatrix})\n" +
+                            "Shape diameter: $diameterToBeUsed px\n" +
+                            "Encoding: UTF-8\n",
+
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(6.dp)
-                        .offset(y = (-280).dp),
-                    fontSize = 12.sp,
+                        .offset(y = (-170).dp),  // was 280
+                    fontSize = 13.sp,
                     fontWeight = FontWeight.Normal,
                     fontFamily = FontFamily(
                         Font(R.font.firacode_regular),
                     ),
-                    style = TextStyle(lineHeight = 12.sp)
+                    style = TextStyle(lineHeight = 14.sp)
                 )
             }
         }

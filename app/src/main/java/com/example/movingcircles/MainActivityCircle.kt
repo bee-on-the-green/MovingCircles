@@ -41,6 +41,7 @@ class MainActivityCircle : ComponentActivity() {
     private var exactUpdateTime: Long by mutableStateOf(0L)
     private var lastUpdateTime: Long by mutableStateOf(0L)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -98,19 +99,26 @@ class MainActivityCircle : ComponentActivity() {
                                     else
                                         "${timeElapsed.second} sec"
                                 }\n" +
-                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
+                                        "\n" +
+                                        "Frequency: ${Hz} Hz\n" +
+                                        "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n",
+                                        "\n" +
+
+                                        "Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC}×${matrixInitializer.MatrixHeightC})\n" +
+                                        "Shape diameter: ${matrixUpdater.diameterToUseC} px\n" +
+                                        "Encoding: UTF-8\n",
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-280).dp),
-                                fontSize = 12.sp,
+                                    .offset(y = (-170).dp),
+                                fontSize = 13.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
                                 ),
-                                style = TextStyle(lineHeight = 12.sp)
+                                style = TextStyle(lineHeight = 14.sp)
                             )
                         }
                     }

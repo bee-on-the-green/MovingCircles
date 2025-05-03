@@ -9,8 +9,8 @@ class MatrixUpdater(
     val lengthOfMatrix: Int,
     val heightOfMatrix: Int,
     val sleepTime: Long = 10,
-    val diameterToUse: Int = 11,
     val breakPoint: Int = 30,
+    val resolution: Int = lengthOfMatrix * heightOfMatrix,
 
     val poolOfChar: Array<Char> = arrayOf('{', '}'),
     val poolOfChar2: Array<Char> = arrayOf('.', '·')
@@ -36,10 +36,10 @@ class MatrixUpdater(
 
     private fun updateMatrix() {
         val (myRandomX, myRandomY) = selectRandomCoordinate()
-        drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar)
+        drawCircle(matrix, myRandomX, myRandomY, diameterToBeUsed, poolOfChar)
         val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
         if (mainCharPercentageAtCurrentTime > breakPoint) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToBeUsed, poolOfChar2)
         }
     }
 

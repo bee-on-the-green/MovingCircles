@@ -9,14 +9,17 @@ import kotlinx.coroutines.withContext
 data class MatrixCell(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerCircle {
-    private val MatrixLength: Int = 100
-    private val MatrixHeight: Int = MatrixLength * 42 / 100
+    val MatrixLengthC: Int = 100
+    val MatrixHeightC: Int = MatrixLengthC * 42 / 100
+    val resolutionC: Int = MatrixLengthC * MatrixHeightC
+
+
     private val poolOfCharsInit: Array<Char> = arrayOf(' ', ' ')
     private val defaultColor = Color.White
 
     suspend fun initializeMatrix(
-        rows: Int = MatrixHeight,
-        cols: Int = MatrixLength
+        rows: Int = MatrixHeightC,
+        cols: Int = MatrixLengthC
     ): MutableList<MutableList<MatrixCell>> {
         return withContext(Dispatchers.Default) {
             MutableList(rows) {

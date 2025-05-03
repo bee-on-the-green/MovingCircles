@@ -8,9 +8,9 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircle(
     var matrix: Array<Array<MatrixCell>>, // Changed to MatrixCell type
-    val sleepTime: Long = 4,
-    val diameterToUse: Int = 3,
-    val breakPoint: Int = 30,
+    val sleepTime: Long = 8,
+    val diameterToUseC: Int = 5,
+    val breakPoint: Int = 27,
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ') ,  // Ͼ Ͽ ᴑ ᴏ ॰ ᴑ ◯ Ο ο О • ॰ ᐤ ° ᐤ ൦ Ჿ ('Ͼ', 'Ͽ') ('◯', '◯')
     val poolOfChar2: Array<Char> = arrayOf('.', '·') // ('.', '·')
 ) {
@@ -109,17 +109,17 @@ class MatrixUpdaterCircle(
 
         if (updateCount % 2 == 0) {
             // Even count - use original colors
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Red800)  // was Red750
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC, poolOfChar, Red800)  // was Red750
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink650) // was Pink600
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC, poolOfChar2, Pink650) // was Pink600
             }
         } else {
             // Odd count - use alternate colors
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar, Orange900)  // was Orange900
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC, poolOfChar, Orange900)  // was Orange900
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUse, poolOfChar2, Pink850)  // was Pink800
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC, poolOfChar2, Pink850)  // was Pink800
             }
         }
 

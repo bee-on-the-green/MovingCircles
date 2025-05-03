@@ -28,7 +28,10 @@ import androidx.compose.ui.text.font.Font
 class MainActivityCircles2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircles2()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
-    private val matrixUpdater = MatrixUpdaterCircles2(matrix = Array(0) { Array(0) { MatrixCell2(' ') } })
+    private val matrixUpdater = MatrixUpdaterCircles2(
+        matrix = Array(0) { Array(0) { MatrixCell2(' ') } },
+        diameterToUseC2 = matrixInitializer.diameterToUseC2
+    )
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -98,19 +101,26 @@ class MainActivityCircles2 : ComponentActivity() {
                                     else
                                         "${timeElapsed.second} sec"
                                 }\n" +
-                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
+                                        "\n" +
+                                        "Frequency: ${Hz} Hz\n" +
+                                        "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n",
+                                        "\n" +
+
+                                        "Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC2}×${matrixInitializer.MatrixHeightC2})\n" +
+                                        "Shape diameter: ${matrixUpdater.diameterToUseC2} px\n" +
+                                        "Encoding: UTF-8\n",
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-280).dp),
-                                fontSize = 12.sp,
+                                    .offset(y = (-170).dp),
+                                fontSize = 13.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
                                 ),
-                                style = TextStyle(lineHeight = 12.sp)
+                                style = TextStyle(lineHeight = 14.sp)
                             )
                         }
                     }
