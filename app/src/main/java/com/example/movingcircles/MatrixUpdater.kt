@@ -8,8 +8,8 @@ class MatrixUpdater(
     var matrix: Array<CharArray>, // Matrix is now mutable
     val lengthOfMatrix: Int,
     val heightOfMatrix: Int,
-    val sleepTime: Long = 10,
-    val breakPoint: Int = 30,
+    val sleepTime: Long = 9,
+    val breakPoint: Int = 22,
     val resolution: Int = lengthOfMatrix * heightOfMatrix,
 
     val poolOfChar: Array<Char> = arrayOf('{', '}'),
@@ -61,7 +61,8 @@ class MatrixUpdater(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 2.0
+                val aspectRatio = 1.85
+                    // was 2
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {

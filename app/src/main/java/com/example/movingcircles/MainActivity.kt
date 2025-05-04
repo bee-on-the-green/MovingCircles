@@ -23,13 +23,12 @@ import java.text.NumberFormat
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 
-val ratioBetweenLengthAndWidth: Int = 55
-val lengthOfMatrix: Int = 102
+val ratioBetweenLengthAndWidth: Int = 48  // was 55
+val lengthOfMatrix: Int = 157  // 160
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
 val resolution: Int = lengthOfMatrix * heightOfMatrix
-val diameterToBeUsed: Int = 11
-val shapeSize: Int = diameterToBeUsed * 3
+val diameterToBeUsed: Int = 15
 
 class MainActivity : ComponentActivity() {
 
@@ -262,9 +261,9 @@ fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
     Text(
         text = matrixString,
         modifier = Modifier.padding(innerPadding),
-        fontSize = 9.sp,
+        fontSize = 6.sp,
         fontFamily = FontFamily.Monospace,
         fontWeight = FontWeight.Normal,
-        style = TextStyle(lineHeight = 10.sp)
+        style = TextStyle(lineHeight = 7.sp)  // was 10
     )
 }

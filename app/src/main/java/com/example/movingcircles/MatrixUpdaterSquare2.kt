@@ -9,7 +9,7 @@ class MatrixUpdaterSquare2(
     var matrix: Array<Array<MatrixCell2>>,
     private val MatrixLength: Int = MatrixInitializerSquare2().MatrixLength,  // Reference from Initializer
     private val MatrixHeight: Int = MatrixInitializerSquare2().MatrixHeight,  // Reference from Initializer
-    val sleepTime: Long = 2,
+    val sleepTime: Long = 6,
     val breakPoint: Int = 80,
     val poolOfChar: Array<Char> = arrayOf('Ͽ', 'Ͼ'),
     val poolOfChar2: Array<Char> = arrayOf('0', '1')
