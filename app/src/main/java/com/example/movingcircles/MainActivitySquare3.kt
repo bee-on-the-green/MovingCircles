@@ -91,19 +91,26 @@ class MainActivitySquare3 : ComponentActivity() {
                                     else
                                         "${timeElapsed.second} sec"
                                 }\n" +
-                                        "Refresh: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
+                                        "\n" +
+                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
+                                        "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n",
+                                        "\n" +
+                                        "Resolution: ${matrixInitializer3.resolution3} px (${matrixInitializer3.MatrixLengthS3}×${matrixInitializer3.MatrixHeightS3})\n" +
+                                        "Shape size: 3*5 px\n" +
+                                        "Encoding: UTF-8\n",
+
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-280).dp),
-                                fontSize = 12.sp,
+                                    .offset(y = (-170).dp),
+                                fontSize = 13.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
                                 ),
-                                style = TextStyle(lineHeight = 12.sp)
+                                style = TextStyle(lineHeight = 14.sp)
                             )
                         }
                     }

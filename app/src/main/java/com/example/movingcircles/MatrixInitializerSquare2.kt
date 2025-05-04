@@ -9,14 +9,15 @@ data class MatrixCell2(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerSquare2 {
     // Hardcoded dimensions (now internal for access)
-    internal val MatrixLength: Int = 90
-    internal val MatrixHeight: Int = MatrixLength * 58 / 100
+    val MatrixLengthS2: Int = 90
+    val MatrixHeightS2: Int = MatrixLengthS2 * 58 / 100
+    val resolution2: Int = MatrixLengthS2 * MatrixHeightS2
     private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')
     private val defaultColor = Color.White
 
     suspend fun initializeMatrix(
-        rows: Int = MatrixHeight,
-        cols: Int = MatrixLength
+        rows: Int = MatrixHeightS2,
+        cols: Int = MatrixLengthS2
     ): MutableList<MutableList<MatrixCell2>> {
         return withContext(Dispatchers.Default) {
             MutableList(rows) {

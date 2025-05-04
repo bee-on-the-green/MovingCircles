@@ -4,10 +4,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-class MatrixUpdaterSquare3(
+class MatrixUpdaterSquare4(
     var matrix: Array<CharArray>,
-    private val MatrixLengthS3: Int = MatrixInitializerSquare3().MatrixLengthS3,
-    private val MatrixHeightS3: Int = MatrixInitializerSquare3().MatrixHeightS3,
+    private val MatrixLengthS4: Int = MatrixInitializerSquare4().MatrixLengthS4,
+    private val MatrixHeightS4: Int = MatrixInitializerSquare4().MatrixHeightS4,
     val sleepTime: Long = 5,
 
     val breakPoint: Int = 80,
@@ -17,64 +17,44 @@ class MatrixUpdaterSquare3(
     private var isRunning = false
     private var updateCount: Int = 0
 
-    suspend fun startUpdating3(onMatrixUpdated: (Array<CharArray>, Double) -> Unit) {
+    suspend fun startUpdating4(onMatrixUpdated: (Array<CharArray>, Double) -> Unit) {
         isRunning = true
         withContext(Dispatchers.IO) {
             while (isRunning) {
-                updateMatrix3()
+                updateMatrix4()
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
-                val switchValue = calculateCharacterPercentage3(matrixCopy, poolOfChar)
+                val switchValue = calculateCharacterPercentage4(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, switchValue)
                 Thread.sleep(sleepTime)
             }
         }
     }
 
-    fun stopUpdating3() {
+    fun stopUpdating4() {
         isRunning = false
     }
 
-
-
-
-
-    private fun updateMatrix3() {
-        val (randomX, randomY) = selectRandomCoordinate3()
+    private fun updateMatrix4() {
+        val (randomX, randomY) = selectRandomCoordinate4()
         val currentLength = 3
         val currentWidth = 5
 
+        drawRectangle4(randomX, randomY, currentLength, currentWidth, poolOfChar)
 
-
-        drawRectangle3(randomX, randomY, currentLength, currentWidth, poolOfChar)
-        //drawRectangle3(randomX, randomY, currentWidth, currentLength, poolOfChar)
-
-        if (calculateCharacterPercentage3(matrix, poolOfChar) > breakPoint) {
-
-            // val (randomA, randomB) = selectRandomCoordinate3()
-
-            drawRectangle3(randomX, randomY, currentWidth, currentLength, poolOfChar2)
-            //drawRectangle3(randomB, randomY, currentWidth, currentLength, poolOfChar2)
-
-
+        if (calculateCharacterPercentage4(matrix, poolOfChar) > breakPoint) {
+            drawRectangle4(randomX, randomY, currentWidth, currentLength, poolOfChar2)
         }
         updateCount++
     }
 
-
-
-
-
-
-    private fun selectRandomCoordinate3(): Pair<Int, Int> {
+    private fun selectRandomCoordinate4(): Pair<Int, Int> {
         return Pair(
-            Random.nextInt(0, MatrixLengthS3),
-            Random.nextInt(0, MatrixHeightS3)
+            Random.nextInt(0, MatrixLengthS4),
+            Random.nextInt(0, MatrixHeightS4)
         )
     }
 
-
-
-    private fun drawRectangle3(
+    private fun drawRectangle4(
         centerX: Int,
         centerY: Int,
         length: Int,
@@ -84,19 +64,14 @@ class MatrixUpdaterSquare3(
         val halfLength = length / 2
         val halfWidth = width / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS3 - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS3 - 1)) {
+        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS4 - 1)) {
+            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS4 - 1)) {
                 matrix[y][x] = poolOfChar.random()
             }
         }
     }
 
-
-
-
-
-
-    private fun calculateCharacterPercentage3(
+    private fun calculateCharacterPercentage4(
         matrix: Array<CharArray>,
         poolOfChar: Array<Char>
     ): Double {

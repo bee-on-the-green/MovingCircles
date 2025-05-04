@@ -61,7 +61,7 @@ class MatrixUpdater(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 1.85
+                val aspectRatio = 1.80 // was 1.85
                     // was 2
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio

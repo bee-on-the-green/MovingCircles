@@ -6,13 +6,14 @@ import kotlin.random.Random
 
 class MatrixInitializerSquare {
     // Made internal (or remove modifier entirely for default visibility)
-    internal val MatrixLength: Int = 80
-    internal val MatrixHeight: Int = MatrixLength * 42 / 100
+    val MatrixLengthS: Int = 80
+    val MatrixHeightS: Int = MatrixLengthS * 42 / 100
+    val resolutionS = MatrixLengthS * MatrixHeightS
     private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')
 
     suspend fun initializeMatrix(
-        rows: Int = MatrixHeight,
-        cols: Int = MatrixLength
+        rows: Int = MatrixHeightS,
+        cols: Int = MatrixLengthS
     ): MutableList<MutableList<Char>> {
         return withContext(Dispatchers.Default) {
             MutableList(rows) {

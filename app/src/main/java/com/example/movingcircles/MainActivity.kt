@@ -24,11 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 
 val ratioBetweenLengthAndWidth: Int = 48  // was 55
-val lengthOfMatrix: Int = 157  // 160
+val lengthOfMatrix: Int = 158  // 160
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
 val resolution: Int = lengthOfMatrix * heightOfMatrix
-val diameterToBeUsed: Int = 15
+val diameterToBeUsed: Int = 13
 
 class MainActivity : ComponentActivity() {
 

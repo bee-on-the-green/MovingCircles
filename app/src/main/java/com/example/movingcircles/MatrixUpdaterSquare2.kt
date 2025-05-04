@@ -7,9 +7,9 @@ import kotlin.random.Random
 
 class MatrixUpdaterSquare2(
     var matrix: Array<Array<MatrixCell2>>,
-    private val MatrixLength: Int = MatrixInitializerSquare2().MatrixLength,  // Reference from Initializer
-    private val MatrixHeight: Int = MatrixInitializerSquare2().MatrixHeight,  // Reference from Initializer
-    val sleepTime: Long = 6,
+    val MatrixLengthS2: Int = MatrixInitializerSquare2().MatrixLengthS2,  // Reference from Initializer
+    val MatrixHeightS2: Int = MatrixInitializerSquare2().MatrixHeightS2,  // Reference from Initializer
+    val sleepTime: Long = 10,
     val breakPoint: Int = 80,
     val poolOfChar: Array<Char> = arrayOf('Ͽ', 'Ͼ'),
     val poolOfChar2: Array<Char> = arrayOf('0', '1')
@@ -59,8 +59,8 @@ class MatrixUpdaterSquare2(
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
         return Pair(
-            Random.nextInt(0, MatrixLength),
-            Random.nextInt(0, MatrixHeight)
+            Random.nextInt(0, MatrixLengthS2),
+            Random.nextInt(0, MatrixHeightS2)
         )
     }
 
@@ -74,8 +74,8 @@ class MatrixUpdaterSquare2(
     ) {
         val halfLength = length / 2
         val halfWidth = width / 2
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeight - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLength - 1)) {
+        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS2 - 1)) {
+            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS2 - 1)) {
                 matrix[y][x] = MatrixCell2(poolOfChar.random(), color)
             }
         }

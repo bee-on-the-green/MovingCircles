@@ -30,7 +30,9 @@ class WelcomeScreen : ComponentActivity() {
                         onSquaresSmallClicked = { startActivity(Intent(this, MainActivityCircle::class.java)) },
                         onCircles2Clicked = { startActivity(Intent(this, MainActivityCircles2::class.java)) },
                         onSquares2Clicked = { startActivity(Intent(this, MainActivitySquare2::class.java)) },
-                        onSquares3Clicked = { startActivity(Intent(this, MainActivitySquare3::class.java)) }
+                        onSquares3Clicked = { startActivity(Intent(this, MainActivitySquare3::class.java)) },
+                        onSquares4Clicked = { startActivity(Intent(this, MainActivitySquare4::class.java)) },
+                        onCircles4Clicked = { startActivity(Intent(this, MainActivityCircle4::class.java)) }
                     )
                 }
             }
@@ -79,7 +81,9 @@ fun WelcomeContent(
     onSquaresSmallClicked: () -> Unit,
     onCircles2Clicked: () -> Unit,
     onSquares2Clicked: () -> Unit,
-    onSquares3Clicked: () -> Unit
+    onSquares3Clicked: () -> Unit,
+    onSquares4Clicked: () -> Unit,
+    onCircles4Clicked: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -137,12 +141,25 @@ fun WelcomeContent(
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-            IconButtonWithLabel(
-                onClick = onSquares3Clicked,
-                iconResId = R.drawable.labirynte,
-                label = "Squares3",
-                modifier = Modifier.padding(start = 0.dp)
-            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                IconButtonWithLabel(
+                    onClick = onSquares3Clicked,
+                    iconResId = R.drawable.labirynte,
+                    label = "Squares3"
+                )
+                IconButtonWithLabel(
+                    onClick = onSquares4Clicked,
+                    iconResId = R.drawable.carre_rond,
+                    label = "Squares4"
+                )
+                IconButtonWithLabel(
+                    onClick = onCircles4Clicked,
+                    iconResId = R.drawable.rond,
+                    label = "Circles4"
+                )
+            }
         }
     }
 }
