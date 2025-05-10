@@ -181,6 +181,15 @@ class MainActivitySquare : ComponentActivity() {
         timeElapsed = Pair(minutes, seconds)
     }
 
+
+    private val White50 = Color(0xFFFFFFFF)   // Pure White
+    private val White100 = Color(0xFFFAFAFA)  // Very Light White (almost pure)
+    private val White200 = Color(0xFFF5F5F5)  // Slightly off-white
+    private val White300 = Color(0xFFEEEEEE)  // Light warm white
+    private val White400 = Color(0xFFE0E0E0)  // Soft white with a gray tint
+    private val White500 = Color(0xFFBDBDBD)  // Warm white / light gray
+
+
     @Composable
     fun BackToWelcomeButton() {
         IconButton(
@@ -236,11 +245,14 @@ class MainActivitySquare : ComponentActivity() {
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
-            color = mediumGray,
+            color = White100,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 11.8.sp,
-            style = TextStyle(lineHeight = 16.3.sp)
+            fontSize = 10.5.sp,
+            style = TextStyle(
+                lineHeight = 15.sp,
+                letterSpacing = 0.5.sp
+            )
         )
     }
 }

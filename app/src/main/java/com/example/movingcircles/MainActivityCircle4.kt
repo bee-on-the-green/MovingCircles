@@ -269,9 +269,12 @@ class MainActivityCircle4 : ComponentActivity() {
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
             fontSize = 9.sp,
-            fontFamily = FontFamily(Font(R.font.firacode_regular)),
+            fontFamily = FontFamily(Font(R.font.ubuntumono_r)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 13.sp)
+            style = TextStyle(
+                lineHeight = 13.sp,
+                letterSpacing = 0.9.sp  // Add this line for letter spacing  was 1.9
+        )
         )
     }
 }

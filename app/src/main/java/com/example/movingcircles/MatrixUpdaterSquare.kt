@@ -9,10 +9,13 @@ class MatrixUpdaterSquare(
     private val MatrixLengthS: Int = MatrixInitializerSquare().MatrixLengthS,  // Reference from MatrixInitializerSquare
     private val MatrixHeigthS: Int = MatrixInitializerSquare().MatrixHeightS,  // Reference from MatrixInitializerSquare
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
-    val sleepTime: Long = 5,
-    val breakPoint: Int = 19,
-    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),
-    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\'')
+    val sleepTime: Long = 4,
+    val breakPoint: Int = 15,
+    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),  //  'Ͽ', 'Ͼ', 'ɸ'
+    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\'') // •᎐.·⏺ :;.● // ০ᐤ൦৹॰˚੦ⵙ◯೦〇ဝᲿഠ០௦᠐ //'·', '.', '\'', '·', '.', '\'', '.', '\''
+
+
+
 ) {
     private var isRunning = false
     private var updateCount: Int = 0

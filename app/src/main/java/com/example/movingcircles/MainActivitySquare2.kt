@@ -104,8 +104,6 @@ class MainActivitySquare2 : ComponentActivity() {
                                         "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
                                         "\n" +
-
-
                                         "Resolution: ${matrixInitializer.resolution2} px (${matrixInitializer.MatrixLengthS2}×${matrixInitializer.MatrixHeightS2})\n" +
                                         "Shape size: 1*20 px\n" +
                                         "Encoding: UTF-8\n",
@@ -165,7 +163,7 @@ class MainActivitySquare2 : ComponentActivity() {
     }
 
     private fun matrixToAnnotatedString(matrix: MutableList<MutableList<MatrixCell2>>): Pair<String, List<AnnotatedString.Range<Color>>> {
-        val stringBuilder = StringBuilder()
+        val stringBuilder = StringBuilder(matrix.size * matrix[0].size * 2) // Pre-allocate
         val colorRanges = mutableListOf<AnnotatedString.Range<Color>>()
         var position = 0
 

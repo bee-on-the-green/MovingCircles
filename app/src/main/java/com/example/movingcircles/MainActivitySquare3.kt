@@ -26,9 +26,10 @@ import kotlin.math.roundToInt
 import java.text.NumberFormat
 
 class MainActivitySquare3 : ComponentActivity() {
-    private val matrixInitializer3 = MatrixInitializerSquare3()
+    private val matrixInitializer = MatrixInitializerSquare3()
     private lateinit var matrix: Array<CharArray>
-    private val matrixUpdater3 = MatrixUpdaterSquare3(matrix = emptyArray())
+    private lateinit var colorMatrix: Array<Array<Color>>
+    private lateinit var matrixUpdater: MatrixUpdaterSquare3
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -97,7 +98,7 @@ class MainActivitySquare3 : ComponentActivity() {
                                         "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
                                         "\n" +
-                                        "Resolution: ${matrixInitializer3.resolution3} px (${matrixInitializer3.MatrixLengthS3}×${matrixInitializer3.MatrixHeightS3})\n" +
+                                        "Resolution: ${matrixInitializer.resolution3} px (${matrixInitializer.MatrixLengthS3}×${matrixInitializer.MatrixHeightS3})\n" +
                                         "Shape size: 3*5 px\n" +
                                         "Encoding: UTF-8\n",
 
@@ -118,11 +119,12 @@ class MainActivitySquare3 : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     launch(Dispatchers.Default) {
-                        val initializedMatrix = matrixInitializer3.initializeMatrix3()
-                        matrix = initializedMatrix.map { it.toCharArray() }.toTypedArray()
-                        matrixString = matrixToString(initializedMatrix)
-                        matrixUpdater3.matrix = matrix
-                        Hz = (1000.0 / matrixUpdater3.sleepTime.toDouble()).roundToInt()
+                        val (charMatrix, colorMatrix) = matrixInitializer.initializeMatrix3()
+                        matrix = charMatrix
+                        this@MainActivitySquare3.colorMatrix = colorMatrix
+                        matrixString = matrix.joinToString("\n") { it.joinToString("") }
+                        matrixUpdater = MatrixUpdaterSquare3(matrix, colorMatrix)
+                        Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
                         startMatrixUpdates3()
                     }
                 }
@@ -132,7 +134,7 @@ class MainActivitySquare3 : ComponentActivity() {
 
     private fun startMatrixUpdates3() {
         updateJob = lifecycleScope.launch {
-            matrixUpdater3.startUpdating3 { updatedMatrix, switchValue ->
+            matrixUpdater.startUpdating3 { updatedMatrix, updatedColorMatrix, switchValue ->
                 launch(Dispatchers.Main) {
                     val currentTime = System.currentTimeMillis()
 
@@ -145,10 +147,13 @@ class MainActivitySquare3 : ComponentActivity() {
                     lastUpdateTime = currentTime
 
                     matrix = updatedMatrix
-                    val newMatrixList = updatedMatrix.map { it.toList() }.toList()
-                    matrixString = matrixToString(newMatrixList)
+                    colorMatrix = updatedColorMatrix
+                    matrixString = updatedMatrix.joinToString("\n") { it.joinToString("") }
+
+                    colorRanges = buildColorRanges(updatedColorMatrix, matrixString)
+
                     calculateElapsedTime()
-                    Hz = (1000.0 / matrixUpdater3.sleepTime.toDouble()).roundToInt()
+                    Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
                 }
@@ -156,16 +161,29 @@ class MainActivitySquare3 : ComponentActivity() {
         }
     }
 
+    private fun buildColorRanges(
+        colorMatrix: Array<Array<Color>>,
+        matrixString: String
+    ): List<AnnotatedString.Range<Color>> {
+        val ranges = mutableListOf<AnnotatedString.Range<Color>>()
+        var position = 0
+        for (y in colorMatrix.indices) {
+            for (x in colorMatrix[y].indices) {
+                val color = colorMatrix[y][x]
+                if (color != Color.White) {
+                    ranges.add(AnnotatedString.Range(color, position, position + 1))
+                }
+                position++
+            }
+            position++ // For the newline character
+        }
+        return ranges
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         updateJob?.cancel()
-        matrixUpdater3.stopUpdating3()
-    }
-
-    private fun matrixToString(matrix: List<List<Char>>): String {
-        return matrix.joinToString("\n") { row ->
-            row.joinToString("")
-        }
+        matrixUpdater.stopUpdating3()
     }
 
     private fun calculateElapsedTime() {

@@ -7,16 +7,32 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircle4(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTime: Long = 10,
+    val sleepTime: Long = 20,
     val diameterToUseC4: Int,
-    val breakPoint: Int = 30,
-    val poolOfChar: Array<Char> = arrayOf('{', '}'),
-    val poolOfChar2: Array<Char> = arrayOf('.', '·')
+    val breakPoint: Int = 32,
+
+    //'°', '²', ',', ',', '•'),
+    //('·', '.', '\'', '·', '.', '.', '\''),  // ˆ • ¸
+
+    val poolOfChar: Array<Char> = arrayOf( '°', '²', ',', ',', '•', ',', 'º', ','),  // ০ᐤ൦৹॰˚੦ⵙ◯೦〇ဝᲿഠ០௦᠐  // '°', '²', ',', ',', '•'
+    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\'')  // '.', '·'
 ) {
     private val Violet200 = Color(0xFFCE93D8)
     private val Violet300 = Color(0xFFBA68C8)
     private val Orange800 = Color(0xFFEF6C00)
     private val Red900 = Color(0xFFB71C1C)
+    private val White = Color(0xFFFFFFFF)       // Pure white
+    private val Gray50 = Color(0xFFFAFAFA)      // Very light gray
+    private val Gray100 = Color(0xFFF5F5F5)     //
+    private val Gray200 = Color(0xFFEEEEEE)     //
+    private val Gray300 = Color(0xFFE0E0E0)     //
+    private val Gray350 = Color(0xFFD6D6D6)     // Between 300 and 400
+    private val Gray400 = Color(0xFFBDBDBD)     //
+    private val Gray500 = Color(0xFF9E9E9E)     // Medium gray
+    private val Gray600 = Color(0xFF757575)     //
+    private val Gray700 = Color(0xFF616161)     //
+    private val Gray800 = Color(0xFF424242)     //
+    private val Gray900 = Color(0xFF212121)     // Almost black
 
     private var isRunning = false
     private var updateCount: Int = 0
@@ -42,16 +58,16 @@ class MatrixUpdaterCircle4(
         val (myRandomX, myRandomY) = selectRandomCoordinate()
 
         if (updateCount % 2 == 0) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Violet300)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray200)  // was 300
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Red900)
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Gray400)  // was 400
             }
         } else {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Violet200)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray200) // was 300
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Orange800)
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Gray350)  // was 400
             }
         }
 

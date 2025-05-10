@@ -5,10 +5,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class MatrixInitializerCircles2 {
-    val MatrixLengthC2: Int = 100
-    val MatrixHeightC2: Int = MatrixLengthC2 * 42 / 100  // was 42
+    val MatrixLengthC2: Int = 54
+    val MatrixHeightC2: Int = MatrixLengthC2 * 62 / 100  // was 42
     val resolution: Int = MatrixLengthC2 * MatrixHeightC2
-    val diameterToUseC2: Int = 7
+    val diameterToUseC2: Int = 4
 
     val resolutionC: Int = MatrixLengthC2 * MatrixHeightC2
     private val poolOfCharsInit: Array<Char> = arrayOf(' ', ' ')

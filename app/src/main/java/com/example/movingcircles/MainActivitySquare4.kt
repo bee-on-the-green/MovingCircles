@@ -247,8 +247,8 @@ class MainActivitySquare4 : ComponentActivity() {
             color = PureWhite,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 7.sp,
-            style = TextStyle(lineHeight = 13.3.sp)
+            fontSize = 9.sp,
+            style = TextStyle(lineHeight = 10.sp)
         )
     }
 }
