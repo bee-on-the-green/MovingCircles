@@ -25,11 +25,16 @@ import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
 
+data class MatrixCell2(
+    val char: Char,
+    val color: Color
+)
+
 class MainActivityCircle4 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircle4()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
     private val matrixUpdater = MatrixUpdaterCircle4(
-        matrix = Array(0) { Array(0) { MatrixCell2(' ') } },
+        matrix = Array(0) { Array(0) { MatrixCell2(' ', Color.White) } },
         diameterToUseC4 = matrixInitializer.diameterToUseC4
     )
 
@@ -108,7 +113,7 @@ class MainActivityCircle4 : ComponentActivity() {
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
                                         "\n" +
                                         "Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC4}×${matrixInitializer.MatrixHeightC4})\n" +
-                                        "Shape diameter: ${matrixUpdater.diameterToUseC4} px\n" +
+                                        "Shape diameter: ${matrixInitializer.diameterToUseC4} px\n" +
                                         "Encoding: UTF-8\n",
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
@@ -269,12 +274,9 @@ class MainActivityCircle4 : ComponentActivity() {
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
             fontSize = 9.sp,
-            fontFamily = FontFamily(Font(R.font.ubuntumono_r)),
+            fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(
-                lineHeight = 13.sp,
-                letterSpacing = 0.9.sp  // Add this line for letter spacing  was 1.9
-        )
+            style = TextStyle(lineHeight = 14.5.sp)
         )
     }
 }

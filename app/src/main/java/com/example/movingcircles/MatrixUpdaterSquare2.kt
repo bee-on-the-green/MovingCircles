@@ -6,150 +6,175 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixUpdaterSquare2(
-    var matrix: Array<Array<MatrixCell2>>,
-    val MatrixLengthS2: Int = MatrixInitializerSquare2().MatrixLengthS2,  // Reference from Initializer
-    val MatrixHeightS2: Int = MatrixInitializerSquare2().MatrixHeightS2,  // Reference from Initializer
-    val sleepTime: Long = 30,
-    val breakPoint: Int = 30,
-    val poolOfChar: Array<Char> = arrayOf('Ͽ', 'Ͼ'),
-    val poolOfChar2: Array<Char> = arrayOf('0', '1')
+    var matrix: Array<CharArray>,
+    var colorMatrix: Array<Array<Color>>
 ) {
+    private val MatrixLengthS2: Int = matrix[0].size
+    private val MatrixHeightS2: Int = matrix.size
+    val sleepTime: Long = 100
+
+    val breakPoint: Int = 99
+    val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ')
+    val poolOfChar2: Array<Char> = arrayOf('0', '0')
+
     private var isRunning = false
-    private var updateCount: Int = 0
+    var updateCount: Int = 0  // Changed to var for pulsing effect
 
-    // Colors (kept as-is)
-    private val MatrixRed5 = Color(0xFFFF1744)
-    private val MatrixGreen1 = Color(0xFF00FF00)
+    // Color declarations
+    private val PinkNeon = Color(0xFFFF00FF)
     private val Orange700 = Color(0xFFF57C00)
-    private val PureBlack = Color(0xFF000000)
-
-
-    private val White = Color(0xFFFFFFFF)       // Pure white
-    private val Gray50 = Color(0xFFFAFAFA)      // Very light gray
-    private val Gray100 = Color(0xFFF5F5F5)     //
-    private val Gray200 = Color(0xFFEEEEEE)     //
-    private val Gray300 = Color(0xFFE0E0E0)     //
-    private val Gray350 = Color(0xFFD6D6D6)     // Between 300 and 400
-    private val Gray400 = Color(0xFFBDBDBD)     //
-    private val Gray500 = Color(0xFF9E9E9E)     // Medium gray
-    private val Gray600 = Color(0xFF757575)     //
-    private val Gray700 = Color(0xFF616161)     //
-    private val Gray800 = Color(0xFF424242)     //
-    private val Gray900 = Color(0xFF212121)     // Almost black
-
-    private val Red800 = Color(0xFFC62828)
-    private val Red750 = Color(0xFFD32F2F)  // Custom (between 700-800)
-    private val Red700 = Color(0xFFD32F2F)
-    private val Red650 = Color(0xFFE53935)  // Custom (between 600-700)
-    private val Red600 = Color(0xFFE53935)
-    private val Red550 = Color(0xFFEF5350)  // Custom (between 500-600)
-    private val Red500 = Color(0xFFF44336)
-    private val Red450 = Color(0xFFEF5350)  // Custom (between 400-500)
-    private val Red400 = Color(0xFFEF5350)
-    private val Red350 = Color(0xFFE57373)  // Custom (between 300-400)
-    private val Red300 = Color(0xFFE57373)
-
-
-
-
-
-    private val PinkNeon = Color(0xFFFF00FF)       // Pure magenta (extremely bright)
-    private val PinkHot = Color(0xFFFF0077)         // Intense hot pink
-    private val PinkElectric = Color(0xFFFF00AA)    // Electric pink
-    private val PinkFuchsia = Color(0xFFFF0088)     // Deep fuchsia
-
-    // Material Design Pinks (Bright variants)
-    private val PinkA700 = Color(0xFFC51162)        // Deep pink (Material)
-    private val PinkA400 = Color(0xFFF50057)        // Bright pink (Material)
-    private val PinkA200 = Color(0xFFFF4081)        // Vivid pink (Material)
-
-    // Custom Bright Pinks (Between Material shades)
-    private val PinkA650 = Color(0xFFE91E63)        // Custom (between A700-A400)
-    private val PinkA350 = Color(0xFFFF5C8D)        // Custom (between A400-A200)
-
-    // Light but still bright pinks (Less aggressive but still vivid)
-
-
-    private val Pink350 = Color(0xFFF06292)         // Custom (between 300-400)
-    private val Pink300 = Color(0xFFF06292)         // Lighter yet still vibrant
-
-    // Lighter Bright Pinks (Still vibrant but softer)
-    private val Pink400 = Color(0xFFEC407A)   // Material Pink 400
-    private val Pink450 = Color(0xFFF06292)   // Brighter (between 400-500)
-
-    private val Pink550 = Color(0xFFD81B60)   // Deeper (between 500-600)
-    private val Pink600 = Color(0xFFC2185B)   // Material Pink 600
-    private val Pink650 = Color(0xFFAD1457)   // Darker (between 600-700)
-    private val Pink700 = Color(0xFFAD1457)   // Material Pink 700
-    private val Pink750 = Color(0xFF9C125A)   // Custom (between 700-800)
-    private val Pink800 = Color(0xFF880E4F)   // Material Pink 800
-    private val Pink850 = Color(0xFF7A0D47)   // Custom (between 800-900)
-    private val Pink900 = Color(0xFF4A0A2A)   // Material Pink 900 (deep burgundy-pink)
-    private val Orange800 = Color(0xFFEF6C00)  // Burnt orange  new one
-    private val Red900 = Color(0xFFB71C1C)
-    private val Violet200 = Color(0xFFCE93D8)  // new one
+    private val MatrixRed5 = Color(0xFFFF1744)
+    private val Orange800 = Color(0xFFEF6C00)
+    private val Black850 = Color(0xFF1A1A1A)
+    private val Black800 = Color(0xFF212121)
+    private val Violet225_dark1 = Color(0xFFB57AC0)
+    private val Violet225_dark2 = Color(0xFFA370AD)
+    private val Orange600 = Color(0xFFFB8C00)
+    private val Orange500 = Color(0xFFFF9800)
+    private val Orange400 = Color(0xFFFFA726)
+    private val Orange300 = Color(0xFFFFB74D)
+    private val Orange200 = Color(0xFFFFCC80)
+    private val Orange100 = Color(0xFFFFE0B2)
+    private val Orange50 = Color(0xFFFFF3E0)
+    private val Orange850 = Color(0xFFE65100)
+    private val Orange900 = Color(0xFFD84315)
+    private val Orange950 = Color(0xFFBF360C)
+    private val Violet200 = Color(0xFFCE93D8)
     private val Violet300 = Color(0xFFBA68C8)
+    private val Black1000 = Color(0xFF010101)
+    private val Black950 = Color(0xFF0A0A0A)
+    private val Black900 = Color(0xFF121212)
+    private val BrightRed100 = Color(0xFFFFCDD2)
+    private val BrightRed200 = Color(0xFFEF9A9A)
+    private val BrightRed300 = Color(0xFFE57373)
+    private val BrightRed400 = Color(0xFFEF5350)
+    private val BrightRed500 = Color(0xFFF44336)
+    private val BrightRed600 = Color(0xFFE53935)
+    private val BrightRed700 = Color(0xFFD32F2F)
+    private val BrightRed800 = Color(0xFFC62828)
+    private val BrightRed900 = Color(0xFFB71C1C)
+    private val Gray600 = Color(0xFF757575)
+    private val Gray700 = Color(0xFF616161)
+    private val Gray800 = Color(0xFF424242)
+    private val VividRed = Color(0xFFFF0000)
+    private val ScarletRed = Color(0xFFFF2400)
+    private val CrimsonRed = Color(0xFFDC143C)
+    private val RubyRed = Color(0xFFE0115F)
+    private val FerrariRed = Color(0xFFFF2800)
+    private val NeonBlastPink = Color(0xFFFF00F6)
+    private val ElectricMagenta = Color(0xFFFF00FF)
+    private val RadioactivePink = Color(0xFFFF00AA)
+    private val CyberPink = Color(0xFFFF0099)
+    private val ScreamingPink = Color(0xFFFF00CC)
+    private val PsychedelicPink = Color(0xFFFF00EE)
+    private val ToxicPink = Color(0xFFFF00BB)
+    private val Black = Color(0xFF000000)
+    private val RichBlack = Color(0xFF0A0A0A)
+    private val JetBlack = Color(0xFF121212)
+    private val InkBlack = Color(0xFF1A1A1A)
+    private val ScarletOrange = Color(0xFFFF4000)
+    private val ScarletPink = Color(0xFFFF0066)
+    private val ScarletVoltage = Color(0xFFFF00AA)
+    private val ScarletPulse1 = Color(0xFFFF2400)
+    private val ScarletPulse2 = Color(0xFFFF3C00)
+    private val ScarletPulse3 = Color(0xFFFF2400)
+    private val ScarletPulse4 = Color(0xFFFF0055)
+    private val ScarletHolo1 = Color(0xFFFF2400)
+    private val ScarletHolo2 = Color(0xFFFF5E00)
+    private val ScarletHolo3 = Color(0xFFD10000)
 
+    // Glow effect colors for ScarletPulse2
+    private val ScarletPulseGlow = listOf(
+        Color(0xFFFF3C00),  // Original
+        Color(0xFFFF4C10),  // Slightly brighter
+        Color(0xFFFF5C20),  // Even brighter
+        Color(0xFFFF4C10)   // Back to medium
+    )
 
-
-    suspend fun startUpdating(onMatrixUpdated: (Array<Array<MatrixCell2>>, Double) -> Unit) {
+    suspend fun startUpdating2(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
         isRunning = true
         withContext(Dispatchers.IO) {
             while (isRunning) {
-                updateMatrix()
+                updateMatrix2()
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
-                val switchValue = calculateCharacterPercentage(matrixCopy, poolOfChar)
-                onMatrixUpdated(matrixCopy, switchValue)
+                val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
+                val switchValue = calculateCharacterPercentage2(matrixCopy, poolOfChar)
+                onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
                 Thread.sleep(sleepTime)
             }
         }
     }
 
-    fun stopUpdating() {
+    fun stopUpdating2() {
         isRunning = false
     }
 
 
+    /*
+    private fun updateMatrix2() {
+        val (randomX, randomY) = selectRandomCoordinate2()
+        drawRectangle2(randomX, randomY, 4, 4, poolOfChar, ScarletOrange)
 
+        val charPercentageAtCurrentTime = calculateCharacterPercentage2(matrix, poolOfChar)
 
-    private fun updateMatrix() {
-
-
-
-        if (calculateCharacterPercentage(matrix, poolOfChar) < breakPoint) {
-
-                var (randomX, randomY) = selectRandomCoordinate()
-
-                drawRectangle(randomX, randomY, 7, 4, poolOfChar, PinkNeon)  // Vertical
-                drawRectangle(randomX, randomY, 2, 2, poolOfChar, Orange700)
-
-            val charPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
-
-            if (charPercentageAtCurrentTime > breakPoint) {
-                drawRectangle(randomX, randomY, 7, 4, poolOfChar, MatrixRed5) // was 400
-
-
-                drawRectangle(randomX, randomY, 2, 2, poolOfChar, Orange800)  // Horizontal
-            }
-
+        if (charPercentageAtCurrentTime > breakPoint) {
+            val (randomX2, randomY2) = selectRandomCoordinate2()
+            drawRectangle2(randomX2, randomY2, 4, 4, poolOfChar2, JetBlack)
         }
         updateCount++
     }
 
-    private fun selectRandomCoordinate(): Pair<Int, Int> {
+  */
+
+
+    private fun updateMatrix2() {
+        val (randomX, randomY) = selectRandomCoordinate2()
+        // Use ScarletPulse2 instead of ScarletOrange to see the glow effect
+        drawRectangle2(randomX, randomY, 4, 4, poolOfChar, ScarletPulse2)  // was ScarletPulse2
+
+        val charPercentageAtCurrentTime = calculateCharacterPercentage2(matrix, poolOfChar)
+
+        if (charPercentageAtCurrentTime < breakPoint) {
+            val (randomX2, randomY2) = selectRandomCoordinate2()
+            drawRectangle2(randomX2, randomY2, 4, 4, poolOfChar2, JetBlack)
+        }
+        updateCount++
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private fun selectRandomCoordinate2(): Pair<Int, Int> {
         return Pair(
             Random.nextInt(0, MatrixLengthS2),
             Random.nextInt(0, MatrixHeightS2)
         )
     }
 
-
-
-
-
-
-
-    private fun drawRectangle(
+    private fun drawRectangle2(
         centerX: Int,
         centerY: Int,
         length: Int,
@@ -159,19 +184,23 @@ class MatrixUpdaterSquare2(
     ) {
         val halfLength = length / 2
         val halfWidth = width / 2
+        val pulseIndex = (updateCount / 1) % ScarletPulseGlow.size
+        val pulseColor = if (color == ScarletPulse2) ScarletPulseGlow[pulseIndex] else color
+
         for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS2 - 1)) {
             for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS2 - 1)) {
-                matrix[y][x] = MatrixCell2(poolOfChar.random(), color)
+                matrix[y][x] = poolOfChar.random()
+                colorMatrix[y][x] = pulseColor
             }
         }
     }
 
-    private fun calculateCharacterPercentage(
-        matrix: Array<Array<MatrixCell2>>,
+    private fun calculateCharacterPercentage2(
+        matrix: Array<CharArray>,
         poolOfChar: Array<Char>
     ): Double {
         var count = 0
-        matrix.forEach { row -> row.forEach { cell -> if (cell.char in poolOfChar) count++ } }
+        matrix.forEach { row -> row.forEach { char -> if (char in poolOfChar) count++ } }
         return (count.toDouble() / (matrix.size * matrix[0].size)) * 100
     }
 }

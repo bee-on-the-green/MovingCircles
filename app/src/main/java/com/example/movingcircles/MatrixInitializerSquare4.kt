@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 class MatrixInitializerSquare4 {
     val MatrixLengthS4: Int = 102
-    val MatrixHeightS4: Int = MatrixLengthS4 * 55 / 100
+    val MatrixHeightS4: Int = MatrixLengthS4 * 53 / 100
     val resolution4: Int = MatrixLengthS4 * MatrixHeightS4
     private val squarePoolOfChars: Array<Char> = arrayOf(' ', ' ')
 

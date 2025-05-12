@@ -34,7 +34,7 @@ class MatrixUpdaterSquare3(
 ) {
     private val MatrixLengthS3: Int = matrix[0].size
     private val MatrixHeightS3: Int = matrix.size
-    val sleepTime: Long = 5
+    val sleepTime: Long = 10
 
     val breakPoint: Int = 80
     val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•')
@@ -63,13 +63,13 @@ class MatrixUpdaterSquare3(
 
     private fun updateMatrix3() {
         val (randomX, randomY) = selectRandomCoordinate3()
-        val currentLength = 3
-        val currentWidth = 5
+        val currentLength3 = 5  // was  val currentLength = 3
+        val currentWidth3 = 3  // val currentWidth = 5
 
-        drawRectangle3(randomX, randomY, currentLength, currentWidth, poolOfChar, (Gray350))  // Gray350  // was Color(0xFFF57C00))
+        drawRectangle3(randomX, randomY, currentLength3, currentWidth3, poolOfChar, (Gray500))  // Gray400  // was Color(0xFFF57C00))
 
         if (calculateCharacterPercentage3(matrix, poolOfChar) > breakPoint) {
-            drawRectangle3(randomX, randomY, currentWidth, currentLength, poolOfChar2, Gray300)  // was
+            drawRectangle3(randomX, randomY, currentWidth3, currentLength3, poolOfChar2, White)  // was
         }
         updateCount++
     }

@@ -7,32 +7,74 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircle4(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTime: Long = 20,
+    val sleepTime: Long = 10,
     val diameterToUseC4: Int,
-    val breakPoint: Int = 32,
-
-    //'°', '²', ',', ',', '•'),
-    //('·', '.', '\'', '·', '.', '.', '\''),  // ˆ • ¸
-
-    val poolOfChar: Array<Char> = arrayOf( '°', '²', ',', ',', '•', ',', 'º', ','),  // ০ᐤ൦৹॰˚੦ⵙ◯೦〇ဝᲿഠ០௦᠐  // '°', '²', ',', ',', '•'
-    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\'')  // '.', '·'
+    val breakPoint: Int = 75,
+    val poolOfChar: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\''),
+    val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•')
 ) {
     private val Violet200 = Color(0xFFCE93D8)
     private val Violet300 = Color(0xFFBA68C8)
+    private val Violet150 = Color(0xFFE1BEE7)    // Very light violet
+    private val Violet100 = Color(0xFFF3E5F5)    // Almost white with violet tint
+    private val Violet50 = Color(0xFFF9F0FA)     // Barely perceptible violet
+    private val VioletMoonlight = Color(0xFFE8DAEF)  // Soft moonlight violet
+    private val VioletMist = Color(0xFFEDE7F6)    // Misty white-violet
+
+
+
     private val Orange800 = Color(0xFFEF6C00)
+    private val Orange850 = Color(0xFFE65100)    // Darker than 800
+    private val Orange900 = Color(0xFFD84315)    // Deep burnt orange
+    private val Orange950 = Color(0xFFBF360C)    // Very dark orange-brown
+    private val Orange1000 = Color(0xFF9E2C0A)   // Near-black orange
+    private val OrangeBlack = Color(0xFF7F1D08)  // Maximum darkness while keeping orange hue
     private val Red900 = Color(0xFFB71C1C)
-    private val White = Color(0xFFFFFFFF)       // Pure white
-    private val Gray50 = Color(0xFFFAFAFA)      // Very light gray
-    private val Gray100 = Color(0xFFF5F5F5)     //
-    private val Gray200 = Color(0xFFEEEEEE)     //
-    private val Gray300 = Color(0xFFE0E0E0)     //
-    private val Gray350 = Color(0xFFD6D6D6)     // Between 300 and 400
-    private val Gray400 = Color(0xFFBDBDBD)     //
-    private val Gray500 = Color(0xFF9E9E9E)     // Medium gray
-    private val Gray600 = Color(0xFF757575)     //
-    private val Gray700 = Color(0xFF616161)     //
-    private val Gray800 = Color(0xFF424242)     //
-    private val Gray900 = Color(0xFF212121)     // Almost black
+    // Pure white to light gray progression
+    private val PureWhite = Color(0xFFFFFFFF)      // Pure white
+    private val White95 = Color(0xFFF2F2F2)        // 95% white (very slight gray)
+    private val White90 = Color(0xFFE6E6E6)        // 90% white (lightest gray)
+    private val White85 = Color(0xFFD9D9D9)        // 85% white (light gray)
+    private val White80 = Color(0xFFCCCCCC)        // 80% white (medium-light gray)
+
+    // Progressively darker grays (continuing from White80)
+    private val Gray70 = Color(0xFFB3B3B3)       // Slightly darker than White80
+    private val Gray60 = Color(0xFF999999)       // Medium-light gray
+    private val Gray50 = Color(0xFF808080)       // True middle gray
+    private val Gray40 = Color(0xFF666666)       // Medium-dark gray
+    private val Gray30 = Color(0xFF4D4D4D)       // Dark gray
+    private val Gray20 = Color(0xFF333333)       // Very dark gray
+
+    // Near-black colors (darkest to lightest)
+    private val Black1000 = Color(0xFF010101)       // Closest to pure black without being #000000
+    private val Black950 = Color(0xFF0A0A0A)        // Barely distinguishable from pure black
+    private val Black900 = Color(0xFF121212)        // Standard "dark mode" black
+    private val Black850 = Color(0xFF1A1A1A)        // Slightly elevated black
+    private val Black800 = Color(0xFF212121)        // Dark charcoal
+
+    // Near-black with subtle undertones
+    private val BlackCool = Color(0xFF050A0E)       // Blue-tinted near-black
+    private val BlackWarm = Color(0xFF0A0808)       // Red-brown tinted near-black
+    private val BlackViolet = Color(0xFF0D0714)     // Violet-tinged near-black
+    private val BlackGreen = Color(0xFF070D0A)      // Greenish near-black
+
+
+
+
+    private val Yellow50 = Color(0xFFFFFF99)    // Very pale yellow
+    private val Yellow100 = Color(0xFFFFFF66)   // Light pastel yellow
+    private val Yellow200 = Color(0xFFFFFF00)   // Pure digital yellow
+    private val Yellow300 = Color(0xFFFFF176)   // Soft warm yellow
+    private val Yellow400 = Color(0xFFFFEB3B)   // Bright lemon yellow
+    private val Yellow500 = Color(0xFFFFD600)   // Vivid golden yellow
+    private val Yellow600 = Color(0xFFFFC107)   // Amber yellow (Material Design)
+    private val Yellow700 = Color(0xFFFFB300)   // Rich golden yellow
+    private val Yellow800 = Color(0xFFFFA000)   // Deep vibrant yellow
+    private val Yellow900 = Color(0xFFFF8F00)   // Orange-tinted yellow
+    private val Yellow950 = Color(0xFFFF6F00)   // Bright amber
+    private val Yellow1000 = Color(0xFFFF5722)  // Fiery orange-yellow
+
+
 
     private var isRunning = false
     private var updateCount: Int = 0
@@ -54,25 +96,44 @@ class MatrixUpdaterCircle4(
         isRunning = false
     }
 
+
+
+
+
     private fun updateMatrix() {
         val (myRandomX, myRandomY) = selectRandomCoordinate()
 
         if (updateCount % 2 == 0) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray200)  // was 300
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray40)  // was gray 40
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Gray400)  // was 400
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet300)
             }
         } else {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray200) // was 300
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray40)  // was black 900
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Gray350)  // was 400
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet200)
             }
         }
 
         updateCount++
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
         val myRandomCoordinateY = Random.nextInt(0, matrix.size)

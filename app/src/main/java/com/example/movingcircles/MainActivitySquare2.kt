@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,13 +24,13 @@ import com.example.movingcircles.ui.theme.movingcirclesTheme
 import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
-import androidx.compose.ui.text.font.Font
 
 class MainActivitySquare2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerSquare2()
-    private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
-    private val matrixUpdater = MatrixUpdaterSquare2(matrix = Array(0) { Array(0) { MatrixCell2(' ') } })
-    private val sleepTime: Long = 10
+    private lateinit var matrix: Array<CharArray>
+    private lateinit var colorMatrix: Array<Array<Color>>
+    private lateinit var matrixUpdater: MatrixUpdaterSquare2
+
     private var updateJob: Job? = null
     private var startTime: Long = 0
     private var isFirstUpdate = true
@@ -40,6 +41,8 @@ class MainActivitySquare2 : ComponentActivity() {
     private var updateCount: Int by mutableStateOf(0)
     private var exactUpdateTime: Long by mutableStateOf(0L)
     private var lastUpdateTime: Long by mutableStateOf(0L)
+    private var colorRanges: List<AnnotatedString.Range<Color>> by mutableStateOf(emptyList())
+    private var matrixString by mutableStateOf("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,15 +50,6 @@ class MainActivitySquare2 : ComponentActivity() {
 
         setContent {
             movingcirclesTheme {
-                var matrixState by remember { mutableStateOf("") }
-                var matrixColors by remember { mutableStateOf(listOf<AnnotatedString.Range<Color>>()) }
-
-                fun updateMatrixState(newMatrix: MutableList<MutableList<MatrixCell2>>) {
-                    val (text, colorRanges) = matrixToAnnotatedString(newMatrix)
-                    matrixState = text
-                    matrixColors = colorRanges
-                }
-
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     floatingActionButton = {
@@ -67,16 +61,16 @@ class MainActivitySquare2 : ComponentActivity() {
                             horizontalAlignment = Alignment.End
                         ) {
                             Spacer(modifier = Modifier.height(750.dp))
-                            BackToWelcomeButton()
+                            BackToWelcomeButton2()
                             Spacer(modifier = Modifier.height(5.dp))
-                            PlayPauseButton(
+                            PlayPauseButton2(
                                 isPaused = isPaused,
                                 onPauseToggled = {
                                     isPaused = !isPaused
                                     if (isPaused) {
                                         updateJob?.cancel()
                                     } else {
-                                        startMatrixUpdates(::updateMatrixState)
+                                        startMatrixUpdates2()
                                     }
                                 }
                             )
@@ -87,7 +81,7 @@ class MainActivitySquare2 : ComponentActivity() {
                 ) { innerPadding ->
                     Column(modifier = Modifier.fillMaxSize()) {
                         Box(modifier = Modifier.weight(1f)) {
-                            MatrixText(matrixState, matrixColors, innerPadding)
+                            MatrixText2(matrixString, colorRanges, innerPadding)
 
                             val numberFormat = NumberFormat.getInstance()
 
@@ -100,7 +94,7 @@ class MainActivitySquare2 : ComponentActivity() {
                                 }\n" +
                                         "Cycles: ${numberFormat.format(updateCount)}\n" +
                                         "\n" +
-                                        "Frequency: ${Hz} Hz\n" +
+                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
                                         "Loop runtime: ${exactUpdateTime} ms\n" +
                                         "Density: ${"%.2f".format(SwitchValue)}%\n" +
                                         "\n" +
@@ -124,21 +118,22 @@ class MainActivitySquare2 : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     launch(Dispatchers.Default) {
-                        matrix = matrixInitializer.initializeMatrix()
-                        updateMatrixState(matrix)
-                        matrixUpdater.matrix = matrix.map { it.toTypedArray() }.toTypedArray()
+                        val (charMatrix, colorMatrix) = matrixInitializer.initializeMatrix2()
+                        matrix = charMatrix
+                        this@MainActivitySquare2.colorMatrix = colorMatrix
+                        matrixString = matrix.joinToString("\n") { it.joinToString("") }
+                        matrixUpdater = MatrixUpdaterSquare2(matrix, colorMatrix)
                         Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
-
-                        startMatrixUpdates(::updateMatrixState)
+                        startMatrixUpdates2()
                     }
                 }
             }
         }
     }
 
-    private fun startMatrixUpdates(updateFn: (MutableList<MutableList<MatrixCell2>>) -> Unit) {
+    private fun startMatrixUpdates2() {
         updateJob = lifecycleScope.launch {
-            matrixUpdater.startUpdating { updatedMatrix, switchValue ->
+            matrixUpdater.startUpdating2 { updatedMatrix, updatedColorMatrix, switchValue ->
                 launch(Dispatchers.Main) {
                     val currentTime = System.currentTimeMillis()
 
@@ -150,48 +145,44 @@ class MainActivitySquare2 : ComponentActivity() {
                     }
                     lastUpdateTime = currentTime
 
-                    val newMatrix = updatedMatrix.map { it.toMutableList() }.toMutableList()
-                    updateFn(newMatrix)
+                    matrix = updatedMatrix
+                    colorMatrix = updatedColorMatrix
+                    matrixString = updatedMatrix.joinToString("\n") { it.joinToString("") }
+
+                    colorRanges = buildColorRanges(updatedColorMatrix, matrixString)
+
                     calculateElapsedTime()
                     Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
-                    println("Elapsed Time: ${timeElapsed.first} minutes, ${timeElapsed.second} seconds")
                 }
             }
         }
     }
 
-    private fun matrixToAnnotatedString(matrix: MutableList<MutableList<MatrixCell2>>): Pair<String, List<AnnotatedString.Range<Color>>> {
-        val stringBuilder = StringBuilder(matrix.size * matrix[0].size * 2) // Pre-allocate
-        val colorRanges = mutableListOf<AnnotatedString.Range<Color>>()
+    private fun buildColorRanges(
+        colorMatrix: Array<Array<Color>>,
+        matrixString: String
+    ): List<AnnotatedString.Range<Color>> {
+        val ranges = mutableListOf<AnnotatedString.Range<Color>>()
         var position = 0
-
-        matrix.forEach { row ->
-            row.forEach { cell ->
-                stringBuilder.append(cell.char)
-                if (cell.color != Color.White) {
-                    colorRanges.add(
-                        AnnotatedString.Range(
-                            item = cell.color,
-                            start = position,
-                            end = position + 1
-                        )
-                    )
+        for (y in colorMatrix.indices) {
+            for (x in colorMatrix[y].indices) {
+                val color = colorMatrix[y][x]
+                if (color != Color.White) {
+                    ranges.add(AnnotatedString.Range(color, position, position + 1))
                 }
                 position++
             }
-            stringBuilder.append("\n")
-            position++
+            position++ // For the newline character
         }
-
-        return Pair(stringBuilder.toString(), colorRanges)
+        return ranges
     }
 
     override fun onDestroy() {
         super.onDestroy()
         updateJob?.cancel()
-        matrixUpdater.stopUpdating()
+        matrixUpdater.stopUpdating2()
     }
 
     private fun calculateElapsedTime() {
@@ -203,7 +194,7 @@ class MainActivitySquare2 : ComponentActivity() {
     }
 
     @Composable
-    fun BackToWelcomeButton() {
+    fun BackToWelcomeButton2() {
         IconButton(
             onClick = {
                 startActivity(Intent(this@MainActivitySquare2, WelcomeScreen::class.java))
@@ -224,7 +215,7 @@ class MainActivitySquare2 : ComponentActivity() {
     }
 
     @Composable
-    fun PlayPauseButton(
+    fun PlayPauseButton2(
         isPaused: Boolean,
         onPauseToggled: () -> Unit
     ) {
@@ -245,19 +236,25 @@ class MainActivitySquare2 : ComponentActivity() {
     }
 
     @Composable
-    fun MatrixText(
+    fun MatrixText2(
         matrixString: String,
         colorRanges: List<AnnotatedString.Range<Color>>,
         innerPadding: PaddingValues
     ) {
-        val annotatedString = buildAnnotatedString {
-            append(matrixString)
-            colorRanges.forEach { range ->
-                addStyle(
-                    style = SpanStyle(color = range.item),
-                    start = range.start,
-                    end = range.end
-                )
+        val annotatedString = remember(matrixString, colorRanges) {
+            buildAnnotatedString {
+                append(matrixString)
+                colorRanges.sortedByDescending { it.start }.forEach { range ->
+                    try {
+                        addStyle(
+                            style = SpanStyle(color = range.item),
+                            start = range.start,
+                            end = range.end
+                        )
+                    } catch (e: Exception) {
+                        println("Error applying color at position ${range.start}-${range.end}")
+                    }
+                }
             }
         }
 
@@ -265,10 +262,10 @@ class MainActivitySquare2 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontSize = 10.sp,
-            fontFamily = FontFamily(Font(R.font.noto_sans_mono)),
+            fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 10.sp)
+            fontSize = 20.sp,
+            style = TextStyle(lineHeight = 13.sp)
         )
     }
 }

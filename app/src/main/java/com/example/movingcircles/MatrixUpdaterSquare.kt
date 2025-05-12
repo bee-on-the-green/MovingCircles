@@ -11,8 +11,8 @@ class MatrixUpdaterSquare(
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
     val sleepTime: Long = 4,
     val breakPoint: Int = 15,
-    val poolOfChar: Array<Char> = arrayOf('0', '1', '0'),  //  'Ͽ', 'Ͼ', 'ɸ'
-    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\'') // •᎐.·⏺ :;.● // ০ᐤ൦৹॰˚੦ⵙ◯೦〇ဝᲿഠ០௦᠐ //'·', '.', '\'', '·', '.', '\'', '.', '\''
+    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\''), //  'Ͽ', 'Ͼ', 'ɸ'  // ('0', '1', '0')
+    val poolOfChar: Array<Char> = arrayOf('0', '0', '1') // arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\'')
 
 
 

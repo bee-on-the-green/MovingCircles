@@ -5,24 +5,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-data class MatrixCell2(val char: Char, val color: Color = Color.White)
-
 class MatrixInitializerSquare2 {
-    // Hardcoded dimensions (now internal for access)
-    val MatrixLengthS2: Int = 90
-    val MatrixHeightS2: Int = MatrixLengthS2 * 58 / 100
+    val MatrixLengthS2: Int = 51
+    val MatrixHeightS2: Int = MatrixLengthS2 * 87 / 100
     val resolution2: Int = MatrixLengthS2 * MatrixHeightS2
     private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')
-    private val defaultColor = Color.White
+    private val defaultColor: Color = Color.White
 
-    suspend fun initializeMatrix(
-        rows: Int = MatrixHeightS2,
-        cols: Int = MatrixLengthS2
-    ): MutableList<MutableList<MatrixCell2>> {
+    suspend fun initializeMatrix2(): Pair<Array<CharArray>, Array<Array<Color>>> {
         return withContext(Dispatchers.Default) {
-            MutableList(rows) {
-                MutableList(cols) { MatrixCell2(poolOfCharInnit.random(), defaultColor) }
+            val charMatrix = Array(MatrixHeightS2) {
+                CharArray(MatrixLengthS2) { poolOfCharInnit.random() }
             }
+            val colorMatrix = Array(MatrixHeightS2) {
+                Array(MatrixLengthS2) { defaultColor }
+            }
+            Pair(charMatrix, colorMatrix)
         }
     }
 }

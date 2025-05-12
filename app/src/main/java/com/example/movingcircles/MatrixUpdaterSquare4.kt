@@ -12,17 +12,13 @@ class MatrixUpdaterSquare4(
 
     val breakPoint: Int = 95,
     val poolOfChar2: Array<Char> = arrayOf('0', '0', '1'),  // '0', '0', '1')
-    val poolOfChar: Array<Char> = arrayOf('²', ',', '°', '·', ':', '.', '.', ' ', '·', ';'), // '²', ',', '°', '·', ':', '.', '.', ' ', '·', ';'
+    val poolOfChar: Array<Char> = arrayOf('²', ',', '°', '.', '.', ' ', '·', ','),
 
 ) {
     private var isRunning = false
     private var updateCount: Int = 0
 
-    /*
-        val poolOfChar: Array<Char> = arrayOf('0', '0', '1'), // var poolOfChar = arrayOf('0', '0', '1')
-    val poolOfChar2: Array<Char> = arrayOf('²', ',', '°', '·', ':', '.', '.', ' ', '·', ';'),
 
-*/
     suspend fun startUpdating4(onMatrixUpdated: (Array<CharArray>, Double) -> Unit) {
         isRunning = true
         withContext(Dispatchers.IO) {
@@ -47,14 +43,14 @@ class MatrixUpdaterSquare4(
         var currentWidth: Int
 
         if (updateCount % 2 == 0) {
-            currentLength = 1
-            currentWidth = 30
-        } else {
-            currentLength = 30
+            currentLength = 50
             currentWidth = 1
+        } else {
+            currentLength = 1
+            currentWidth = 50
         }
 
-        drawRectangle4(randomX, randomY, currentLength, currentWidth, poolOfChar)
+        drawRectangle4(randomX, randomY, currentWidth, currentLength, poolOfChar)
         val mainCharPercentageAtCurrentTime = calculateCharacterPercentage4(matrix, poolOfChar)
 
         if (mainCharPercentageAtCurrentTime > breakPoint) {
@@ -64,35 +60,7 @@ class MatrixUpdaterSquare4(
     }
 
 
-    /*
 
-
-    private fun updateMatrix() {
-        val (myRandomX, myRandomY) = selectRandomCoordinate()
-
-        val lengthRectangle: Int
-        val widthRectangles: Int
-
-        if (updateCount % 2 == 0) {
-            lengthRectangle = 20
-            widthRectangles = 1
-        } else {
-            lengthRectangle = 1
-            widthRectangles = 20
-        }
-
-        drawRectangle(myRandomX, myRandomY, lengthRectangle, widthRectangles, poolOfChar)
-        val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
-        if (mainCharPercentageAtCurrentTime > breakPoint) {
-            drawRectangle(myRandomX, myRandomY, lengthRectangle, widthRectangles, poolOfChar2)
-        }
-
-        updateCount++
-    }
-
-
-
-    */
 
     private fun selectRandomCoordinate4(): Pair<Int, Int> {
         return Pair(

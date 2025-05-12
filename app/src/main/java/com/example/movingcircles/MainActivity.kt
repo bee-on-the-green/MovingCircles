@@ -28,7 +28,7 @@ val lengthOfMatrix: Int = 158  // 160
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf('.', '·')
 val resolution: Int = lengthOfMatrix * heightOfMatrix
-val diameterToBeUsed: Int = 14
+val diameterToBeUsed: Int = 11
 
 class MainActivity : ComponentActivity() {
 

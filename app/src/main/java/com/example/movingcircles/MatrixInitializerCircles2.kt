@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 
 class MatrixInitializerCircles2 {
     val MatrixLengthC2: Int = 54
-    val MatrixHeightC2: Int = MatrixLengthC2 * 62 / 100  // was 42
+    val MatrixHeightC2: Int = MatrixLengthC2 * 66 / 100  // was 42
     val resolution: Int = MatrixLengthC2 * MatrixHeightC2
     val diameterToUseC2: Int = 4
 

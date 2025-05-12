@@ -29,7 +29,7 @@ class MainActivityCircles2 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircles2()
     private lateinit var matrix: MutableList<MutableList<MatrixCell2>>
     private val matrixUpdater = MatrixUpdaterCircles2(
-        matrix = Array(0) { Array(0) { MatrixCell2(' ') } },
+        matrix = Array(0) { Array(0) { MatrixCell2(' ', Color.White) } },
         diameterToUseC2 = matrixInitializer.diameterToUseC2
     )
 
@@ -268,12 +268,12 @@ class MainActivityCircles2 : ComponentActivity() {
         Text(
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
-            color = PureWhite,
+            color = Color.White,  // Fixed here
             fontSize = 18.6.sp,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
             style = TextStyle(
-                lineHeight = 16.6.sp, // 18.2
+                lineHeight = 16.6.sp,  // was 16.6
                 letterSpacing = 0.21.sp
             )
         )

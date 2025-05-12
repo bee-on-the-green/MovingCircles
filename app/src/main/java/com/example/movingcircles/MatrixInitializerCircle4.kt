@@ -6,9 +6,9 @@ import kotlinx.coroutines.withContext
 
 class MatrixInitializerCircle4 {
     val MatrixLengthC4: Int = 100
-    val MatrixHeightC4: Int = MatrixLengthC4 * 42 / 100
+    val MatrixHeightC4: Int = MatrixLengthC4 * 37 / 100
     val resolution: Int = MatrixLengthC4 * MatrixHeightC4
-    val diameterToUseC4: Int = 13  /// was 14
+    val diameterToUseC4: Int = 7
 
     val resolutionC: Int = MatrixLengthC4 * MatrixHeightC4
     private val poolOfCharsInit: Array<Char> = arrayOf(' ', ' ')

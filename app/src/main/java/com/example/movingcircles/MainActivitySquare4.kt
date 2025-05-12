@@ -42,6 +42,9 @@ class MainActivitySquare4 : ComponentActivity() {
     private var lastUpdateTime: Long by mutableStateOf(0L)
     private var colorRanges: List<AnnotatedString.Range<Color>> by mutableStateOf(emptyList())
     private var matrixString by mutableStateOf("")
+    private val MatrixCodeGreen = Color(0xFF00FF41)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -244,7 +247,7 @@ class MainActivitySquare4 : ComponentActivity() {
         Text(
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
-            color = PureWhite,
+            color = MatrixCodeGreen,  // was PureWhite
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
             fontSize = 9.sp,
