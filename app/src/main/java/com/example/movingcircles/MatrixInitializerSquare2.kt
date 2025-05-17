@@ -7,7 +7,7 @@ import kotlin.random.Random
 
 class MatrixInitializerSquare2 {
     val MatrixLengthS2: Int = 51
-    val MatrixHeightS2: Int = MatrixLengthS2 * 87 / 100
+    val MatrixHeightS2: Int = MatrixLengthS2 * 86 / 100
     val resolution2: Int = MatrixLengthS2 * MatrixHeightS2
     private val poolOfCharInnit: Array<Char> = arrayOf(' ', ' ')
     private val defaultColor: Color = Color.White

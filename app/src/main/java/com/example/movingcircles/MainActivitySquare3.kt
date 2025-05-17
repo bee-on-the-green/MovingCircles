@@ -87,7 +87,7 @@ class MainActivitySquare3 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                ARCHIPELAGO:
+                                <ARCHIPELAGO>
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

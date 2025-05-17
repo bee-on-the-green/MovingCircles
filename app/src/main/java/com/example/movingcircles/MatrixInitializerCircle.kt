@@ -10,7 +10,7 @@ data class MatrixCell(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerCircle {
     val MatrixLengthC: Int = 100
-    val MatrixHeightC: Int = MatrixLengthC * 42 / 100
+    val MatrixHeightC: Int = MatrixLengthC * 41 / 100
     val resolutionC: Int = MatrixLengthC * MatrixHeightC
 
 

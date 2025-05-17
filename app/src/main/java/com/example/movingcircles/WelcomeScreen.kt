@@ -54,7 +54,7 @@ fun IconButtonWithLabel(
         Surface(
             onClick = onClick,
             shape = RectangleShape,
-            modifier = Modifier.size(70.dp),
+            modifier = Modifier.size(75.dp),  // was 70
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
@@ -85,80 +85,95 @@ fun WelcomeContent(
     onSquares4Clicked: () -> Unit,
     onCircles4Clicked: () -> Unit
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.welcome_image),
-            contentDescription = "Welcome Image",
-            modifier = Modifier
-                .size(500.dp)
-                .padding(bottom = 50.dp)
-        )
+        // Images with their original positions
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.pool_of_char),
+                contentDescription = "Pool of Characters",
+                modifier = Modifier
+                    .size(470.dp)  // was 450
+                    .offset(y = (-132).dp)  // was minus 120
+            )
 
-        Text(
-            text = "Circles and Squares:",
-            fontSize = 22.sp,
-            modifier = Modifier.padding(bottom = 50.dp)
-        )
+            Image(
+                painter = painterResource(id = R.drawable.welcome_image),
+                contentDescription = "Welcome Image",
+                modifier = Modifier
+                    .size(820.dp)  // was 800
+                    .padding(top = 50.dp, bottom = 20.dp)
+                    .offset(y = (-320).dp)  // was 300
+            )
+        }
 
+        // Icons positioned absolutely at the top
         Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .offset(y = (-20).dp),
-            horizontalAlignment = Alignment.Start
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)  // This anchors to bottom
+                .padding(bottom = 60.dp),     // THE SMALLER, THE MORE TO THE BOTTOM  /// was 30
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            Column(
+                modifier = Modifier.padding(horizontal = 8.dp),
+                horizontalAlignment = Alignment.Start
             ) {
-                IconButtonWithLabel(
-                    onClick = onCirclesClicked,
-                    iconResId = R.drawable.circle_icon,
-                    label = "Main"
-                )
-                IconButtonWithLabel(
-                    onClick = onSquaresClicked,
-                    iconResId = R.drawable.square_icon,
-                    label = "Square"
-                )
-                IconButtonWithLabel(
-                    onClick = onSquaresSmallClicked,
-                    iconResId = R.drawable.icon_sun,
-                    label = "Circle"
-                )
-                IconButtonWithLabel(
-                    onClick = onCircles2Clicked,
-                    iconResId = R.drawable.icon_square_purple,
-                    label = "Circle2"
-                )
-                IconButtonWithLabel(
-                    onClick = onSquares2Clicked,
-                    iconResId = R.drawable.square_green_yellow,
-                    label = "Squares2"
-                )
-            }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(47.dp)  // was 16.dp
+                ) {
+                    IconButtonWithLabel(
+                        onClick = onCirclesClicked,
+                        iconResId = R.drawable.circle_icon,
+                        label = "Braces" // is main  // OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquaresClicked,
+                        iconResId = R.drawable.square_icon,
+                        label = "Brackets"  // is square  :: OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquaresSmallClicked,
+                        iconResId = R.drawable.circleforandroid,
+                        label = "Losange" // circle  :: OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onCircles2Clicked,
+                        iconResId = R.drawable.icon_sun,
+                        label = "Fuego"  // circles 2  // OKAY
+                    )
+                }
 
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                IconButtonWithLabel(
-                    onClick = onSquares3Clicked,
-                    iconResId = R.drawable.labirynte,
-                    label = "Squares3"
-                )
-                IconButtonWithLabel(
-                    onClick = onSquares4Clicked,
-                    iconResId = R.drawable.carre_rond,
-                    label = "Squares4"
-                )
-                IconButtonWithLabel(
-                    onClick = onCircles4Clicked,
-                    iconResId = R.drawable.rond,
-                    label = "Circles4"
-                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(47.dp)  // was 16.dp
+                ) {
+                    IconButtonWithLabel(
+                        onClick = onSquares2Clicked,
+                        iconResId = R.drawable.square_green_yellow,
+                        label = "Squares"  // square 2  // OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquares3Clicked,
+                        iconResId = R.drawable.carre_rond,
+                        label = "Archipel"  // square 3 // OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquares4Clicked,
+                        iconResId = R.drawable.rond,
+                        label = "Fluo"  // square 4  :: OKAY
+                    )
+                    IconButtonWithLabel(
+                        onClick = onCircles4Clicked,
+                        iconResId = R.drawable.icon_square_purple,
+                        label = "Island"  // circle 4  // OKAY
+                    )
+                }
             }
         }
     }

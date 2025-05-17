@@ -105,7 +105,7 @@ class MainActivitySquare : ComponentActivity() {
                             Density: ${"%.2f".format(SwitchValue)}%
         
                             Resolution: ${matrixInitializer.resolutionS} px (${matrixInitializer.MatrixLengthS}×${matrixInitializer.MatrixHeightS})
-                            Shape size: 1*10 px
+                            Shape size: 1x10 px
                             Encoding: ASCII
                             """.trimIndent(),
                                 modifier = Modifier
