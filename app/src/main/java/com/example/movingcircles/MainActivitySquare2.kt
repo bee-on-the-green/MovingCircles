@@ -84,23 +84,26 @@ class MainActivitySquare2 : ComponentActivity() {
                             MatrixText2(matrixString, colorRanges, innerPadding)
 
                             val numberFormat = NumberFormat.getInstance()
-
                             Text(
-                                text = "Elapsed: ${
+                                text = """
+                                <BLOOD SQUARES>
+        
+                                Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
                                     else
                                         "${timeElapsed.second} sec"
-                                }\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
-                                        "\n" +
-                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
-                                        "Loop runtime: ${exactUpdateTime} ms\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "\n" +
-                                        "Resolution: ${matrixInitializer.resolution2} px (${matrixInitializer.MatrixLengthS2}×${matrixInitializer.MatrixHeightS2})\n" +
-                                        "Shape size: 1*20 px\n" +
-                                        "Encoding: UTF-8\n",
+                                }
+                                Cycles: ${numberFormat.format(updateCount)}
+        
+                                Frequency: ${Hz} Hz
+                                Loop runtime: ${exactUpdateTime} ms
+                                Density: ${"%.2f".format(SwitchValue)}%
+        
+                                Resolution: ${matrixInitializer.resolution2} px (${matrixInitializer.MatrixLengthS2}×${matrixInitializer.MatrixHeightS2})
+                                Shape size: 4x4 px
+                                Encoding: UTF-8
+                                """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -203,7 +206,7 @@ class MainActivitySquare2 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 50.dp)
+                .offset(x = 50.dp, y = 80.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.my_back_button_black),
@@ -224,7 +227,7 @@ class MainActivitySquare2 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 40.dp)
+                .offset(x = 50.dp, y = 30.dp)
         ) {
             Icon(
                 painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
@@ -265,7 +268,7 @@ class MainActivitySquare2 : ComponentActivity() {
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
             fontSize = 20.sp,
-            style = TextStyle(lineHeight = 13.sp)
+            style = TextStyle(lineHeight = 13.3.sp)  //was 13.1
         )
     }
 }

@@ -185,22 +185,25 @@ fun MatrixScreen(
                 val numberFormat = NumberFormat.getInstance()
 
                 Text(
-                    text = "Elapsed: ${
+                    text = """
+        <CURLY BRACES>
+        
+        Elapsed: ${
                         if (timeElapsed.first > 0)
                             "${timeElapsed.first} min, ${timeElapsed.second} sec"
                         else
                             "${timeElapsed.second} sec"
-                    }\n" +
-                            "Cycles: ${numberFormat.format(updateCount)}\n" +
-                            "\n" +
-                            "Frequency: ${Hz} Hz\n" +
-                            "Loop runtime: ${exactUpdateTime} ms\n" +
-                            "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                            "\n" +
-                            "Resolution: ${resolution} px (${lengthOfMatrix}x${heightOfMatrix})\n" +
-                            "Shape diameter: $diameterToBeUsed px\n" +
-                            "Encoding: UTF-8\n",
-
+                    }
+        Cycles: ${numberFormat.format(updateCount)}
+        
+        Frequency: ${Hz} Hz
+        Loop runtime: ${exactUpdateTime} ms
+        Density: ${"%.2f".format(SwitchValue)}%
+        
+        Resolution: ${resolution} px (${lengthOfMatrix}x${heightOfMatrix})
+        Shape diameter: $diameterToBeUsed px
+        Encoding: UTF-8
+    """.trimIndent(),
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(6.dp)
@@ -227,7 +230,7 @@ fun PlayPauseButton(
         modifier = Modifier
             .padding(42.dp)
             .size(80.dp)
-            .offset(x = 50.dp, y = 40.dp)  //  .offset(x = 50.dp, y = 50.dp)
+            .offset(x = 50.dp, y = 30.dp)  //  .offset(x = 50.dp, y = 50.dp)
     ) {
         Icon(
             painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
@@ -245,7 +248,7 @@ fun BackToWelcomeButton(onClick: () -> Unit) {
         modifier = Modifier
             .padding(42.dp)
             .size(80.dp)
-            .offset(x = 50.dp, y = 50.dp)  //was   .offset(x = 50.dp)
+            .offset(x = 50.dp, y = 80.dp)  //was   .offset(x = 50.dp)
     ) {
         Icon(
             painter = painterResource(id = R.drawable.my_back_button_black),

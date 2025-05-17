@@ -28,7 +28,8 @@ import java.text.NumberFormat
 class MainActivitySquare4 : ComponentActivity() {
     private val matrixInitializer4 = MatrixInitializerSquare4()
     private lateinit var matrix: Array<CharArray>
-    private val matrixUpdater4 = MatrixUpdaterSquare4(matrix = emptyArray())
+    private lateinit var colorMatrix: Array<Array<Color>>
+    private lateinit var matrixUpdater4: MatrixUpdaterSquare4
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -43,8 +44,6 @@ class MainActivitySquare4 : ComponentActivity() {
     private var colorRanges: List<AnnotatedString.Range<Color>> by mutableStateOf(emptyList())
     private var matrixString by mutableStateOf("")
     private val MatrixCodeGreen = Color(0xFF00FF41)
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,22 +87,25 @@ class MainActivitySquare4 : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
 
                             Text(
-                                text = "Elapsed: ${
+                                text = """
+                                <FLUO BRACKETS>
+        
+                                Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
                                     else
                                         "${timeElapsed.second} sec"
-                                }\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
-                                        "\n" +
-                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
-                                        "Loop runtime: ${exactUpdateTime} ms\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "\n" +
-                                        "Resolution: ${matrixInitializer4.resolution4} px (${matrixInitializer4.MatrixLengthS4}×${matrixInitializer4.MatrixHeightS4})\n" +
-                                        "Shape size: 3*5 px\n" +
-                                        "Encoding: UTF-8\n",
-
+                                }
+                                Cycles: ${numberFormat.format(updateCount)}
+        
+                                Frequency: ${Hz} Hz
+                                Loop runtime: ${exactUpdateTime} ms
+                                Density: ${"%.2f".format(SwitchValue)}%
+        
+                                Resolution: ${matrixInitializer4.resolution4} px (${matrixInitializer4.MatrixLengthS4}×${matrixInitializer4.MatrixHeightS4})
+                                Shape size: 3*5 px
+                                Encoding: UTF-8
+                                """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -121,10 +123,11 @@ class MainActivitySquare4 : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     launch(Dispatchers.Default) {
-                        val initializedMatrix = matrixInitializer4.initializeMatrix4()
-                        matrix = initializedMatrix.map { it.toCharArray() }.toTypedArray()
-                        matrixString = matrixToString(initializedMatrix)
-                        matrixUpdater4.matrix = matrix
+                        val (charMatrix, colorMatrix) = matrixInitializer4.initializeMatrix4()
+                        matrix = charMatrix
+                        this@MainActivitySquare4.colorMatrix = colorMatrix
+                        matrixString = matrix.joinToString("\n") { it.joinToString("") }
+                        matrixUpdater4 = MatrixUpdaterSquare4(matrix, colorMatrix)
                         Hz = (1000.0 / matrixUpdater4.sleepTime.toDouble()).roundToInt()
                         startMatrixUpdates4()
                     }
@@ -135,7 +138,7 @@ class MainActivitySquare4 : ComponentActivity() {
 
     private fun startMatrixUpdates4() {
         updateJob = lifecycleScope.launch {
-            matrixUpdater4.startUpdating4 { updatedMatrix, switchValue ->
+            matrixUpdater4.startUpdating4 { updatedMatrix, updatedColorMatrix, switchValue ->
                 launch(Dispatchers.Main) {
                     val currentTime = System.currentTimeMillis()
 
@@ -148,8 +151,10 @@ class MainActivitySquare4 : ComponentActivity() {
                     lastUpdateTime = currentTime
 
                     matrix = updatedMatrix
-                    val newMatrixList = updatedMatrix.map { it.toList() }.toList()
-                    matrixString = matrixToString(newMatrixList)
+                    colorMatrix = updatedColorMatrix
+                    matrixString = updatedMatrix.joinToString("\n") { it.joinToString("") }
+                    colorRanges = buildColorRanges(updatedColorMatrix, matrixString)
+
                     calculateElapsedTime()
                     Hz = (1000.0 / matrixUpdater4.sleepTime.toDouble()).roundToInt()
                     SwitchValue = switchValue
@@ -159,16 +164,29 @@ class MainActivitySquare4 : ComponentActivity() {
         }
     }
 
+    private fun buildColorRanges(
+        colorMatrix: Array<Array<Color>>,
+        matrixString: String
+    ): List<AnnotatedString.Range<Color>> {
+        val ranges = mutableListOf<AnnotatedString.Range<Color>>()
+        var position = 0
+        for (y in colorMatrix.indices) {
+            for (x in colorMatrix[y].indices) {
+                val color = colorMatrix[y][x]
+                if (color != Color.White) {
+                    ranges.add(AnnotatedString.Range(color, position, position + 1))
+                }
+                position++
+            }
+            position++ // For the newline character
+        }
+        return ranges
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         updateJob?.cancel()
         matrixUpdater4.stopUpdating4()
-    }
-
-    private fun matrixToString(matrix: List<List<Char>>): String {
-        return matrix.joinToString("\n") { row ->
-            row.joinToString("")
-        }
     }
 
     private fun calculateElapsedTime() {
@@ -189,7 +207,7 @@ class MainActivitySquare4 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 50.dp)
+                .offset(x = 50.dp, y = 80.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.my_back_button_black),
@@ -210,7 +228,7 @@ class MainActivitySquare4 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 40.dp)
+                .offset(x = 50.dp, y = 30.dp)
         ) {
             Icon(
                 painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
@@ -247,11 +265,15 @@ class MainActivitySquare4 : ComponentActivity() {
         Text(
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
-            color = MatrixCodeGreen,  // was PureWhite
+            color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 9.sp,
-            style = TextStyle(lineHeight = 10.sp)
+            fontSize = 22.1.sp,
+            letterSpacing = 1.5.sp,  // Moved out of TextStyle
+            style = TextStyle(
+                lineHeight = 19.9.sp
+            )
         )
     }
 }
+

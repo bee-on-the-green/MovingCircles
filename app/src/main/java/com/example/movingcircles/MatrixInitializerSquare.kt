@@ -6,10 +6,10 @@ import kotlin.random.Random
 
 class MatrixInitializerSquare {
     // Made internal (or remove modifier entirely for default visibility)
-    val MatrixLengthS: Int = 83
-    val MatrixHeightS: Int = MatrixLengthS * 48 / 100
-    val resolutionS = MatrixLengthS * MatrixHeightS
-    private val squarePoolOfChars: Array<Char> = arrayOf('.', '·')
+    val MatrixLengthS: Int = 48
+    val MatrixHeightS: Int = MatrixLengthS * 64 / 100  // was 66
+      val resolutionS = MatrixLengthS * MatrixHeightS
+    private val squarePoolOfChars: Array<Char> = arrayOf(' ', ' ')
 
     suspend fun initializeMatrix(
         rows: Int = MatrixHeightS,

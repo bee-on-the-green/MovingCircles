@@ -9,7 +9,7 @@ import kotlin.random.Random
 class MatrixUpdaterCircle(
     var matrix: Array<Array<MatrixCell>>, // Changed to MatrixCell type
     val sleepTime: Long = 8,  // was 8
-    val diameterToUseC: Int = 3,  // was 5
+    val diameterToUseC: Int = 2,  // was 5
     val breakPoint: Int = 27,
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ') ,  // Ͼ Ͽ ᴑ ᴏ ॰ ᴑ ◯ Ο ο О • ॰ ᐤ ° ᐤ ൦ Ჿ ('Ͼ', 'Ͽ') ('◯', '◯')
     val poolOfChar2: Array<Char> = arrayOf('.', '·') // ('.', '·')
@@ -148,7 +148,7 @@ class MatrixUpdaterCircle(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 1.3  // was 2.3
+                val aspectRatio = 0.9  // was 1.3  // 1.1
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {

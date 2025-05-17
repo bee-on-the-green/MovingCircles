@@ -116,22 +116,22 @@ fun WelcomeContent(
                 IconButtonWithLabel(
                     onClick = onCirclesClicked,
                     iconResId = R.drawable.circle_icon,
-                    label = "B&W"
+                    label = "Main"
                 )
                 IconButtonWithLabel(
                     onClick = onSquaresClicked,
                     iconResId = R.drawable.square_icon,
-                    label = "One&Zero"
+                    label = "Square"
                 )
                 IconButtonWithLabel(
                     onClick = onSquaresSmallClicked,
                     iconResId = R.drawable.icon_sun,
-                    label = "Orange"
+                    label = "Circle"
                 )
                 IconButtonWithLabel(
                     onClick = onCircles2Clicked,
                     iconResId = R.drawable.icon_square_purple,
-                    label = "Purple"
+                    label = "Circle2"
                 )
                 IconButtonWithLabel(
                     onClick = onSquares2Clicked,

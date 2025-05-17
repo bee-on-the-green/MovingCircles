@@ -9,7 +9,7 @@ class MatrixUpdater(
     val lengthOfMatrix: Int,
     val heightOfMatrix: Int,
     val sleepTime: Long = 8,
-    val breakPoint: Int = 20,
+    val breakPoint: Int = 40,
     val resolution: Int = lengthOfMatrix * heightOfMatrix,
 
     val poolOfChar: Array<Char> = arrayOf('{', '}'),

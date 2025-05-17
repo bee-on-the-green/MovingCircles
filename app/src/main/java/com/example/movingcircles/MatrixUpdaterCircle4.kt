@@ -104,13 +104,13 @@ class MatrixUpdaterCircle4(
         val (myRandomX, myRandomY) = selectRandomCoordinate()
 
         if (updateCount % 2 == 0) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray40)  // was gray 40
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was gray 40
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
                 drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet300)
             }
         } else {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Gray40)  // was black 900
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was black 900
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
                 drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet200)

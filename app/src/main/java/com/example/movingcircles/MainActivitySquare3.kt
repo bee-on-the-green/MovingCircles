@@ -86,22 +86,25 @@ class MainActivitySquare3 : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
 
                             Text(
-                                text = "Elapsed: ${
+                                text = """
+                                ARCHIPELAGO:
+        
+                                Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
                                     else
                                         "${timeElapsed.second} sec"
-                                }\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
-                                        "\n" +
-                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
-                                        "Loop runtime: ${exactUpdateTime} ms\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "\n" +
-                                        "Resolution: ${matrixInitializer.resolution3} px (${matrixInitializer.MatrixLengthS3}×${matrixInitializer.MatrixHeightS3})\n" +
-                                        "Shape size: 3*5 px\n" +
-                                        "Encoding: UTF-8\n",
-
+                                }
+                                Cycles: ${numberFormat.format(updateCount)}
+        
+                                Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)
+                                Loop runtime: ${exactUpdateTime} ms
+                                Density: ${"%.2f".format(SwitchValue)}%
+        
+                                Resolution: ${matrixInitializer.resolution3} px (${matrixInitializer.MatrixLengthS3}×${matrixInitializer.MatrixHeightS3})
+                                Shape size: 3*5 px
+                                Encoding: UTF-8
+                                """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -204,7 +207,7 @@ class MainActivitySquare3 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 50.dp)
+                .offset(x = 50.dp, y = 80.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.my_back_button_black),
@@ -225,7 +228,7 @@ class MainActivitySquare3 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 40.dp)
+                .offset(x = 50.dp, y = 30.dp)
         ) {
             Icon(
                 painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),

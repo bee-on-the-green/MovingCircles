@@ -89,33 +89,35 @@ class MainActivitySquare : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
 
                             Text(
-                                text = "Elapsed: ${
+                                text = """
+                            <BRACKETS>
+        
+                            Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
                                     else
                                         "${timeElapsed.second} sec"
-                                }\n" +
-
-                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
-                                        "\n" +
-                                        "Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)\n" +
-                                        "Loop runtime: ${exactUpdateTime} ms\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "\n" +
-
-                                        "Resolution: ${matrixInitializer.resolutionS} px (${matrixInitializer.MatrixLengthS}×${matrixInitializer.MatrixHeightS})\n" +
-                                        "Shape size: 1*21 px\n" +
-                                        "Encoding: UTF-8\n",
+                                }
+                            Cycles: ${numberFormat.format(updateCount)}
+        
+                            Frequency: ${Hz} Hz
+                            Loop runtime: ${exactUpdateTime} ms
+                            Density: ${"%.2f".format(SwitchValue)}%
+        
+                            Resolution: ${matrixInitializer.resolutionS} px (${matrixInitializer.MatrixLengthS}×${matrixInitializer.MatrixHeightS})
+                            Shape size: 1*10 px
+                            Encoding: ASCII
+                            """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-70).dp),
+                                    .offset(y = (-145).dp),  // was -70
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
                                 ),
-                                style = TextStyle(lineHeight = 14.sp)
+                                style = TextStyle(lineHeight = 15.sp)  // was 14
                             )
                         }
                     }
@@ -200,7 +202,7 @@ class MainActivitySquare : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 50.dp)
+                .offset(x = 50.dp, y = 80.dp) // was .offset(x = 50.dp, y = 70.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.my_back_button_black),
@@ -221,7 +223,7 @@ class MainActivitySquare : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 40.dp)
+                .offset(x = 50.dp, y = 30.dp)  // .offset(x = 50.dp, y = 40.dp)
         ) {
             Icon(
                 painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
@@ -245,13 +247,13 @@ class MainActivitySquare : ComponentActivity() {
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
-            color = White100,
+            color = mediumGray,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 10.5.sp,
+            fontSize = 21.sp,
             style = TextStyle(
-                lineHeight = 15.sp,
-                letterSpacing = 0.5.sp
+                lineHeight = 19.6.sp,
+                letterSpacing = 0.22.sp
             )
         )
     }

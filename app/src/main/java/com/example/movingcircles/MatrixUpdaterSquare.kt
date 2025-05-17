@@ -9,11 +9,11 @@ class MatrixUpdaterSquare(
     private val MatrixLengthS: Int = MatrixInitializerSquare().MatrixLengthS,  // Reference from MatrixInitializerSquare
     private val MatrixHeigthS: Int = MatrixInitializerSquare().MatrixHeightS,  // Reference from MatrixInitializerSquare
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
-    val sleepTime: Long = 4,
-    val breakPoint: Int = 15,
-    val poolOfChar2: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\''), //  'Ͽ', 'Ͼ', 'ɸ'  // ('0', '1', '0')
-    val poolOfChar: Array<Char> = arrayOf('0', '0', '1') // arrayOf('·', '.', '\'', '·', '.', '\'', '.', '\'')
+    val sleepTime: Long = 250,
+    val breakPoint2: Int = 81,
 
+    val poolOfChar: Array<Char> = arrayOf(')', '('), // ('0', '0', '1')
+    val poolOfChar2: Array<Char> = arrayOf('•', '°') //  ('·', '.', '\'', '·', '.', '\'', '.', '\'')
 
 
 ) {
@@ -37,6 +37,8 @@ class MatrixUpdaterSquare(
         isRunning = false
     }
 
+
+/*
     private fun updateMatrix() {
         val (randomX, randomY) = selectRandomCoordinate()
         val currentLength = if (updateCount % 2 == 0) 21 else 1
@@ -48,6 +50,34 @@ class MatrixUpdaterSquare(
         }
         updateCount++
     }
+*/
+
+
+    private fun updateMatrix() {
+
+        val currentLength = 1
+        val currentWidth = 10
+
+        val (randomX, randomY) = selectRandomCoordinate()
+
+        drawRectangle(randomX, randomY, currentLength, currentWidth, poolOfChar)
+
+
+        if (calculateCharacterPercentage(matrix, poolOfChar) > breakPoint2) {
+
+            val (randomX2, randomY2) = selectRandomCoordinate()
+            drawRectangle(randomX2, randomY2, currentLength, currentWidth, poolOfChar2)
+        }
+
+    }
+
+
+
+
+
+
+
+
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
         return Pair(

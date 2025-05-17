@@ -11,9 +11,9 @@ class MatrixUpdaterSquare2(
 ) {
     private val MatrixLengthS2: Int = matrix[0].size
     private val MatrixHeightS2: Int = matrix.size
-    val sleepTime: Long = 100
+    val sleepTime: Long = 200
 
-    val breakPoint: Int = 99
+    val breakPointK: Int = 98
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ')
     val poolOfChar2: Array<Char> = arrayOf('0', '0')
 
@@ -134,7 +134,7 @@ class MatrixUpdaterSquare2(
 
         val charPercentageAtCurrentTime = calculateCharacterPercentage2(matrix, poolOfChar)
 
-        if (charPercentageAtCurrentTime < breakPoint) {
+        if (charPercentageAtCurrentTime < breakPointK) {
             val (randomX2, randomY2) = selectRandomCoordinate2()
             drawRectangle2(randomX2, randomY2, 4, 4, poolOfChar2, JetBlack)
         }

@@ -93,24 +93,26 @@ class MainActivityCircles2 : ComponentActivity() {
                             MatrixText(matrixState, matrixColors, innerPadding)
 
                             val numberFormat = NumberFormat.getInstance()
-
                             Text(
-                                text = "Elapsed: ${
+                                text = """
+                                <FLAMES>
+        
+                                Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
                                     else
                                         "${timeElapsed.second} sec"
-                                }\n" +
-                                        "Cycles: ${numberFormat.format(updateCount)}\n" +
-                                        "\n" +
-                                        "Frequency: ${Hz} Hz\n" +
-                                        "Loop runtime: ${exactUpdateTime} ms\n" +
-                                        "Density: ${"%.2f".format(SwitchValue)}%\n" +
-                                        "\n" +
-
-                                        "Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC2}×${matrixInitializer.MatrixHeightC2})\n" +
-                                        "Shape diameter: ${matrixUpdater.diameterToUseC2} px\n" +
-                                        "Encoding: UTF-8\n",
+                                }
+                                Cycles: ${numberFormat.format(updateCount)}
+        
+                                Frequency: ${Hz} Hz
+                                Loop runtime: ${exactUpdateTime} ms
+                                Density: ${"%.2f".format(SwitchValue)}%
+        
+                                Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC2}×${matrixInitializer.MatrixHeightC2})
+                                Shape diameter: ${matrixUpdater.diameterToUseC2} px
+                                Encoding: UTF-8
+                                """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
@@ -216,7 +218,7 @@ class MainActivityCircles2 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 50.dp)
+                .offset(x = 50.dp, y = 80.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.my_back_button_black),
@@ -237,7 +239,7 @@ class MainActivityCircles2 : ComponentActivity() {
             modifier = Modifier
                 .padding(42.dp)
                 .size(80.dp)
-                .offset(x = 50.dp, y = 40.dp)
+                .offset(x = 50.dp, y = 30.dp)
         ) {
             Icon(
                 painter = painterResource(id = if (isPaused) R.drawable.the_play else R.drawable.the_pause),
