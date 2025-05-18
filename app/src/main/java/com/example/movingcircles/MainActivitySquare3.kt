@@ -101,7 +101,7 @@ class MainActivitySquare3 : ComponentActivity() {
                                 Loop runtime: ${exactUpdateTime} ms
                                 Density: ${"%.2f".format(SwitchValue)}%
         
-                                Resolution: ${matrixInitializer.resolution3} px (${matrixInitializer.MatrixLengthS3}×${matrixInitializer.MatrixHeightS3})
+                                Resolution: ${matrixInitializer.resolution3} px
                                 Shape size: 3*5 px
                                 Encoding: UTF-8
                                 """.trimIndent(),

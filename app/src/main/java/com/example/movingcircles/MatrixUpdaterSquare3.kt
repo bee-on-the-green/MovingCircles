@@ -63,8 +63,8 @@ class MatrixUpdaterSquare3(
 
     private fun updateMatrix3() {
         val (randomX, randomY) = selectRandomCoordinate3()
-        val currentLength3 = 2   // 6
-        val currentWidth3 = 1  //  2
+        val currentLength3 = 5   // 3
+        val currentWidth3 = 2  //  2
 
         drawRectangle3(randomX, randomY, currentLength3, currentWidth3, poolOfChar, (Gray500))  // Gray400  // was Color(0xFFF57C00))
 
