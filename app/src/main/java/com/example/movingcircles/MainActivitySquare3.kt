@@ -97,13 +97,13 @@ class MainActivitySquare3 : ComponentActivity() {
                                 }
                                 Cycles: ${numberFormat.format(updateCount)}
         
-                                Frequency: ${Hz} Hz  (${exactUpdateTime} ms per second)
+                                Frequency: ${Hz} Hz
                                 Loop runtime: ${exactUpdateTime} ms
                                 Density: ${"%.2f".format(SwitchValue)}%
         
-                                Resolution: ${matrixInitializer.resolution3} px
+                                Resolution: ${matrixInitializer.resolution3}
                                 Shape size: 3*5 px
-                                Encoding: UTF-8
+                                Encoding: ASCII
                                 """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)

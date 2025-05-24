@@ -117,7 +117,7 @@ class MainActivityCircle4 : ComponentActivity() {
         
                                 Resolution: ${matrixInitializer.resolutionC} px (${matrixInitializer.MatrixLengthC4}×${matrixInitializer.MatrixHeightC4})
                                 Shape diameter: ${matrixInitializer.diameterToUseC4} px
-                                Encoding: UTF-8
+                                Encoding: ASCII
                                 """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)

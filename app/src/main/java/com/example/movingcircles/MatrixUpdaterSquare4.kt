@@ -11,7 +11,7 @@ class MatrixUpdaterSquare4(
 ) {
     private val MatrixLengthS4: Int = matrix[0].size
     private val MatrixHeightS4: Int = matrix.size
-    val sleepTime: Long = 50
+    val sleepTime: Long = 80
 
     val breakPointS: Int = 80
 
@@ -135,7 +135,7 @@ class MatrixUpdaterSquare4(
     private fun updateMatrix4() {
         val (randomX, randomY) = selectRandomCoordinate4()
 
-        var currentLength = 8
+        var currentLength = 5
         var currentWidth = 1
 
         //var currentSmallLength = 8
@@ -162,11 +162,11 @@ class MatrixUpdaterSquare4(
         */
 
         if (calculateCharacterPercentage4(matrix, poolOfChar) > breakPointS) {
-            val (randomX2, randomY2) = selectRandomCoordinate4()
+            //val (randomX2, randomY2) = selectRandomCoordinate4()
 
             drawRectangle4(
-                randomX2,
-                randomY2,
+                randomX,
+                randomY,
                 currentWidth,
                 currentLength,
                 poolOfChar2,

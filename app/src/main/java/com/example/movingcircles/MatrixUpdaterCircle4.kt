@@ -21,6 +21,19 @@ class MatrixUpdaterCircle4(
     private val VioletMoonlight = Color(0xFFE8DAEF)  // Soft moonlight violet
     private val VioletMist = Color(0xFFEDE7F6)    // Misty white-violet
 
+    // Medium Pinks (buttons, accents)
+    val Pink200 = Color(0xFFFF8A9D)  // Cotton candy
+    val Pink300 = Color(0xFFFF6B8B)  // Bright pink
+    val Pink400 = Color(0xFFF75990)  // Vibrant pink
+    val Pink500 = Color(0xFFE91E63)  // Classic Material pink (your reference)
+    val Pink600 = Color(0xFFD81B60)  // Rich pink
+
+    // Deep/Dark Pinks (text, bold accents)
+    val Pink700 = Color(0xFFC2185B)  // Raspberry
+    val Pink800 = Color(0xFFAD1457)  // Berry
+
+
+
 
 
     private val Orange800 = Color(0xFFEF6C00)
@@ -107,13 +120,13 @@ class MatrixUpdaterCircle4(
             drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was gray 40
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet300)
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Pink400) // violet 400
             }
         } else {
             drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was black 900
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Violet200)
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Pink500)  // viomet200
             }
         }
 
