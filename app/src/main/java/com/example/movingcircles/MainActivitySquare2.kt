@@ -265,10 +265,14 @@ class MainActivitySquare2 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontFamily = FontFamily(Font(R.font.firacode_regular)),
+            fontFamily = FontFamily(Font(R.font.firacode_regular)),  // font size 18  // height 12
             fontWeight = FontWeight.Normal,
-            fontSize = 20.sp,
-            style = TextStyle(lineHeight = 13.3.sp)  //was 13.1
+            fontSize = 16.sp,
+            style = TextStyle(
+                lineHeight = 10.8.sp,  // was 16.6
+                letterSpacing = 0.95.sp
+            )
+
         )
     }
 }

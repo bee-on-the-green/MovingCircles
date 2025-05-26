@@ -7,9 +7,9 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircle4(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTime: Long = 10,
+    val sleepTime: Long = 12,
     val diameterToUseC4: Int,
-    val breakPoint: Int = 75,
+    val breakPoint: Int = 82,  // was 83
     val poolOfChar: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\''),
     val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•')
 ) {
@@ -120,7 +120,7 @@ class MatrixUpdaterCircle4(
             drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was gray 40
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Pink400) // violet 400
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar2, Pink300) // violet 400
             }
         } else {
             drawCircle(matrix, myRandomX, myRandomY, diameterToUseC4, poolOfChar, Black900)  // was black 900
@@ -170,7 +170,7 @@ class MatrixUpdaterCircle4(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 2.4
+                val aspectRatio = 1.9
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {

@@ -7,9 +7,9 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircles2(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTime: Long = 6,
+    val sleepTime: Long = 20,
     val diameterToUseC2: Int,
-    val breakPoint: Int = 75,
+    val breakPoint: Int = 85,
     val poolOfChar: Array<Char> = arrayOf('Ͽ', 'Ͼ'),  // was 'Ͽ', 'Ͼ'),  '⊙', '⊚'
     val poolOfChar2: Array<Char> = arrayOf('(', ')')  // ∍ '⊕', '⊖'
 ) {

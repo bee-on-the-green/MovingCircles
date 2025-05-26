@@ -250,10 +250,10 @@ class MainActivitySquare : ComponentActivity() {
             color = mediumGray,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 21.sp,
+            fontSize = 15.sp,  // was 21
             style = TextStyle(
-                lineHeight = 19.6.sp,
-                letterSpacing = 0.22.sp
+                lineHeight = 14.6.sp,
+                letterSpacing = 0.26.sp
             )
         )
     }

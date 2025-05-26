@@ -11,7 +11,7 @@ class MatrixUpdaterSquare2(
 ) {
     private val MatrixLengthS2: Int = matrix[0].size
     private val MatrixHeightS2: Int = matrix.size
-    val sleepTime: Long = 20
+    val sleepTime: Long = 40
 
     val breakPointK: Int = 40
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ')
@@ -130,13 +130,13 @@ class MatrixUpdaterSquare2(
     private fun updateMatrix2() {
         val (randomX, randomY) = selectRandomCoordinate2()
         // Use ScarletPulse2 instead of ScarletOrange to see the glow effect
-        drawRectangle2(randomX, randomY, 3, 3, poolOfChar, ScarletPulse2)  // was ScarletPulse2  // was 4
+        drawRectangle2(randomX, randomY, 4, 4, poolOfChar, ScarletPulse2)  // was ScarletPulse2  // was 4
 
         val charPercentageAtCurrentTime = calculateCharacterPercentage2(matrix, poolOfChar)
 
         if (charPercentageAtCurrentTime > breakPointK) {
             //val (randomX, randomY) = selectRandomCoordinate2()
-            drawRectangle2(randomX, randomY, 3, 3, poolOfChar2, JetBlack)  // was 4
+            drawRectangle2(randomX, randomY, 4, 4, poolOfChar2, JetBlack)  // was 4
         }
         updateCount++
     }

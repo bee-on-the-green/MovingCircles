@@ -282,5 +282,6 @@ class MainActivityCircle4 : ComponentActivity() {
             fontWeight = FontWeight.Normal,
             style = TextStyle(lineHeight = 14.5.sp)
         )
+
     }
 }
