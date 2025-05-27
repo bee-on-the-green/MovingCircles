@@ -266,10 +266,13 @@ class MainActivitySquare3 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontFamily = FontFamily(Font(R.font.firacode_regular)),
+            fontFamily = FontFamily(Font(R.font.firacode_regular)),  // font 8  // tex 13.3
             fontWeight = FontWeight.Normal,
-            fontSize = 7.sp,
-            style = TextStyle(lineHeight = 13.3.sp)
+            fontSize = 9.sp,
+            style = TextStyle(
+                lineHeight = 13.3.sp,  // was 16.6
+                letterSpacing = 0.4.sp
+            )
         )
     }
 }

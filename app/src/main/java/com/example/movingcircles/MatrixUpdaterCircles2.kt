@@ -154,7 +154,7 @@ class MatrixUpdaterCircles2(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 0.9  // was 1.3
+                val aspectRatio = 0.9  // was 0.9
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {

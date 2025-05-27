@@ -6,8 +6,8 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixInitializerSquare3 {
-    val MatrixLengthS3: Int = 130
-    val MatrixHeightS3: Int = MatrixLengthS3 * 31 / 100
+    val MatrixLengthS3: Int = 95
+    val MatrixHeightS3: Int = MatrixLengthS3 * 43 / 100
     val resolution3: Int = MatrixLengthS3 * MatrixHeightS3
     private val squarePoolOfChars: Array<Char> = arrayOf(' ', ' ')
     private val defaultColor: Color = Color.White

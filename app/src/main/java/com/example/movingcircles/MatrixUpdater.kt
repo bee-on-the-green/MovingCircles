@@ -8,12 +8,15 @@ class MatrixUpdater(
     var matrix: Array<CharArray>, // Matrix is now mutable
     val lengthOfMatrix: Int,
     val heightOfMatrix: Int,
-    val sleepTime: Long = 30,
-    val breakPoint: Int = 25,  // was 22
+    val sleepTime: Long = 50,
+    val breakPoint: Int = 80,  // was 75
     val resolution: Int = lengthOfMatrix * heightOfMatrix,
 
-    val poolOfChar: Array<Char> = arrayOf('0', 'O', 'o'),  // Ͼ', 'Ͽ'
-    val poolOfChar2: Array<Char> = arrayOf('.', '·')
+    val poolOfChar: Array<Char> = arrayOf('.', '·'),
+
+
+
+    val poolOfChar2: Array<Char> = arrayOf('0', 'O', 'o')  // '.', '·'
 ) {
     private var isRunning = false
 
@@ -34,6 +37,12 @@ class MatrixUpdater(
         isRunning = false
     }
 
+
+
+
+
+
+
     private fun updateMatrix() {
         val (myRandomX, myRandomY) = selectRandomCoordinate()
         drawCircle(matrix, myRandomX, myRandomY, diameterToBeUsed, poolOfChar)
@@ -42,6 +51,9 @@ class MatrixUpdater(
             drawCircle(matrix, myRandomX, myRandomY, diameterToBeUsed, poolOfChar2)
         }
     }
+
+
+
 
     private fun selectRandomCoordinate(): Pair<Int, Int> {
         val myRandomCoordinateY = Random.nextInt(0, heightOfMatrix)

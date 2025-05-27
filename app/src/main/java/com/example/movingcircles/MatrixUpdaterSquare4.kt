@@ -13,7 +13,7 @@ class MatrixUpdaterSquare4(
     private val MatrixHeightS4: Int = matrix.size
     val sleepTime: Long = 80
 
-    val breakPointS: Int = 80
+    val breakPointS: Int = 85
 
     val poolOfChar: Array<Char> = arrayOf(')', '(')  //  ɷ  ʊ ʋ  ŏőŐ
     val poolOfChar2: Array<Char> = arrayOf('•', '°')
@@ -135,7 +135,7 @@ class MatrixUpdaterSquare4(
     private fun updateMatrix4() {
         val (randomX, randomY) = selectRandomCoordinate4()
 
-        var currentLength = 5
+        var currentLength = 12
         var currentWidth = 1
 
         //var currentSmallLength = 8

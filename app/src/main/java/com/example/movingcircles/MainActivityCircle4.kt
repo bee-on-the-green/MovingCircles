@@ -277,10 +277,10 @@ class MainActivityCircle4 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontSize = 9.sp,
+            fontSize = 13.sp,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 14.5.sp)
+            style = TextStyle(lineHeight = 14.37.sp)  // was 14.5
         )
 
     }
