@@ -32,7 +32,9 @@ class WelcomeScreen : ComponentActivity() {
                         onSquares2Clicked = { startActivity(Intent(this, MainActivitySquare2::class.java)) },
                         onSquares3Clicked = { startActivity(Intent(this, MainActivitySquare3::class.java)) },
                         onSquares4Clicked = { startActivity(Intent(this, MainActivitySquare4::class.java)) },
-                        onCircles4Clicked = { startActivity(Intent(this, MainActivityCircle4::class.java)) }
+                        onCircles4Clicked = { startActivity(Intent(this, MainActivityCircle4::class.java)) },
+                        onSquares5Clicked = { startActivity(Intent(this, MainActivitySquare5::class.java)) },
+                        onSquares6Clicked = { startActivity(Intent(this, MainActivitySquare6::class.java)) }
                     )
                 }
             }
@@ -54,7 +56,7 @@ fun IconButtonWithLabel(
         Surface(
             onClick = onClick,
             shape = RectangleShape,
-            modifier = Modifier.size(75.dp),  // was 70
+            modifier = Modifier.size(70.dp), // was 60
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
@@ -83,12 +85,13 @@ fun WelcomeContent(
     onSquares2Clicked: () -> Unit,
     onSquares3Clicked: () -> Unit,
     onSquares4Clicked: () -> Unit,
-    onCircles4Clicked: () -> Unit
+    onCircles4Clicked: () -> Unit,
+    onSquares5Clicked: () -> Unit, // Keep this parameter
+    onSquares6Clicked: () -> Unit // Keep this parameter
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Images with their original positions
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
@@ -98,26 +101,25 @@ fun WelcomeContent(
                 painter = painterResource(id = R.drawable.pool_of_char),
                 contentDescription = "Pool of Characters",
                 modifier = Modifier
-                    .size(470.dp)  // was 450
-                    .offset(y = (-132).dp)  // was minus 120
+                    .size(470.dp)
+                    .offset(y = (-132).dp)
             )
 
             Image(
                 painter = painterResource(id = R.drawable.welcome_image),
                 contentDescription = "Welcome Image",
                 modifier = Modifier
-                    .size(820.dp)  // was 800
+                    .size(820.dp)
                     .padding(top = 50.dp, bottom = 20.dp)
-                    .offset(y = (-320).dp)  // was 300
+                    .offset(y = (-320).dp)
             )
         }
 
-        // Icons positioned absolutely at the top
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.BottomCenter)  // This anchors to bottom
-                .padding(bottom = 60.dp),     // THE SMALLER, THE MORE TO THE BOTTOM  /// was 30
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 60.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -125,55 +127,66 @@ fun WelcomeContent(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(47.dp)  // was 16.dp
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)  // was 47 then 30
                 ) {
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
-                        iconResId = R.drawable.circle_icon,
-                        label = "Braces" // is main  // OKAY
+                        iconResId = R.drawable.circle_icon,  // circles
+                        label = "Braces"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
-                        iconResId = R.drawable.square_icon,
-                        label = "Brackets"  // is square  :: OKAY
+                        iconResId = R.drawable.square_icon,  // square
+                        label = "Brackets"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresSmallClicked,
-                        iconResId = R.drawable.circleforandroid,
-                        label = "Losange" // circle  :: OKAY
+                        iconResId = R.drawable.circleforandroid,  //
+                        label = "Losange"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles2Clicked,
-                        iconResId = R.drawable.icon_sun,
-                        label = "Fuego"  // circles 2  // OKAY
+                        iconResId = R.drawable.icon_sun,  // circle 2
+                        label = "Fuego"
+                    )
+                    IconButtonWithLabel( // Moved from third row
+                        onClick = onSquares5Clicked,
+                        iconResId = R.drawable.multiple_squares,  // squere 5
+                        label = "Multiverse"
                     )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(47.dp)  // was 16.dp
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)  // was 47
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares2Clicked,
-                        iconResId = R.drawable.square_green_yellow,
-                        label = "Squares"  // square 2  // OKAY
+                        iconResId = R.drawable.square_green_yellow,  // square2
+                        label = "Squares"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares3Clicked,
-                        iconResId = R.drawable.carre_rond,
-                        label = "Archipel"  // square 3 // OKAY
+                        iconResId = R.drawable.carre_rond,  // square3
+                        label = "Archipel"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares4Clicked,
-                        iconResId = R.drawable.rond,
-                        label = "Fluo"  // square 4  :: OKAY
+                        iconResId = R.drawable.rond,  // square 4
+                        label = "Fluo"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles4Clicked,
-                        iconResId = R.drawable.icon_square_purple,
-                        label = "Island"  // circle 4  // OKAY
+                        iconResId = R.drawable.icon_square_purple, // circle 4
+                        label = "Island"
+                    )
+                    IconButtonWithLabel( // Moved from third row
+                        onClick = onSquares6Clicked,
+                        iconResId = R.drawable.pacman,  // sqare 6
+                        label = "Pacman"
                     )
                 }
+                // The third Spacer and Row are removed as requested.
             }
         }
     }

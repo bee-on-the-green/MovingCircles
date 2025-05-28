@@ -72,5 +72,17 @@
             android:name=".MainActivityCircle4"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
+
+        <!-- Squares5 Activity -->
+        <activity
+            android:name=".MainActivitySquare5"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <!-- Squares6 Activity -->
+        <activity
+            android:name=".MainActivitySquare6"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
     </application>
 </manifest>

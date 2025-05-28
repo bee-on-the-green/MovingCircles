@@ -5,43 +5,40 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-class MatrixUpdaterSquare4(
+class MatrixUpdaterSquare5(
     var matrix: Array<CharArray>,
     var colorMatrix: Array<Array<Color>>
 ) {
-    private val MatrixLengthS4: Int = matrix[0].size
-    private val MatrixHeightS4: Int = matrix.size
+    private val MatrixLengthS5: Int = matrix[0].size
+    private val MatrixHeightS5: Int = matrix.size
     val sleepTime: Long = 80
 
     val breakPointS: Int = 85
 
-    val poolOfChar: Array<Char> = arrayOf(')', '(')  //  ɷ  ʊ ʋ  ŏőŐ
+    val poolOfChar: Array<Char> = arrayOf('O', 'o', '0')
     val poolOfChar2: Array<Char> = arrayOf('•', '°')
-
 
     private var isRunning = false
     private var updateCount: Int = 0
 
-    suspend fun startUpdating4(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
+    suspend fun startUpdating5(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
         isRunning = true
         withContext(Dispatchers.IO) {
             while (isRunning) {
-                updateMatrix4()
+                updateMatrix5()
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
                 val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
-                val switchValue = calculateCharacterPercentage4(matrixCopy, poolOfChar)
+                val switchValue = calculateCharacterPercentage5(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
                 Thread.sleep(sleepTime)
             }
         }
     }
 
-
-
     private val Red900 = Color(0xFFB71C1C)
-    private val Red800 = Color(0xFFC62828)   // Darker than B71C1C but still bright
-    private val Red700 = Color(0xFFD32F2F)   // Slightly lighter
-    private val Red600 = Color(0xFFE53935)   // Brighter red
+    private val Red800 = Color(0xFFC62828)
+    private val Red700 = Color(0xFFD32F2F)
+    private val Red600 = Color(0xFFE53935)
 
     private val Orange950 = Color(0xFFBF360C)
     private val Violet200 = Color(0xFFCE93D8)
@@ -74,12 +71,11 @@ class MatrixUpdaterSquare4(
     private val Green50 = Color(0xFFE8F5E9)
     private val Green850 = Color(0xFF2E7D32)
     private val Green900 = Color(0xFF1B5E20)
-    private val NeonGreen = Color(0xFF00FF00)  // Pure neon green (very flashy!)
-    private val ElectricGreen = Color(0xFF00FF7F)  // Bright teal-green
-    private val LimeGreen = Color(0xFF32CD32)  // Classic lime green
-    private val AcidGreen = Color(0xFFADFF2F)  // Highlighter-like green
-    private val EmeraldGreen = Color(0xFF50C878)  // Rich emerald shine
-
+    private val NeonGreen = Color(0xFF00FF00)
+    private val ElectricGreen = Color(0xFF00FF7F)
+    private val LimeGreen = Color(0xFF32CD32)
+    private val AcidGreen = Color(0xFFADFF2F)
+    private val EmeraldGreen = Color(0xFF50C878)
 
     private val Orange50 = Color(0xFFFFF3E0)
     private val Orange100 = Color(0xFFFFE0B2)
@@ -90,90 +86,69 @@ class MatrixUpdaterSquare4(
     private val Orange600 = Color(0xFFFB8C00)
     private val Orange700 = Color(0xFFF57C00)
     private val Orange800 = Color(0xFFEF6C00)
-    private val Orange850 = Color(0xFFE65100)  // Your existing color
+    private val Orange850 = Color(0xFFE65100)
     private val Orange900 = Color(0xFFE64A19)
     private val OrangeA100 = Color(0xFFFFD180)
     private val OrangeA200 = Color(0xFFFFAB40)
     private val OrangeA400 = Color(0xFFFF9100)
     private val OrangeA700 = Color(0xFFFF6D00)
 
+    private val NeonOrange = Color(0xFFFF6600)
+    private val ElectricOrange = Color(0xFFFF4500)
+    private val SunsetOrange = Color(0xFFFF5F15)
+    private val TrafficOrange = Color(0xFFFF5500)
+    private val PumpkinGlow = Color(0xFFFF6D00)
+    private val TangerineBurst = Color(0xFFFF8C00)
+    private val FlamingOrange = Color(0xFFFF7F33)
+    private val CyberOrange = Color(0xFFFF4D00)
 
+    private val UltraOrange = Color(0xFFFF3D00)
+    private val LaserOrange = Color(0xFFFF2A00)
+    private val HighlighterOrange = Color(0xFFFFA500)
+    private val SafetyOrange = Color(0xFFFF7900)
 
+    private val Red500 = Color(0xFFF44336)
+    private val Red400 = Color(0xFFEF5350)
 
-    private val NeonOrange = Color(0xFFFF6600)  // Classic bright neon orange
-    private val ElectricOrange = Color(0xFFFF4500)  // Intense, high-energy orange
-    private val SunsetOrange = Color(0xFFFF5F15)  // Warm, glowing orange
-    private val TrafficOrange = Color(0xFFFF5500)  // Eye-catching, traffic-cone orange
-    private val PumpkinGlow = Color(0xFFFF6D00)  // Bright Halloween pumpkin
-    private val TangerineBurst = Color(0xFFFF8C00)  // Juicy, saturated tangerine
-    private val FlamingOrange = Color(0xFFFF7F33)  // Bright with a slight red tint
-    private val CyberOrange = Color(0xFFFF4D00)  // Futuristic, high-contrast orange
-
-
-
-
-    private val UltraOrange = Color(0xFFFF3D00)  // Almost glowing
-    private val LaserOrange = Color(0xFFFF2A00)  // Red-orange with extreme brightness
-    private val HighlighterOrange = Color(0xFFFFA500)  // Classic "Orange" web color (very bright)
-    private val SafetyOrange = Color(0xFFFF7900)  // OSHA-approved high-visibility orange
-
-
-
-
-
-
-
-
-    private val Red500 = Color(0xFFF44336)   // Classic Material Red
-    private val Red400 = Color(0xFFEF5350)   // Lighter, softer red
-
-
-    fun stopUpdating4() {
+    fun stopUpdating5() {
         isRunning = false
     }
 
-    private fun updateMatrix4() {
-        val (randomX, randomY) = selectRandomCoordinate4()
+    private fun updateMatrix5() {
+        val (randomX, randomY) = selectRandomCoordinate5()
 
         var currentLength = 12
         var currentWidth = 1
 
-
-        drawRectangle4(
+        drawRectangle5(
             randomX,
             randomY,
             currentWidth,
             currentLength,
             poolOfChar,
-            Color(0xFF00FF00) // green  // NeonGreen  is 0xFF00FF00
+            Color(0xFF00FF00)
         )
 
-
-
-        if (calculateCharacterPercentage4(matrix, poolOfChar) > breakPointS) {
-
-
-            drawRectangle4(
+        if (calculateCharacterPercentage5(matrix, poolOfChar) > breakPointS) {
+            drawRectangle5(
                 randomX,
                 randomY,
                 currentWidth,
                 currentLength,
                 poolOfChar2,
-                Color(0xFFFF5F15) // red  // was 0xFFE64A19  0xFFF44336  red  // warm orange 0xFFFF5F15
+                Color(0xFFFF5F15)
             )
-
-
         }
     }
 
-    private fun selectRandomCoordinate4(): Pair<Int, Int> {
+    private fun selectRandomCoordinate5(): Pair<Int, Int> {
         return Pair(
-            Random.nextInt(0, MatrixLengthS4),
-            Random.nextInt(0, MatrixHeightS4)
+            Random.nextInt(0, MatrixLengthS5),
+            Random.nextInt(0, MatrixHeightS5)
         )
     }
 
-    private fun drawRectangle4(
+    private fun drawRectangle5(
         centerX: Int,
         centerY: Int,
         length: Int,
@@ -184,15 +159,15 @@ class MatrixUpdaterSquare4(
         val halfLength = length / 2
         val halfWidth = width / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS4 - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS4 - 1)) {
+        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS5 - 1)) {
+            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS5 - 1)) {
                 matrix[y][x] = poolOfChar.random()
                 colorMatrix[y][x] = color
             }
         }
     }
 
-    private fun calculateCharacterPercentage4(
+    private fun calculateCharacterPercentage5(
         matrix: Array<CharArray>,
         poolOfChar: Array<Char>
     ): Double {
