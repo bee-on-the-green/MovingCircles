@@ -110,21 +110,6 @@ class MatrixUpdaterSquare2(
     }
 
 
-    /*
-    private fun updateMatrix2() {
-        val (randomX, randomY) = selectRandomCoordinate2()
-        drawRectangle2(randomX, randomY, 4, 4, poolOfChar, ScarletOrange)
-
-        val charPercentageAtCurrentTime = calculateCharacterPercentage2(matrix, poolOfChar)
-
-        if (charPercentageAtCurrentTime > breakPoint) {
-            val (randomX2, randomY2) = selectRandomCoordinate2()
-            drawRectangle2(randomX2, randomY2, 4, 4, poolOfChar2, JetBlack)
-        }
-        updateCount++
-    }
-
-  */
 
 
     private fun updateMatrix2() {
@@ -140,26 +125,6 @@ class MatrixUpdaterSquare2(
         }
         updateCount++
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

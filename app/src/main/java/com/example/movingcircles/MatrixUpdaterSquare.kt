@@ -38,19 +38,6 @@ class MatrixUpdaterSquare(
     }
 
 
-/*
-    private fun updateMatrix() {
-        val (randomX, randomY) = selectRandomCoordinate()
-        val currentLength = if (updateCount % 2 == 0) 21 else 1
-        val currentWidth = if (updateCount % 2 == 0) 1 else 21
-
-        drawRectangle(randomX, randomY, currentLength, currentWidth, poolOfChar)
-        if (calculateCharacterPercentage(matrix, poolOfChar) > breakPoint) {
-            drawRectangle(randomX, randomY, currentLength, currentWidth, poolOfChar2)
-        }
-        updateCount++
-    }
-*/
 
 
     private fun updateMatrix() {

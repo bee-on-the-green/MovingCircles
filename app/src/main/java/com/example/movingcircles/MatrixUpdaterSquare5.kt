@@ -11,12 +11,12 @@ class MatrixUpdaterSquare5(
 ) {
     private val MatrixLengthS5: Int = matrix[0].size
     private val MatrixHeightS5: Int = matrix.size
-    val sleepTime: Long = 80
+    val sleepTime: Long = 7
 
-    val breakPointS: Int = 85
+    val breakPointS: Int = 93
 
-    val poolOfChar: Array<Char> = arrayOf('O', 'o', '0')
-    val poolOfChar2: Array<Char> = arrayOf('•', '°')
+    val poolOfChar2: Array<Char> = arrayOf('○', '°', '○', '°', '°', '°')  // • ○ ° o O 0
+    val poolOfChar: Array<Char> = arrayOf('(', ')')
 
     private var isRunning = false
     private var updateCount: Int = 0
@@ -83,7 +83,7 @@ class MatrixUpdaterSquare5(
     private val Orange300 = Color(0xFFFFB74D)
     private val Orange400 = Color(0xFFFFA726)
     private val Orange500 = Color(0xFFFF9800)
-    private val Orange600 = Color(0xFFFB8C00)
+    private val Orange600 = Color(0xFFFB8C00)  // orange 600
     private val Orange700 = Color(0xFFF57C00)
     private val Orange800 = Color(0xFFEF6C00)
     private val Orange850 = Color(0xFFE65100)
@@ -114,11 +114,26 @@ class MatrixUpdaterSquare5(
         isRunning = false
     }
 
+
+
+    private var counter5 = 0
+
     private fun updateMatrix5() {
+
+
+        // Determine dimensions based on whether counter is even or odd
+        var (currentLength, currentWidth) = if (counter5 % 2 == 0) {
+            // Even counter - long vertical rectangle
+            6 to 1  // was 7
+        } else {
+            // Odd counter - long horizontal rectangle
+            6 to 1
+        }
+
+
         val (randomX, randomY) = selectRandomCoordinate5()
 
-        var currentLength = 12
-        var currentWidth = 1
+
 
         drawRectangle5(
             randomX,
@@ -126,7 +141,7 @@ class MatrixUpdaterSquare5(
             currentWidth,
             currentLength,
             poolOfChar,
-            Color(0xFF00FF00)
+            Color(0xFF1B5E20)  // was   0xFF00FF00
         )
 
         if (calculateCharacterPercentage5(matrix, poolOfChar) > breakPointS) {
@@ -136,12 +151,22 @@ class MatrixUpdaterSquare5(
                 currentWidth,
                 currentLength,
                 poolOfChar2,
-                Color(0xFFFF5F15)
+                Color(0xFF00FF00)  // was 0xFFFF5F15  // orange A700  // orange 600
             )
         }
+        counter5++ // Increment the counter each time the function is called
+
     }
 
+
+
+
+
+
+
+
     private fun selectRandomCoordinate5(): Pair<Int, Int> {
+
         return Pair(
             Random.nextInt(0, MatrixLengthS5),
             Random.nextInt(0, MatrixHeightS5)
