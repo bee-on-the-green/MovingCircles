@@ -186,7 +186,7 @@ fun MatrixScreen(
 
                 Text(
                     text = """
-        <CURLY BRACES>
+        <DISK>
         
         Elapsed: ${
                         if (timeElapsed.first > 0)

@@ -9,11 +9,12 @@ class MatrixUpdaterSquare(
     private val MatrixLengthS: Int = MatrixInitializerSquare().MatrixLengthS,  // Reference from MatrixInitializerSquare
     private val MatrixHeigthS: Int = MatrixInitializerSquare().MatrixHeightS,  // Reference from MatrixInitializerSquare
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
-    val sleepTime: Long = 200,
-    val breakPoint2: Int = 86,
+    val sleepTime: Long = 20,
+    val breakPoint2: Int = 21,  // 65
 
-    val poolOfChar: Array<Char> = arrayOf('(', ')'), // ('0', '0', '1')
-    val poolOfChar2: Array<Char> = arrayOf('•', '°', '.', '•', '•', '°', '·', '°', '·', '.') //
+    val poolOfChar2: Array<Char> = arrayOf('(', ')'), // ('0', '0', '1') '.', '·' ○
+    val poolOfChar: Array<Char> = arrayOf('·', '.', '·', ' ', ' ', ' ', ' ', '·', ' ', ' ', '.', '·', '.', '·', '°')
+    //  arrayOf('•', '°', '.', '•', '•', '°', '·', '°', '·', '.')
 
 
 ) {
@@ -42,8 +43,8 @@ class MatrixUpdaterSquare(
 
     private fun updateMatrix() {
 
-        val currentLength = 2  // was 1
-        val currentWidth = 70  // was 60
+        val currentLength = 1  // was 1
+        val currentWidth = 120// was 60
 
         val (randomX, randomY) = selectRandomCoordinate()
 

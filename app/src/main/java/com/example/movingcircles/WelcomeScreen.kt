@@ -132,7 +132,7 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
                         iconResId = R.drawable.circle_icon,  // circles
-                        label = "Braces"
+                        label = "B&W Disk"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
@@ -152,7 +152,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved from third row
                         onClick = onSquares5Clicked,
                         iconResId = R.drawable.multiple_squares,  // squere 5
-                        label = "Green rain"
+                        label = "Drops"
                     )
                 }
 
@@ -182,7 +182,7 @@ fun WelcomeContent(
                     )
                     IconButtonWithLabel( // Moved from third row
                         onClick = onSquares6Clicked,
-                        iconResId = R.drawable.pacman,  // sqare 6
+                        iconResId = R.drawable.pacman,  // square 6
                         label = "Neo"
                     )
                 }

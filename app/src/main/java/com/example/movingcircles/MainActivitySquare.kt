@@ -239,6 +239,7 @@ class MainActivitySquare : ComponentActivity() {
     private val lightGray = Color(0xFFD3D3D3) // 80% gray
     private val mediumGray = Color(0xFFA9A9A9) // 60% gray
     private val darkGray = Color(0xFF696969) // 40% gray
+    private val Gray100 = Color(0xFFE0E0E0) // Medium-light gray
 
 
 
@@ -247,13 +248,13 @@ class MainActivitySquare : ComponentActivity() {
         Text(
             text = matrixString,
             modifier = Modifier.padding(innerPadding),
-            color = mediumGray,
+            color = Gray100,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 15.sp,  // was 21
+            fontSize = 9.sp,  // was 21
             style = TextStyle(
-                lineHeight = 14.6.sp,
-                letterSpacing = 0.26.sp
+                lineHeight = 8.5.sp,
+                letterSpacing = 0.1.sp
             )
         )
     }
