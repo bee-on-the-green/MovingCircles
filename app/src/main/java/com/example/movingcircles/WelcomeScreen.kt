@@ -183,7 +183,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved from third row
                         onClick = onSquares6Clicked,
                         iconResId = R.drawable.pacman,  // sqare 6
-                        label = "Pacman"
+                        label = "Neo"
                     )
                 }
                 // The third Spacer and Row are removed as requested.

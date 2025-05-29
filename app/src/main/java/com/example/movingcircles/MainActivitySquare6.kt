@@ -88,7 +88,7 @@ class MainActivitySquare6 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <THE MOVIE>
+                                <HE'S THE ONE>
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
