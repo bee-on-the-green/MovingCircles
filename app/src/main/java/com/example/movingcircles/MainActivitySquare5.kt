@@ -88,7 +88,7 @@ class MainActivitySquare5 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <FLUO BRACKETS>
+                                <GREEN RAIN>
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -103,8 +103,8 @@ class MainActivitySquare5 : ComponentActivity() {
                                 Density: ${"%.2f".format(SwitchValue)}%
         
                                 Resolution: ${matrixInitializer5.resolution5} px (${matrixInitializer5.MatrixLengthS5}×${matrixInitializer5.MatrixHeightS5})
-                                Shape size: 3*5 px
-                                Encoding: UTF-8
+                                Shape size: 1x6 (6 pixels)
+                                Encoding: ASCII
                                 """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)

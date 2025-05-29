@@ -116,30 +116,20 @@ class MatrixUpdaterSquare5(
 
 
 
-    private var counter5 = 0
+    //private var counter5 = 0
 
     private fun updateMatrix5() {
 
-
-        // Determine dimensions based on whether counter is even or odd
-        var (currentLength, currentWidth) = if (counter5 % 2 == 0) {
-            // Even counter - long vertical rectangle
-            6 to 1  // was 7
-        } else {
-            // Odd counter - long horizontal rectangle
-            6 to 1
-        }
-
-
         val (randomX, randomY) = selectRandomCoordinate5()
-
+        val currentWidth5 = 1
+        val currentLength5 = 6  // 7 can be okay too
 
 
         drawRectangle5(
             randomX,
             randomY,
-            currentWidth,
-            currentLength,
+            currentWidth5,
+            currentLength5,
             poolOfChar,
             Color(0xFF1B5E20)  // was   0xFF00FF00
         )
@@ -148,13 +138,13 @@ class MatrixUpdaterSquare5(
             drawRectangle5(
                 randomX,
                 randomY,
-                currentWidth,
-                currentLength,
+                currentWidth5,
+                currentLength5,
                 poolOfChar2,
                 Color(0xFF00FF00)  // was 0xFFFF5F15  // orange A700  // orange 600
             )
         }
-        counter5++ // Increment the counter each time the function is called
+        //counter5++ // Increment the counter each time the function is called
 
     }
 

@@ -152,7 +152,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved from third row
                         onClick = onSquares5Clicked,
                         iconResId = R.drawable.multiple_squares,  // squere 5
-                        label = "Multiverse"
+                        label = "Green rain"
                     )
                 }
 

@@ -180,3 +180,58 @@ val Scarlet200 = Color(0xFFFF6E40)  // Fiery orange-red
 val Vermilion500 = Color(0xFFFF3D00) // Bold traffic red
 
 
+
+private val Violet200 = Color(0xFFCE93D8)
+private val Violet300 = Color(0xFFBA68C8)
+private val Black1000 = Color(0xFF010101)
+private val Black950 = Color(0xFF0A0A0A)
+private val Black900 = Color(0xFF121212)
+private val BrightRed100 = Color(0xFFFFCDD2)
+private val BrightRed200 = Color(0xFFEF9A9A)
+private val BrightRed300 = Color(0xFFE57373)
+private val BrightRed400 = Color(0xFFEF5350)
+private val BrightRed500 = Color(0xFFF44336)
+private val BrightRed600 = Color(0xFFE53935)
+private val BrightRed700 = Color(0xFFD32F2F)
+private val BrightRed800 = Color(0xFFC62828)
+private val Gray700 = Color(0xFF616161)
+
+private val VividRed = Color(0xFFFF0000)
+private val ScarletRed = Color(0xFFFF2400)
+private val CrimsonRed = Color(0xFFDC143C)
+private val RubyRed = Color(0xFFE0115F)
+private val FerrariRed = Color(0xFFFF2800)
+private val NeonBlastPink = Color(0xFFFF00F6)
+private val ElectricMagenta = Color(0xFFFF00FF)
+private val RadioactivePink = Color(0xFFFF00AA)
+private val CyberPink = Color(0xFFFF0099)
+private val ScreamingPink = Color(0xFFFF00CC)
+private val Green200 = Color(0xFFA5D6A7)
+private val Green100 = Color(0xFFC8E6C9)
+private val Green50 = Color(0xFFE8F5E9)
+
+private val NeonGreen = Color(0xFF00FF00)
+private val ElectricGreen = Color(0xFF00FF7F)
+private val LimeGreen = Color(0xFF32CD32)
+private val AcidGreen = Color(0xFFADFF2F)
+private val EmeraldGreen = Color(0xFF50C878)
+
+
+private val OrangeA100 = Color(0xFFFFD180)
+private val OrangeA200 = Color(0xFFFFAB40)
+private val OrangeA400 = Color(0xFFFF9100)
+private val OrangeA700 = Color(0xFFFF6D00)
+
+
+private val ElectricOrange = Color(0xFFFF4500)
+private val SunsetOrange = Color(0xFFFF5F15)
+private val TrafficOrange = Color(0xFFFF5500)
+private val PumpkinGlow = Color(0xFFFF6D00)
+private val TangerineBurst = Color(0xFFFF8C00)
+private val FlamingOrange = Color(0xFFFF7F33)
+private val CyberOrange = Color(0xFFFF4D00)
+
+private val UltraOrange = Color(0xFFFF3D00)
+private val LaserOrange = Color(0xFFFF2A00)
+private val HighlighterOrange = Color(0xFFFFA500)
+

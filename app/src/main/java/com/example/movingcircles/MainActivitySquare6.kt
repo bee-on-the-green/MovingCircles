@@ -88,7 +88,7 @@ class MainActivitySquare6 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <FLUO BRACKETS>
+                                <THE MOVIE>
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -103,8 +103,8 @@ class MainActivitySquare6 : ComponentActivity() {
                                 Density: ${"%.2f".format(SwitchValue)}%
         
                                 Resolution: ${matrixInitializer6.resolution6} px (${matrixInitializer6.MatrixLengthS6}×${matrixInitializer6.MatrixHeightS6})
-                                Shape size: 3*5 px
-                                Encoding: UTF-8
+                                Shape size: 1x35 px
+                                Encoding: UFT-8
                                 """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
@@ -268,10 +268,10 @@ class MainActivitySquare6 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 22.1.sp,
-            letterSpacing = 1.5.sp,
+            fontSize = 12.5.sp,
+            letterSpacing = 0.3.sp,
             style = TextStyle(
-                lineHeight = 19.9.sp
+                lineHeight = 10.sp
             )
         )
     }
