@@ -127,7 +127,7 @@ class MainActivitySquare3 : ComponentActivity() {
                         this@MainActivitySquare3.colorMatrix = colorMatrix
                         matrixString = matrix.joinToString("\n") { it.joinToString("") }
                         matrixUpdater = MatrixUpdaterSquare3(matrix, colorMatrix)
-                        Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                        Hz = (1000.0 / matrixUpdater.sleepTimeS3.toDouble()).roundToInt()
                         startMatrixUpdates3()
                     }
                 }
@@ -156,7 +156,7 @@ class MainActivitySquare3 : ComponentActivity() {
                     colorRanges = buildColorRanges(updatedColorMatrix, matrixString)
 
                     calculateElapsedTime()
-                    Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                    Hz = (1000.0 / matrixUpdater.sleepTimeS3.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
                 }

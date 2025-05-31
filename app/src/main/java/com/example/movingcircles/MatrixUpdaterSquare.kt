@@ -9,8 +9,8 @@ class MatrixUpdaterSquare(
     private val MatrixLengthS: Int = MatrixInitializerSquare().MatrixLengthS,  // Reference from MatrixInitializerSquare
     private val MatrixHeigthS: Int = MatrixInitializerSquare().MatrixHeightS,  // Reference from MatrixInitializerSquare
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
-    val sleepTime: Long = 20,
-    val breakPoint2: Int = 21,  // 65
+    val sleepTimeM: Long = 1000,
+    val breakPoint2: Int = 25,  // 65
 
     val poolOfChar2: Array<Char> = arrayOf('(', ')'), // ('0', '0', '1') '.', '·' ○
     val poolOfChar: Array<Char> = arrayOf('·', '.', '·', ' ', ' ', ' ', ' ', '·', ' ', ' ', '.', '·', '.', '·', '°')
@@ -29,7 +29,7 @@ class MatrixUpdaterSquare(
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
                 val switchValue = calculateCharacterPercentage(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, switchValue)
-                Thread.sleep(sleepTime)
+                Thread.sleep(sleepTimeM)
             }
         }
     }
@@ -43,8 +43,8 @@ class MatrixUpdaterSquare(
 
     private fun updateMatrix() {
 
-        val currentLength = 1  // was 1
-        val currentWidth = 120// was 60
+        val currentLength = 2  // was 1
+        val currentWidth = 101// was 60
 
         val (randomX, randomY) = selectRandomCoordinate()
 
@@ -74,6 +74,8 @@ class MatrixUpdaterSquare(
         )
     }
 
+
+
     private fun drawRectangle(
         centerX: Int,
         centerY: Int,
@@ -81,15 +83,33 @@ class MatrixUpdaterSquare(
         width: Int,
         poolOfChar: Array<Char>
     ) {
-        val halfLength = length / 2
-        val halfWidth = width / 2
+        // Calculate boundaries using integer division
+        val startX = centerX - length / 2
+        val endX = centerX + (length - 1) / 2
+        val startY = centerY - width / 2
+        val endY = centerY + (width - 1) / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeigthS - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS - 1)) {
+        // Clamp to matrix bounds and iterate
+        for (y in maxOf(startY, 0)..minOf(endY, MatrixHeigthS - 1)) {
+            for (x in maxOf(startX, 0)..minOf(endX, MatrixLengthS - 1)) {
                 matrix[y][x] = poolOfChar.random()
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private fun calculateCharacterPercentage(
         matrix: Array<CharArray>,

@@ -11,7 +11,7 @@ class MatrixUpdaterSquare6(
 ) {
     private val MatrixLengthS6: Int = matrix[0].size
     private val MatrixHeightS6: Int = matrix.size
-    val sleepTime: Long = 9
+    val sleepTimeS6: Long = 9
 
     val breakPointS: Int = 91
 
@@ -76,7 +76,7 @@ class MatrixUpdaterSquare6(
                 val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
                 val switchValue = calculateCharacterPercentage6(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
-                Thread.sleep(sleepTime)
+                Thread.sleep(sleepTimeS6)
             }
         }
     }

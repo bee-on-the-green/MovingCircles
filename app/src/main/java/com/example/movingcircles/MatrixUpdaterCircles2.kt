@@ -7,7 +7,7 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircles2(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTime: Long = 20,
+    val sleepTimeZ: Long = 20,
     val diameterToUseC2: Int,
     val breakPoint: Int = 85,
     val poolOfChar: Array<Char> = arrayOf('Ͽ', 'Ͼ'),  // was 'Ͽ', 'Ͼ'),  '⊙', '⊚'
@@ -103,7 +103,7 @@ class MatrixUpdaterCircles2(
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
                 val switchValue = calculateCharacterPercentage(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, switchValue)
-                Thread.sleep(sleepTime)
+                Thread.sleep(sleepTimeZ)
             }
         }
     }

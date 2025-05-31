@@ -128,7 +128,7 @@ class MainActivitySquare : ComponentActivity() {
                         matrix = matrixInitializer.initializeMatrix()
                         updateMatrixString(matrix)
                         matrixUpdater.matrix = matrix.map { it.toCharArray() }.toTypedArray()
-                        Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                        Hz = (1000.0 / matrixUpdater.sleepTimeM.toDouble()).roundToInt()
 
                         startMatrixUpdates(::updateMatrixString)
                     }
@@ -154,7 +154,7 @@ class MainActivitySquare : ComponentActivity() {
                     val newMatrix = updatedMatrix.map { it.toMutableList() }.toMutableList()
                     updateFn(newMatrix)
                     calculateElapsedTime()
-                    Hz = (1000.0 / matrixUpdater.sleepTime.toDouble()).roundToInt()
+                    Hz = (1000.0 / matrixUpdater.sleepTimeM.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
                     println("Elapsed Time: ${timeElapsed.first} minutes, ${timeElapsed.second} seconds")

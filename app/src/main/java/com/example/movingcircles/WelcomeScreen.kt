@@ -131,27 +131,27 @@ fun WelcomeContent(
                 ) {
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
-                        iconResId = R.drawable.circle_icon,  // circles
+                        iconResId = R.drawable.circle_icon,  // circles  // okay
                         label = "B&W Disk"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
-                        iconResId = R.drawable.square_icon,  // square
+                        iconResId = R.drawable.square_icon,  // square  // okay
                         label = "Brackets"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresSmallClicked,
-                        iconResId = R.drawable.circleforandroid,  //
+                        iconResId = R.drawable.circleforandroid,  // okay
                         label = "Losange"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles2Clicked,
-                        iconResId = R.drawable.icon_sun,  // circle 2
+                        iconResId = R.drawable.icon_sun,  // circle 2  /// okay
                         label = "Fuego"
                     )
                     IconButtonWithLabel( // Moved from third row
                         onClick = onSquares5Clicked,
-                        iconResId = R.drawable.multiple_squares,  // squere 5
+                        iconResId = R.drawable.multiple_squares,  // square 5  // okay S5
                         label = "Drops"
                     )
                 }
@@ -162,22 +162,22 @@ fun WelcomeContent(
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares2Clicked,
-                        iconResId = R.drawable.square_green_yellow,  // square2
+                        iconResId = R.drawable.square_green_yellow,  // square2  //okay
                         label = "Squares"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares3Clicked,
-                        iconResId = R.drawable.carre_rond,  // square3
+                        iconResId = R.drawable.carre_rond,  // square3  // okay
                         label = "Archipel"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares4Clicked,
-                        iconResId = R.drawable.rond,  // square 4
+                        iconResId = R.drawable.rond,  // square 4  // okay
                         label = "Fluo"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles4Clicked,
-                        iconResId = R.drawable.icon_square_purple, // circle 4
+                        iconResId = R.drawable.icon_square_purple, // circle 4  // okay
                         label = "Island"
                     )
                     IconButtonWithLabel( // Moved from third row

@@ -11,7 +11,7 @@ class MatrixUpdaterSquare2(
 ) {
     private val MatrixLengthS2: Int = matrix[0].size
     private val MatrixHeightS2: Int = matrix.size
-    val sleepTime: Long = 40
+    val sleepTimeS2: Long = 40
 
     val breakPointK: Int = 40
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ')
@@ -100,7 +100,7 @@ class MatrixUpdaterSquare2(
                 val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
                 val switchValue = calculateCharacterPercentage2(matrixCopy, poolOfChar)
                 onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
-                Thread.sleep(sleepTime)
+                Thread.sleep(sleepTimeS2)
             }
         }
     }
