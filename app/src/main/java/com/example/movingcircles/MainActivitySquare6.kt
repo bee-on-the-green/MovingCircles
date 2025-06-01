@@ -88,7 +88,7 @@ class MainActivitySquare6 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <HE'S THE ONE>
+                                1999
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

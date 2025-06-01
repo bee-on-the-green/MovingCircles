@@ -13,7 +13,6 @@
         android:theme="@style/Theme.MovingCircles"
         tools:targetApi="31">
 
-        <!-- Welcome Screen (Launcher Activity) with transparent theme -->
         <activity
             android:name=".WelcomeScreen"
             android:exported="true"
@@ -25,63 +24,63 @@
             </intent-filter>
         </activity>
 
-        <!-- Original Circles Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Squares Activity -->
         <activity
             android:name=".MainActivitySquare"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Small Squares Activity -->
         <activity
             android:name=".MainActivityCircle"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- New Circles2 Activity -->
         <activity
             android:name=".MainActivityCircles2"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- New Squares2 Activity -->
         <activity
             android:name=".MainActivitySquare2"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Squares3 Activity -->
         <activity
             android:name=".MainActivitySquare3"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Squares4 Activity -->
         <activity
             android:name=".MainActivitySquare4"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Circles4 Activity -->
         <activity
             android:name=".MainActivityCircle4"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Squares5 Activity -->
         <activity
             android:name=".MainActivitySquare5"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
 
-        <!-- Squares6 Activity -->
         <activity
             android:name=".MainActivitySquare6"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <activity
+            android:name=".MainActivitySquare7"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <activity
+            android:name=".MainActivitySquare8"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
     </application>

@@ -13,75 +13,18 @@ class MatrixUpdaterSquare2(
     private val MatrixHeightS2: Int = matrix.size
     val sleepTimeS2: Long = 40
 
-    val breakPointK: Int = 40
+    val breakPointK: Int = 30
     val poolOfChar: Array<Char> = arrayOf('Ͼ', 'Ͽ')
     val poolOfChar2: Array<Char> = arrayOf('0', '0')
 
     private var isRunning = false
     var updateCount: Int = 0  // Changed to var for pulsing effect
 
-    // Color declarations
-    private val PinkNeon = Color(0xFFFF00FF)
-    private val Orange700 = Color(0xFFF57C00)
-    private val MatrixRed5 = Color(0xFFFF1744)
-    private val Orange800 = Color(0xFFEF6C00)
-    private val Black850 = Color(0xFF1A1A1A)
-    private val Black800 = Color(0xFF212121)
-    private val Violet225_dark1 = Color(0xFFB57AC0)
-    private val Violet225_dark2 = Color(0xFFA370AD)
-    private val Orange600 = Color(0xFFFB8C00)
-    private val Orange500 = Color(0xFFFF9800)
-    private val Orange400 = Color(0xFFFFA726)
-    private val Orange300 = Color(0xFFFFB74D)
-    private val Orange200 = Color(0xFFFFCC80)
-    private val Orange100 = Color(0xFFFFE0B2)
-    private val Orange50 = Color(0xFFFFF3E0)
-    private val Orange850 = Color(0xFFE65100)
-    private val Orange900 = Color(0xFFD84315)
-    private val Orange950 = Color(0xFFBF360C)
-    private val Violet200 = Color(0xFFCE93D8)
-    private val Violet300 = Color(0xFFBA68C8)
-    private val Black1000 = Color(0xFF010101)
-    private val Black950 = Color(0xFF0A0A0A)
-    private val Black900 = Color(0xFF121212)
-    private val BrightRed100 = Color(0xFFFFCDD2)
-    private val BrightRed200 = Color(0xFFEF9A9A)
-    private val BrightRed300 = Color(0xFFE57373)
-    private val BrightRed400 = Color(0xFFEF5350)
-    private val BrightRed500 = Color(0xFFF44336)
-    private val BrightRed600 = Color(0xFFE53935)
-    private val BrightRed700 = Color(0xFFD32F2F)
-    private val BrightRed800 = Color(0xFFC62828)
-    private val BrightRed900 = Color(0xFFB71C1C)
-    private val Gray600 = Color(0xFF757575)
-    private val Gray700 = Color(0xFF616161)
-    private val Gray800 = Color(0xFF424242)
-    private val VividRed = Color(0xFFFF0000)
-    private val ScarletRed = Color(0xFFFF2400)
-    private val CrimsonRed = Color(0xFFDC143C)
-    private val RubyRed = Color(0xFFE0115F)
-    private val FerrariRed = Color(0xFFFF2800)
-    private val NeonBlastPink = Color(0xFFFF00F6)
-    private val ElectricMagenta = Color(0xFFFF00FF)
-    private val RadioactivePink = Color(0xFFFF00AA)
-    private val CyberPink = Color(0xFFFF0099)
-    private val ScreamingPink = Color(0xFFFF00CC)
-    private val PsychedelicPink = Color(0xFFFF00EE)
-    private val ToxicPink = Color(0xFFFF00BB)
-    private val Black = Color(0xFF000000)
-    private val RichBlack = Color(0xFF0A0A0A)
+
     private val JetBlack = Color(0xFF121212)
-    private val InkBlack = Color(0xFF1A1A1A)
-    private val ScarletOrange = Color(0xFFFF4000)
-    private val ScarletPink = Color(0xFFFF0066)
-    private val ScarletVoltage = Color(0xFFFF00AA)
-    private val ScarletPulse1 = Color(0xFFFF2400)
+
     private val ScarletPulse2 = Color(0xFFFF3C00)
-    private val ScarletPulse3 = Color(0xFFFF2400)
-    private val ScarletPulse4 = Color(0xFFFF0055)
-    private val ScarletHolo1 = Color(0xFFFF2400)
-    private val ScarletHolo2 = Color(0xFFFF5E00)
-    private val ScarletHolo3 = Color(0xFFD10000)
+
 
     // Glow effect colors for ScarletPulse2
     private val ScarletPulseGlow = listOf(

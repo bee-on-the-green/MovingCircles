@@ -87,7 +87,7 @@ class MainActivitySquare3 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <ARCHIPELAGO>
+                                ARCHIPELAGO
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -103,7 +103,7 @@ class MainActivitySquare3 : ComponentActivity() {
         
                                 Resolution: ${matrixInitializer.resolution3}
                                 Shape size: 3*5 px
-                                Encoding: ASCII
+                                Encoding: UFT-8
                                 """.trimIndent(),
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)

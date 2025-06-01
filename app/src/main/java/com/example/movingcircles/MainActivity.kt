@@ -186,7 +186,7 @@ fun MatrixScreen(
 
                 Text(
                     text = """
-        <DISK>
+        ORBS
         
         Elapsed: ${
                         if (timeElapsed.first > 0)

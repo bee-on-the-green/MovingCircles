@@ -124,9 +124,23 @@ val Orange10 = Color(0xFFFFF3E0)  // Warm white with orange tint
 val Orange20 = Color(0xFFFFECB3)  // Pale apricot
 val Orange30 = Color(0xFFFFE0A8)  // Light peach
 
-// Your Existing Oranges (for reference)
-val Orange50 = Color(0xFFFFE0B2)
-val Orange200 = Color(0xFFFFCC80)
+
+
+// Color declarations
+private val PinkNeon = Color(0xFFFF00FF)
+
+private val MatrixRed5 = Color(0xFFFF1744)
+
+private val Black850 = Color(0xFF1A1A1A)
+private val Black800 = Color(0xFF212121)
+private val Violet225_dark1 = Color(0xFFB57AC0)
+private val Violet225_dark2 = Color(0xFFA370AD)
+
+
+private val PsychedelicPink = Color(0xFFFF00EE)
+private val ToxicPink = Color(0xFFFF00BB)
+private val Black = Color(0xFF000000)
+private val RichBlack = Color(0xFF0A0A0A)
 
 // Orange colors (50-step increments)
 private val Orange400 = Color(0xFFFF9800)  // Original
@@ -140,6 +154,21 @@ private val Orange750 = Color(0xFFEF6C00)  // Custom (between 700-800)
 
 private val Orange850 = Color(0xFFD84300)  // Custom (between 800-900)
 private val Orange900 = Color(0xFFBF360C)  // Material Orange 900
+
+private val ScarletPulse3 = Color(0xFFFF2400)
+private val ScarletPulse4 = Color(0xFFFF0055)
+private val ScarletHolo1 = Color(0xFFFF2400)
+private val ScarletHolo2 = Color(0xFFFF5E00)
+private val ScarletHolo3 = Color(0xFFD10000)
+
+
+private val InkBlack = Color(0xFF1A1A1A)
+private val ScarletOrange = Color(0xFFFF4000)
+private val ScarletPink = Color(0xFFFF0066)
+private val ScarletVoltage = Color(0xFFFF00AA)
+private val ScarletPulse1 = Color(0xFFFF2400)
+
+
 
 val Orange300 = Color(0xFFFFB74D)  // Bright orange
 

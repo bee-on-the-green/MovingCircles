@@ -8,7 +8,7 @@ class MatrixUpdater(
     var matrix: Array<CharArray>, // Matrix is now mutable
     val lengthOfMatrix: Int,
     val heightOfMatrix: Int,
-    val sleepTime: Long = 50,
+    val sleepTime: Long = 85,
     val breakPoint: Int = 80,  // was 75
     val resolution: Int = lengthOfMatrix * heightOfMatrix,
 

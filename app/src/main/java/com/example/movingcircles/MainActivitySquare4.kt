@@ -88,7 +88,7 @@ class MainActivitySquare4 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                <FLUO BRACKETS>
+                                NEON GLOW
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

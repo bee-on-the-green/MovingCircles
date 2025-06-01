@@ -86,7 +86,7 @@ class MainActivitySquare2 : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
                             Text(
                                 text = """
-                                <BLOOD SQUARES>
+                                BLOODY DICE
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

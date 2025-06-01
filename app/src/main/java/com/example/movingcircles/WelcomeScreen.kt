@@ -34,7 +34,9 @@ class WelcomeScreen : ComponentActivity() {
                         onSquares4Clicked = { startActivity(Intent(this, MainActivitySquare4::class.java)) },
                         onCircles4Clicked = { startActivity(Intent(this, MainActivityCircle4::class.java)) },
                         onSquares5Clicked = { startActivity(Intent(this, MainActivitySquare5::class.java)) },
-                        onSquares6Clicked = { startActivity(Intent(this, MainActivitySquare6::class.java)) }
+                        onSquares6Clicked = { startActivity(Intent(this, MainActivitySquare6::class.java)) },
+                        onSquares7Clicked = { startActivity(Intent(this, MainActivitySquare7::class.java)) },
+                        onSquares8Clicked = { startActivity(Intent(this, MainActivitySquare8::class.java)) }
                     )
                 }
             }
@@ -56,7 +58,7 @@ fun IconButtonWithLabel(
         Surface(
             onClick = onClick,
             shape = RectangleShape,
-            modifier = Modifier.size(70.dp), // was 60
+            modifier = Modifier.size(60.dp),
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
@@ -86,8 +88,10 @@ fun WelcomeContent(
     onSquares3Clicked: () -> Unit,
     onSquares4Clicked: () -> Unit,
     onCircles4Clicked: () -> Unit,
-    onSquares5Clicked: () -> Unit, // Keep this parameter
-    onSquares6Clicked: () -> Unit // Keep this parameter
+    onSquares5Clicked: () -> Unit,
+    onSquares6Clicked: () -> Unit,
+    onSquares7Clicked: () -> Unit,
+    onSquares8Clicked: () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -127,66 +131,75 @@ fun WelcomeContent(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)  // was 47 then 30
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
-                        iconResId = R.drawable.circle_icon,  // circles  // okay
-                        label = "B&W Disk"
+                        iconResId = R.drawable.circle_icon,
+                        label = "Orbs"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
-                        iconResId = R.drawable.square_icon,  // square  // okay
-                        label = "Brackets"
+                        iconResId = R.drawable.square_icon,
+                        label = "Trees"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresSmallClicked,
-                        iconResId = R.drawable.circleforandroid,  // okay
+                        iconResId = R.drawable.circleforandroid,
                         label = "Losange"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles2Clicked,
-                        iconResId = R.drawable.icon_sun,  // circle 2  /// okay
+                        iconResId = R.drawable.icon_sun,
                         label = "Fuego"
                     )
-                    IconButtonWithLabel( // Moved from third row
-                        onClick = onSquares5Clicked,
-                        iconResId = R.drawable.multiple_squares,  // square 5  // okay S5
-                        label = "Drops"
+                    IconButtonWithLabel(
+                        onClick = onSquares7Clicked,
+                        iconResId = R.drawable.squares_and_dots_midgray,
+                        label = "use gray"
+                    )
+                    IconButtonWithLabel( // Moved to first row
+                        onClick = onSquares6Clicked,
+                        iconResId = R.drawable.pacman,
+                        label = "1999"
                     )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)  // was 47
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares2Clicked,
-                        iconResId = R.drawable.square_green_yellow,  // square2  //okay
-                        label = "Squares"
+                        iconResId = R.drawable.square_green_yellow,
+                        label = "Dice"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares3Clicked,
-                        iconResId = R.drawable.carre_rond,  // square3  // okay
+                        iconResId = R.drawable.carre_rond,
                         label = "Archipel"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares4Clicked,
-                        iconResId = R.drawable.rond,  // square 4  // okay
-                        label = "Fluo"
+                        iconResId = R.drawable.rond,
+                        label = "Neon glow"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles4Clicked,
-                        iconResId = R.drawable.icon_square_purple, // circle 4  // okay
+                        iconResId = R.drawable.icon_square_purple,
                         label = "Island"
                     )
-                    IconButtonWithLabel( // Moved from third row
-                        onClick = onSquares6Clicked,
-                        iconResId = R.drawable.pacman,  // square 6
-                        label = "Neo"
+                    IconButtonWithLabel(
+                        onClick = onSquares5Clicked,
+                        iconResId = R.drawable.multiple_squares,
+                        label = "Drops"
+                    )
+                    IconButtonWithLabel( // Moved to second row
+                        onClick = onSquares8Clicked,
+                        iconResId = R.drawable.intricate,
+                        label = "Ice"
                     )
                 }
-                // The third Spacer and Row are removed as requested.
             }
         }
     }
