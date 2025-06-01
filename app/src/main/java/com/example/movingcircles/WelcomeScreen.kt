@@ -136,7 +136,7 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
                         iconResId = R.drawable.circle_icon,
-                        label = "Orbs"
+                        label = "Ellipse"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
@@ -197,7 +197,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved to second row
                         onClick = onSquares8Clicked,
                         iconResId = R.drawable.intricate,
-                        label = "Ice"
+                        label = "Esmeralda"
                     )
                 }
             }

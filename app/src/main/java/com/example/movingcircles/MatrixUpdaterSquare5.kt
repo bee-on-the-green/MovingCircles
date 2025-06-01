@@ -15,7 +15,7 @@ class MatrixUpdaterSquare5(
 
     val breakPointS: Int = 93
 
-    val poolOfChar2: Array<Char> = arrayOf('○', '°', '○', '°', '°', '°')  // • ○ ° o O 0
+    val poolOfChar2: Array<Char> = arrayOf('○', '°', '○', '°', '°', '°')  //  o O 0
     val poolOfChar: Array<Char> = arrayOf('(', ')')
 
     private var isRunning = false

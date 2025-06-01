@@ -88,7 +88,7 @@ class MainActivitySquare8 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                1999
+                                ESMERALDA
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -268,10 +268,10 @@ class MainActivitySquare8 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 12.5.sp,
-            letterSpacing = 0.3.sp,
+            fontSize = 10.5.sp,
+            letterSpacing = 0.05.sp,
             style = TextStyle(
-                lineHeight = 10.sp
+                lineHeight = 8.4.sp
             )
         )
     }

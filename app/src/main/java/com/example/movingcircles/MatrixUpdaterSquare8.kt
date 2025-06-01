@@ -11,17 +11,16 @@ class MatrixUpdaterSquare8(
 ) {
     private val MatrixLengthS8: Int = matrix[0].size
     private val MatrixHeightS8: Int = matrix.size
-    val sleepTimeS8: Long = 9
-
-    val breakPointS8: Int = 91
-
-
-    val poolOfChar2: Array<Char> = arrayOf('0', '0', '0', '1')
+    val sleepTimeS8: Long = 15
+    val breakPointS8: Int = 12  // was  12
 
 
-    val poolOfChar: Array<Char> = arrayOf(
+    val poolOfChar: Array<Char> = arrayOf('○', '°', '°', 'o', '°', '°', 'O')  // ('○', '°', '°', 'o', '°', '°', 'O')
+
+
+    val poolOfChar2: Array<Char> = arrayOf(
         '§', '¶', '¬', '¢', '£',
-        '¥', '®', '©', 'ª', 'º',
+        '¥', '®', '©', 'ª', 'k',
         'É', 'Ê', 'Ë', 'Ì', 'Í',
         'K', 'L', 'M', 'N',
         'u', 'v', 'w', 'x', 'y', 'z',
@@ -58,9 +57,12 @@ class MatrixUpdaterSquare8(
 
 
 
+// first green 0xFF27882E
+    // Color(0xFF356D36)
 
-
-
+    val NeonGreen = Color(0xFF00FF00)
+    val Green500 = Color(0xFF4CAF50)
+    private val Green400 = Color(0xFF66BB6A)
 
     private var counter8 = 0
 
@@ -71,31 +73,38 @@ class MatrixUpdaterSquare8(
 
         val (currentLength, currentWidth) = if (counter8 % 2 == 0) {
 
-            62 to 1
+            5 to 7  // 5 by 7
         } else {
 
-            1 to 62
+            5 to 7  // 5 by 7
         }
 
+        // Randomly choose between 1 and 2
+        val randomChoice = Random.nextInt(1, 3) // Generates 1 or 2
 
+        val selectedColor = if (randomChoice == 1) {
+            Color(0xFF27882E)
+        } else {
+            Color(0xFF356D36)
+        }
 
         drawRectangle8(
             randomX,
             randomY,
             currentWidth,
             currentLength,
-            poolOfChar,
-            Color(0xFF1B5E20)
+            poolOfChar2,
+            selectedColor // Use the randomly selected color
         )
 
-        if (calculateCharacterPercentage8(matrix, poolOfChar) > breakPointS8) {
+        if (calculateCharacterPercentage8(matrix, poolOfChar) < breakPointS8) {
             drawRectangle8(
                 randomX,
                 randomY,
                 currentWidth,
                 currentLength,
-                poolOfChar2,
-                Color(0xFFD84315)
+                poolOfChar,
+                Color(0xFF4CAF50)  // EmeraldGreen = Color(0xFF50C878)
             )
         }
         counter8++

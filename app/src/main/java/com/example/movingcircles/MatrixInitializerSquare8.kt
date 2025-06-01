@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class MatrixInitializerSquare8 {
-    val MatrixLengthS8: Int = 72
+    val MatrixLengthS8: Int = 89
     val MatrixHeightS8: Int = MatrixLengthS8 * 72/ 100
     val resolution8: Int = MatrixLengthS8 * MatrixHeightS8
     private val squarePoolOfChars: Array<Char> = arrayOf(' ', ' ')

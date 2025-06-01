@@ -264,3 +264,41 @@ private val UltraOrange = Color(0xFFFF3D00)
 private val LaserOrange = Color(0xFFFF2A00)
 private val HighlighterOrange = Color(0xFFFFA500)
 
+
+
+
+// Original Base Color
+private val DarkGreen900 = Color(0xFF1B5E20)
+
+// Darker Shades (towards black)
+private val DarkGreen900_Shade1 = Color(0xFF16511A)
+private val DarkGreen900_Shade2 = Color(0xFF114415)
+private val DarkGreen900_Shade3 = Color(0xFF0C370F)
+private val DarkGreen900_Shade4 = Color(0xFF082B0A)
+private val DarkGreen900_Shade5 = Color(0xFF051F06)
+
+// Lighter Shades (towards white)
+private val DarkGreen900_Tint1 = Color(0xFF356D36)  // green2
+private val DarkGreen900_Tint2 = Color(0xFF4B7D4B)
+private val DarkGreen900_Tint3 = Color(0xFF618C61)
+private val DarkGreen900_Tint4 = Color(0xFF779C76)
+private val DarkGreen900_Tint5 = Color(0xFF8DAC8C)
+
+// Material Design Green Palette (related shades)
+private val Green500 = Color(0xFF4CAF50)
+private val Green600 = Color(0xFF43A047)
+private val Green700 = Color(0xFF388E3C)
+private val Green800 = Color(0xFF2E7D32)
+
+// Monochromatic Greens (different hues, but still green-based)
+private val MonochromaticGreen1 = Color(0xFF27882E)
+private val MonochromaticGreen2 = Color(0xFF33B33D)
+private val MonochromaticGreen3 = Color(0xFF40DD4B)
+
+// Analogous Colors (neighbors on the color wheel)
+private val AnalogousYellowGreen1 = Color(0xFF315E1B)
+private val AnalogousYellowGreen2 = Color(0xFF235E1B)
+
+// Complementary Color (opposite on the color wheel, for high contrast)
+private val ComplementaryMagenta = Color(0xFF5E1B59)
+

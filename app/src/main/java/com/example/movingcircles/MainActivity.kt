@@ -28,7 +28,7 @@ val lengthOfMatrix: Int = 102  // 160
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf(' ', ' ')
 val resolution: Int = lengthOfMatrix * heightOfMatrix
-val diameterToBeUsed: Int = 15
+val diameterToBeUsed: Int = 9  // was 18
 
 class MainActivity : ComponentActivity() {
 
@@ -186,7 +186,7 @@ fun MatrixScreen(
 
                 Text(
                     text = """
-        ORBS
+        ELLIPSES
         
         Elapsed: ${
                         if (timeElapsed.first > 0)
