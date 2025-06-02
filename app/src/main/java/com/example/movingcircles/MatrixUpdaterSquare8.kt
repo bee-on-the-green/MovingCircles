@@ -15,7 +15,7 @@ class MatrixUpdaterSquare8(
     val breakPointS8: Int = 12  // was  12
 
 
-    val poolOfChar: Array<Char> = arrayOf('○', '°', '°', 'o', '°', '°', 'O')  // ('○', '°', '°', 'o', '°', '°', 'O')
+    val poolOfChar: Array<Char> = arrayOf('○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
 
 
     val poolOfChar2: Array<Char> = arrayOf(
@@ -25,7 +25,7 @@ class MatrixUpdaterSquare8(
         'K', 'L', 'M', 'N',
         'u', 'v', 'w', 'x', 'y', 'z',
         '!', '@', '#', '$', '%',
-        '^', '&', '*', '(', ')',
+        '^', '&', '*', '9', '3',
         ']', '{',
         ';', ':', '\'', '"', ',',
         '.', '<', '>', '/', '?'
@@ -57,12 +57,11 @@ class MatrixUpdaterSquare8(
 
 
 
-// first green 0xFF27882E
-    // Color(0xFF356D36)
+
 
     val NeonGreen = Color(0xFF00FF00)
     val Green500 = Color(0xFF4CAF50)
-    private val Green400 = Color(0xFF66BB6A)
+     val Green400 = Color(0xFF66BB6A)
 
     private var counter8 = 0
 
@@ -94,7 +93,7 @@ class MatrixUpdaterSquare8(
             currentWidth,
             currentLength,
             poolOfChar2,
-            selectedColor // Use the randomly selected color
+            selectedColor
         )
 
         if (calculateCharacterPercentage8(matrix, poolOfChar) < breakPointS8) {
@@ -104,7 +103,7 @@ class MatrixUpdaterSquare8(
                 currentWidth,
                 currentLength,
                 poolOfChar,
-                Color(0xFF4CAF50)  // EmeraldGreen = Color(0xFF50C878)
+                Color(0xFF4CAF50)
             )
         }
         counter8++

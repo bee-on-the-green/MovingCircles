@@ -32,8 +32,7 @@ class MatrixUpdaterSquare6(
         '.', '<', '>', '/', '?'
     )
 
-    private val Green850 = Color(0xFF2E7D32)
-    private val Green900 = Color(0xFF1B5E20)
+
     private val SafetyOrange = Color(0xFFFF7900)
     private val NeonOrange = Color(0xFFFF6600)
     private val Orange600 = Color(0xFFE64A19)  // Material Orange 600
@@ -89,13 +88,25 @@ class MatrixUpdaterSquare6(
 
 
 
+    val MyGreen0xFF27882E = (Color(0xFF356D36))
+    val NeonGreen = Color(0xFF00FF00)
+    val Green500 = Color(0xFF4CAF50)
+    val Green400 = Color(0xFF66BB6A)
+    val Green850 = Color(0xFF2E7D32)
 
 
+    val RedFlashy1 = Color(0xFFE04015)
+
+    val RedFlashy2 = Color(0xFFE83A12)
+    val RedFlashy3 = Color(0xFFF0350F)
+    val RedFlashy4 = Color(0xFFF8300C)
+    val RedFlashy5 = Color(0xFFFB2808)
+    val RedFlashy6 = Color(0xFFFF2005)
+
+/*
 
 
-
-
-    private var counter6 = 0
+    var counter6 = 0
 
     private fun updateMatrix6() {
 
@@ -110,15 +121,13 @@ class MatrixUpdaterSquare6(
             1 to 62
         }
 
-
-
         drawRectangle6(
             randomX,
             randomY,
             currentWidth,
             currentLength,
             poolOfChar,
-            Color(0xFF1B5E20)  // 0xFF2E7D32
+            Color(0xFF1B5E20)
         )
 
         if (calculateCharacterPercentage6(matrix, poolOfChar) > breakPointS6) {
@@ -128,12 +137,75 @@ class MatrixUpdaterSquare6(
                 currentWidth,
                 currentLength,
                 poolOfChar2,
-                Color(0xFFD84315)   // 0xFFE64A19
+                Color(0xFFD84315)   //
             )
         }
         counter6++
 
     }
+*/
+
+
+
+    var counter6 = 0
+
+    private fun updateMatrix6() {
+        val (randomX, randomY) = selectRandomCoordinate6()
+
+        val (currentLength, currentWidth) = if (counter6 % 2 == 0) {
+            52 to 1  // was 62
+        } else {
+            1 to 52
+        }
+
+        // Generate the random number only once
+        val colorSelectionKey = Random.nextInt(1, 3) // Generates either 1 or 2
+
+        val firstRectangleColor = if (colorSelectionKey == 1) {
+            Color(0xFF1B5E20)
+        } else {
+            Color(0xFF356D36)
+        }
+
+        drawRectangle6(
+            randomX,
+            randomY,
+            currentWidth,
+            currentLength,
+            poolOfChar,
+            firstRectangleColor
+        )
+
+        if (calculateCharacterPercentage6(matrix, poolOfChar) > breakPointS6) {
+            val secondRectangleColor = if (colorSelectionKey == 1) {
+                Color(0xFFD84315)
+            } else {
+                Color(0xFFFF2005)
+            }
+
+            drawRectangle6(
+                randomX,
+                randomY,
+                currentWidth,
+                currentLength,
+                poolOfChar2,
+                secondRectangleColor
+            )
+        }
+        counter6++
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

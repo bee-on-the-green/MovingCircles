@@ -156,7 +156,7 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onSquares7Clicked,
                         iconResId = R.drawable.squares_and_dots_midgray,
-                        label = "use gray"
+                        label = "Magenta"
                     )
                     IconButtonWithLabel( // Moved to first row
                         onClick = onSquares6Clicked,
