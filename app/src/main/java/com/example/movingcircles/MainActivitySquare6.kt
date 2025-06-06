@@ -88,7 +88,7 @@ class MainActivitySquare6 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                1999
+                                HE IS THE ONE
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -109,8 +109,8 @@ class MainActivitySquare6 : ComponentActivity() {
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-170).dp),
-                                fontSize = 13.sp,
+                                    .offset(y = (-110).dp),
+                                fontSize = 10.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
@@ -268,10 +268,10 @@ class MainActivitySquare6 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 12.5.sp,
+            fontSize = 10.5.sp,
             letterSpacing = 0.3.sp,
             style = TextStyle(
-                lineHeight = 10.sp
+                lineHeight = 9.2.sp
             )
         )
     }

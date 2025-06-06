@@ -9,8 +9,8 @@ import kotlinx.coroutines.withContext
 data class MatrixCell(val char: Char, val color: Color = Color.White)
 
 class MatrixInitializerCircle {
-    val MatrixLengthC: Int = 100
-    val MatrixHeightC: Int = MatrixLengthC * 41 / 100
+    val MatrixLengthC: Int = 102 // it is 100
+    val MatrixHeightC: Int = MatrixLengthC * 44 / 100  // it is 41
     val resolutionC: Int = MatrixLengthC * MatrixHeightC
 
 

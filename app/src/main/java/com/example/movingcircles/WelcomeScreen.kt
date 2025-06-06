@@ -53,12 +53,12 @@ fun IconButtonWithLabel(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.width(80.dp)
+        modifier = modifier.width(92.dp)  // w  as 80
     ) {
         Surface(
             onClick = onClick,
             shape = RectangleShape,
-            modifier = Modifier.size(60.dp),
+            modifier = Modifier.size(70.dp),  // was 60
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
@@ -72,7 +72,7 @@ fun IconButtonWithLabel(
         }
         Text(
             text = label,
-            fontSize = 11.sp,
+            fontSize = 10.sp,  // was 11
             modifier = Modifier.padding(top = 4.dp)
         )
     }
@@ -105,17 +105,17 @@ fun WelcomeContent(
                 painter = painterResource(id = R.drawable.pool_of_char),
                 contentDescription = "Pool of Characters",
                 modifier = Modifier
-                    .size(470.dp)
-                    .offset(y = (-132).dp)
+                    .size(480.dp) // 470
+                    .offset(y = (-150).dp) // was 132
             )
 
             Image(
                 painter = painterResource(id = R.drawable.welcome_image),
                 contentDescription = "Welcome Image",
                 modifier = Modifier
-                    .size(820.dp)
-                    .padding(top = 50.dp, bottom = 20.dp)
-                    .offset(y = (-320).dp)
+                    .size(800.dp) // 820
+                    .padding(top = 50.dp, bottom = 20.dp) // 50 and 20
+                    .offset(y = (-360).dp)  // -320
             )
         }
 
@@ -123,7 +123,7 @@ fun WelcomeContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 60.dp),
+                .padding(bottom = 110.dp),  // was 60
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -136,7 +136,8 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
                         iconResId = R.drawable.circle_icon,
-                        label = "Ellipse"
+                        label = "Ellipse"  // mainactivity
+
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
@@ -161,7 +162,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved to first row
                         onClick = onSquares6Clicked,
                         iconResId = R.drawable.pacman,
-                        label = "1999"
+                        label = "Neo"
                     )
                 }
 
@@ -197,7 +198,7 @@ fun WelcomeContent(
                     IconButtonWithLabel( // Moved to second row
                         onClick = onSquares8Clicked,
                         iconResId = R.drawable.intricate,
-                        label = "Esmeralda"
+                        label = "Emerald"
                     )
                 }
             }

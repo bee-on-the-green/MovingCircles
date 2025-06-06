@@ -111,8 +111,8 @@ class MainActivitySquare : ComponentActivity() {
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-145).dp),  // was -70
-                                fontSize = 13.sp,
+                                    .offset(y = (-110).dp),  // was -70
+                                fontSize = 10.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),

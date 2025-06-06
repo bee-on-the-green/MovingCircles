@@ -115,8 +115,8 @@ class MainActivityCircle : ComponentActivity() {
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-170).dp),
-                                fontSize = 13.sp,
+                                    .offset(y = (-110).dp),
+                                fontSize = 10.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
@@ -270,10 +270,10 @@ class MainActivityCircle : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = PureWhite,
-            fontSize = 9.sp,
+            fontSize = 8.1.sp,  // it is 9
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            style = TextStyle(lineHeight = 13.sp)
+            style = TextStyle(lineHeight = 10.66.sp)  // it is 10.8
         )
     }
 }

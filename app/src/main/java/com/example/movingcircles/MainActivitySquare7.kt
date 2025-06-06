@@ -109,8 +109,8 @@ class MainActivitySquare7 : ComponentActivity() {
                                 modifier = Modifier
                                     .align(Alignment.BottomStart)
                                     .padding(6.dp)
-                                    .offset(y = (-170).dp),
-                                fontSize = 13.sp,
+                                    .offset(y = (-110).dp),
+                                fontSize = 10.sp,
                                 fontWeight = FontWeight.Normal,
                                 fontFamily = FontFamily(
                                     Font(R.font.firacode_regular),
@@ -268,10 +268,10 @@ class MainActivitySquare7 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 21.5.sp,  // 20.5
+            fontSize = 18.5.sp,  // 20.5
             letterSpacing = 0.4.sp,  // 0.3
             style = TextStyle(
-                lineHeight = 19.5.sp
+                lineHeight = 17.0.sp
             )
         )
     }

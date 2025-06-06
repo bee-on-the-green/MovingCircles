@@ -23,12 +23,13 @@ import java.text.NumberFormat
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 
-val ratioBetweenLengthAndWidth: Int = 87  // was 55
-val lengthOfMatrix: Int = 102  // 160
+val ratioBetweenLengthAndWidth: Int = 75  // wshould be 87  ratio //             lineHeight = 6.8.sp,  // was 6  and letterSpacing = 0.sp
+
+val lengthOfMatrix: Int = 95  // 102
 val heightOfMatrix: Int = lengthOfMatrix * ratioBetweenLengthAndWidth / 100
 val poolOfCharInitial: Array<Char> = arrayOf(' ', ' ')
 val resolution: Int = lengthOfMatrix * heightOfMatrix
-val diameterToBeUsed: Int = 9  // was 18
+val diameterToBeUsed: Int = 9  //
 
 class MainActivity : ComponentActivity() {
 
@@ -207,8 +208,8 @@ fun MatrixScreen(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(6.dp)
-                        .offset(y = (-170).dp),  // was 280
-                    fontSize = 13.sp,
+                        .offset(y = (-110).dp),  // was 170
+                    fontSize = 10.sp,
                     fontWeight = FontWeight.Normal,
                     fontFamily = FontFamily(
                         Font(R.font.firacode_regular),
@@ -262,11 +263,26 @@ fun BackToWelcomeButton(onClick: () -> Unit) {
 @Composable
 fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
     Text(
-        text = matrixString,
+        text = matrixString,  // ubuntu r
         modifier = Modifier.padding(innerPadding),
-        fontSize = 9.sp,
-        fontFamily = FontFamily(Font(R.font.firacode_regular)),  // fontFamily = FontFamily(Font(R.font.firacode_regular))  // was fontFamily = FontFamily.Monospace
+        fontSize = 9.1.sp,  // was 9
+        fontFamily = FontFamily(Font(R.font.ubuntumono_r)),  // fontFamily = FontFamily(Font(R.font.firacode_regular))  // was fontFamily = FontFamily.Monospace
         fontWeight = FontWeight.Normal,
-        style = TextStyle(lineHeight = 6.sp)  // was 7
+        style = TextStyle(
+            lineHeight = 6.35.sp,  // was 6
+            letterSpacing = 0.35.sp
+        )
+
+
     )
 }
+
+
+/*
+fontSize = 8.2.sp,  // was 9
+style = TextStyle(
+lineHeight = 7.1.sp,  // was 6
+letterSpacing = 0.sp
+)
+
+ */

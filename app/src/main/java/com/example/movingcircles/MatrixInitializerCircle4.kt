@@ -5,8 +5,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class MatrixInitializerCircle4 {
-    val MatrixLengthC4: Int = 72  // was 100
-    val MatrixHeightC4: Int = MatrixLengthC4 * 50 / 100
+    val MatrixLengthC4: Int = 72// 72
+    val MatrixHeightC4: Int = MatrixLengthC4 * 49/ 100  // 50
     val resolution: Int = MatrixLengthC4 * MatrixHeightC4
     val diameterToUseC4: Int = 6  // was 7
 
