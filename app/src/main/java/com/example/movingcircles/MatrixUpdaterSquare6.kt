@@ -11,7 +11,7 @@ class MatrixUpdaterSquare6(
 ) {
     private val MatrixLengthS6: Int = matrix[0].size
     private val MatrixHeightS6: Int = matrix.size
-    val sleepTimeS6: Long = 3000
+    val sleepTimeS6: Long = 10
 
     val breakPointS6: Int = 91
 

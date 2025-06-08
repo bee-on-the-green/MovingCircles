@@ -25,10 +25,8 @@ import kotlin.math.roundToInt
 import java.text.NumberFormat
 import androidx.compose.ui.text.font.Font
 
-data class MatrixCell2(
-    val char: Char,
-    val color: Color
-)
+// MatrixCell2 is now assumed to be defined elsewhere (e.g., in its own file or MatrixInitializerCircle4.kt)
+// Removed: data class MatrixCell2(...)
 
 class MainActivityCircle4 : ComponentActivity() {
     private val matrixInitializer = MatrixInitializerCircle4()
@@ -138,6 +136,9 @@ class MainActivityCircle4 : ComponentActivity() {
                     launch(Dispatchers.Default) {
                         matrix = matrixInitializer.initializeMatrix()
                         updateMatrixState(matrix)
+                        // Ensure matrixUpdater's matrix is initialized with the correct dimensions and type
+                        // after matrixInitializer has done its work.
+                        // Convert MutableList<MutableList<MatrixCell2>> to Array<Array<MatrixCell2>>
                         matrixUpdater.matrix = matrix.map { it.toTypedArray() }.toTypedArray()
                         Hz = (1000.0 / matrixUpdater.sleepTimeC4.toDouble()).roundToInt()
 

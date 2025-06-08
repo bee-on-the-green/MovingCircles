@@ -65,6 +65,11 @@
             android:theme="@style/Theme.MovingCircles" />
 
         <activity
+            android:name=".MainActivityCircle5"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <activity
             android:name=".MainActivitySquare5"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
@@ -81,6 +86,16 @@
 
         <activity
             android:name=".MainActivitySquare8"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <activity
+            android:name=".MainActivitySquare9"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
+
+        <activity
+            android:name=".MainActivitySquare10"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
     </application>

@@ -36,7 +36,10 @@ class WelcomeScreen : ComponentActivity() {
                         onSquares5Clicked = { startActivity(Intent(this, MainActivitySquare5::class.java)) },
                         onSquares6Clicked = { startActivity(Intent(this, MainActivitySquare6::class.java)) },
                         onSquares7Clicked = { startActivity(Intent(this, MainActivitySquare7::class.java)) },
-                        onSquares8Clicked = { startActivity(Intent(this, MainActivitySquare8::class.java)) }
+                        onSquares8Clicked = { startActivity(Intent(this, MainActivitySquare8::class.java)) },
+                        onSquares9Clicked = { startActivity(Intent(this, MainActivitySquare9::class.java)) },
+                        onSquares10Clicked = { startActivity(Intent(this, MainActivitySquare10::class.java)) }, // New activity for Square10
+                        onCircles5Clicked = { startActivity(Intent(this, MainActivityCircle5::class.java)) } // New activity for Circle5
                     )
                 }
             }
@@ -53,12 +56,12 @@ fun IconButtonWithLabel(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.width(92.dp)  // w  as 80
+        modifier = modifier.width(92.dp)
     ) {
         Surface(
             onClick = onClick,
             shape = RectangleShape,
-            modifier = Modifier.size(70.dp),  // was 60
+            modifier = Modifier.size(70.dp),
             color = MaterialTheme.colorScheme.surfaceVariant
         ) {
             Image(
@@ -72,7 +75,7 @@ fun IconButtonWithLabel(
         }
         Text(
             text = label,
-            fontSize = 10.sp,  // was 11
+            fontSize = 10.sp,
             modifier = Modifier.padding(top = 4.dp)
         )
     }
@@ -91,39 +94,38 @@ fun WelcomeContent(
     onSquares5Clicked: () -> Unit,
     onSquares6Clicked: () -> Unit,
     onSquares7Clicked: () -> Unit,
-    onSquares8Clicked: () -> Unit
+    onSquares8Clicked: () -> Unit,
+    onSquares9Clicked: () -> Unit,
+    onSquares10Clicked: () -> Unit, // New parameter for Square10
+    onCircles5Clicked: () -> Unit // New parameter for Circle5
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.pool_of_char),
-                contentDescription = "Pool of Characters",
-                modifier = Modifier
-                    .size(480.dp) // 470
-                    .offset(y = (-150).dp) // was 132
-            )
+        Image(
+            painter = painterResource(id = R.drawable.pool_of_char),
+            contentDescription = "Pool of Characters",
+            modifier = Modifier
+                .size(530.dp)
+                .offset(y = (-480).dp, x = 0.dp)
+                .align(Alignment.Center)
+        )
 
-            Image(
-                painter = painterResource(id = R.drawable.welcome_image),
-                contentDescription = "Welcome Image",
-                modifier = Modifier
-                    .size(800.dp) // 820
-                    .padding(top = 50.dp, bottom = 20.dp) // 50 and 20
-                    .offset(y = (-360).dp)  // -320
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.welcome_image),
+            contentDescription = "Welcome Image",
+            modifier = Modifier
+                .size(600.dp)
+                .padding(top = 50.dp, bottom = 20.dp)
+                .offset(y = (-170).dp, x = 0.dp)
+                .align(Alignment.Center)
+        )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 110.dp),  // was 60
+                .padding(bottom = 80.dp),  // was 200
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -136,8 +138,7 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
                         iconResId = R.drawable.circle_icon,
-                        label = "Ellipse"  // mainactivity
-
+                        label = "Ellipse"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
@@ -159,14 +160,14 @@ fun WelcomeContent(
                         iconResId = R.drawable.squares_and_dots_midgray,
                         label = "Magenta"
                     )
-                    IconButtonWithLabel( // Moved to first row
+                    IconButtonWithLabel(
                         onClick = onSquares6Clicked,
                         iconResId = R.drawable.pacman,
                         label = "Neo"
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(8.dp))  // was 16
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
@@ -195,10 +196,31 @@ fun WelcomeContent(
                         iconResId = R.drawable.multiple_squares,
                         label = "Drops"
                     )
-                    IconButtonWithLabel( // Moved to second row
+                    IconButtonWithLabel(
                         onClick = onSquares8Clicked,
                         iconResId = R.drawable.intricate,
-                        label = "Emerald"
+                        label = "Patchwork"
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))  // was 16
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                ) {
+                    IconButtonWithLabel(
+                        onClick = onSquares9Clicked,
+                        iconResId = R.drawable.labirynte,
+                        label = "Square9"
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquares10Clicked,
+                        iconResId = R.drawable.squaresdots,
+                        label = "Square10"
+                    )
+                    IconButtonWithLabel(
+                        onClick = onCircles5Clicked,
+                        iconResId = R.drawable.oeil,
+                        label = "Oeil"
                     )
                 }
             }
