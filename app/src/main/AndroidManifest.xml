@@ -98,5 +98,10 @@
             android:name=".MainActivitySquare10"
             android:exported="false"
             android:theme="@style/Theme.MovingCircles" />
+
+        <activity
+            android:name=".MainActivitySquare11"
+            android:exported="false"
+            android:theme="@style/Theme.MovingCircles" />
     </application>
 </manifest>

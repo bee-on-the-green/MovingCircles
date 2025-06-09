@@ -11,26 +11,34 @@ class MatrixUpdaterSquare10(
 ) {
     private val MatrixLengthS10: Int = matrix[0].size
     private val MatrixHeightS10: Int = matrix.size
-    val sleepTimeS10: Long = 100
+    val sleepTimeS10: Long = 25
     val breakPointS10: Int = 85
 
-    //val poolOfChar: Array<Char> = arrayOf('O', 'O')  //·, ,  (•, O o 0  '○
-    val poolOfChar2: Array<Char> = arrayOf('°', '•', '.', '·', '°', '○')  // arrayOf('°', '•', '•', '·', '○')   ('°', '•', '•', '·')
 
-
-
+// ('○', '°', '°', '○', ')', '(')
     val poolOfChar: Array<Char> = arrayOf(
-        '§', '¶', '¬', '¢', '£',
-        '¥', '®', '©', 'ª', 'k',
-        'É', 'Ê', 'Ë', 'Ì', 'Í',
-        'K', 'L', 'M', 'N',
-        'u', 'v', 'w', 'x', 'y', 'z',
-        '!', '@', '#', '$', '%',
-        '^', '&', '*', '9', '3',
-        ']', '{',
-        ';', ':', '\'', '"', ',',
-        'ç', '<', '>', '/', '?'
+    'µ', '¶',
+    'Y', '»', '¼', '½', '¾',
+    '¿', 'À', 'Á', 'Â',
+    'Ä', 'Å', 'Æ', 'Ç', 'È',
+    'É', 'Ê', 'Ë', 'Ì',
+    'Î', 'Ï', 'Ð', 'Ñ', 'Ò',
+    'Ó', 'Ô', 'Õ', 'Ö',
+    'Ø', 'Ù', 'Ú', 'Û', 'Ü',
+    'Ý', 'Þ', 'ß', 'à', 'á',
+    'â', 'ã', 'ä', 'å', 'æ',
+    'ç', 'è', 'é', 'ê', 'ë',
+    'X', 'W', 'î', 'ï', 'M',
     )
+
+
+
+    val poolOfChar2: Array<Char> = arrayOf('○', '°', '°', '○', ')', '(')
+
+
+
+
+
 
     private var isRunning = false
     private var updateCount: Int = 0
@@ -61,21 +69,56 @@ class MatrixUpdaterSquare10(
     private val DeepViolet = Color(0xFF8E24AA)
 
     val LightMagenta = Color(0xFFAD1457)
+    // Define the new colors
+    val Red900 = Color(0xFFB71C1C)
+    val Red1000 = Color(0xFF8E0000)
+    val Red950 = Color(0xFF9B0000)
+    val Red850 = Color(0xFFD32F2F)
+    private val SoftOrchid = Color(0xFFD7A3E1)
+    private val DustyPlum = Color(0xFFC98FD0)
+    private val MauveTwilight = Color(0xFFB57FBD)
+    private val Violet225 = Color(0xFFC885D2)  // Between 200-300
+    private val Violet250 = Color(0xFFC277CC)  // Closer to 300
+    private val RadioactivePink = Color(0xFFFF00AA)
+    private val DarkGreen900_Tint1 = Color(0xFF356D36)  // green2
+    private val DarkGreen900_Tint2 = Color(0xFF4B7D4B)
+    private val DarkGreen900_Tint3 = Color(0xFF618C61)
+    private val DarkGreen900_Tint4 = Color(0xFF779C76)
+    private val DarkGreen900_Tint5 = Color(0xFF8DAC8C)
 
+    // Material Design Green Palette (related shades)
+    private val Green500 = Color(0xFF4CAF50)
+    private val Green600 = Color(0xFF43A047)
+    private val Green700 = Color(0xFF388E3C)
+    private val Green800 = Color(0xFF2E7D32)
 
-
+    // Monochromatic Greens (different hues, but still green-based)
+    private val MonochromaticGreen1 = Color(0xFF27882E)
+    private val MonochromaticGreen2 = Color(0xFF33B33D)
+    private val MonochromaticGreen3 = Color(0xFF40DD4B)
 
     private var counter10 = 0
 
     private fun updateMatrix10() {
+
+
         val (randomX, randomY) = selectRandomCoordinate10()
 
-        val selectedColor = if (counter10 % 2 == 0) Color(0xFF6A0C3C) else Color(0xFF7B0E42)  // 672E48FF   0xFF4B7D4B  0xFF4CAF50  // 0xFF315E1B
-
         val (currentLength, currentWidth) = if (counter10 % 2 == 0) {
-            2 to 2  // was 5 and 5  // 3 and 7
+
+            5 to 7  // 5 by 7
         } else {
-            2 to 2  // was 5 and 5
+
+            5 to 7  // 5 by 7
+        }
+
+        // Randomly choose between 1 and 2
+        val randomChoice = Random.nextInt(1, 3) // Generates 1 or 2
+
+        val selectedColor = if (randomChoice == 1) {
+            Color(0xFF27882E)
+        } else {
+            Color(0xFF356D36)
         }
 
         drawRectangle10(
@@ -94,11 +137,17 @@ class MatrixUpdaterSquare10(
                 currentWidth,
                 currentLength,
                 poolOfChar2,
-                Color(0xFFE53935)
+                Color(0xFF4CAF50)
             )
         }
         counter10++
+
     }
+
+
+
+
+
 
     private fun selectRandomCoordinate10(): Pair<Int, Int> {
         return Pair(
