@@ -198,8 +198,8 @@ fun WelcomeContent(
                     )
                     IconButtonWithLabel(
                         onClick = onSquares8Clicked,
-                        iconResId = R.drawable.intricate,
-                        label = "Patchwork"
+                        iconResId = R.drawable.intricate_red,
+                        label = "Square8"
                     )
                 }
 
@@ -220,7 +220,7 @@ fun WelcomeContent(
                     IconButtonWithLabel(
                         onClick = onCircles5Clicked,
                         iconResId = R.drawable.oeil,
-                        label = "Oeil"
+                        label = "Circle5"
                     )
                 }
             }

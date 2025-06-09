@@ -11,8 +11,8 @@ class MatrixUpdaterSquare10(
 ) {
     private val MatrixLengthS10: Int = matrix[0].size
     private val MatrixHeightS10: Int = matrix.size
-    val sleepTimeS10: Long = 10
-    val breakPointS10: Int = 75
+    val sleepTimeS10: Long = 100
+    val breakPointS10: Int = 85
 
     //val poolOfChar: Array<Char> = arrayOf('O', 'O')  //·, ,  (•, O o 0  '○
     val poolOfChar2: Array<Char> = arrayOf('°', '•', '.', '·', '°', '○')  // arrayOf('°', '•', '•', '·', '○')   ('°', '•', '•', '·')

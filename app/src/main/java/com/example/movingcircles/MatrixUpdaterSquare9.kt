@@ -11,14 +11,14 @@ class MatrixUpdaterSquare9(
 ) {
     private val MatrixLengthS9: Int = matrix[0].size
     private val MatrixHeightS9: Int = matrix.size
-    val sleepTimeS9: Long = 250
+    val sleepTimeS9: Long = 10
 
 
-    val breakPointS9: Int = 94
+    val breakPointS9: Int = 92
 
 
-    val poolOfChar: Array<Char> = arrayOf('○', '°', '•', '○', '•', '•', ')', '(')
-    val poolOfChar2: Array<Char> = arrayOf('○', '°', '•', '○', '°','•', ')', '(')  // ○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
+    val poolOfChar: Array<Char> = arrayOf('○', '•', '•', 'o', '0', '·', '·', '·')  // '○', '•', '•',
+    val poolOfChar2: Array<Char> = arrayOf('○', '•', '•', 'o', '0', '·', '·', '·')  // ○', '°'   (·,  , '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
 
     /*
         val poolOfChar: Array<Char> = arrayOf(
@@ -46,7 +46,7 @@ class MatrixUpdaterSquare9(
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
                 val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
                 // Now we are calculating the percentage of a specific color, not characters from a pool
-                val switchValue = calculateColorPercentage9(colorMatrixCopy, Color(0xFF1B5E20))
+                val switchValue = calculateColorPercentage9(colorMatrixCopy, Color(0xFF121212))  // was 0xFF1B5E20
                 onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
                 Thread.sleep(sleepTimeS9)
             }
@@ -79,6 +79,7 @@ class MatrixUpdaterSquare9(
     private val TangerineBurst = Color(0xFFFF8C00)
     private val FlamingOrange = Color(0xFFFF7F33)
     private val CyberOrange = Color(0xFFFF4D00)
+    private val DarkGreen900_Shade3 = Color(0xFF0C370F)
 
 
 
@@ -91,10 +92,10 @@ class MatrixUpdaterSquare9(
 
         val (currentLength, currentWidth) = if (counter9 % 2 == 0) {
 
-            14 to 1
+            1 to 20
         } else {
 
-            14 to 1
+            20 to 1  /// 20 is fine
         }
 
 
@@ -104,11 +105,11 @@ class MatrixUpdaterSquare9(
             currentWidth,
             currentLength,
             poolOfChar,
-            Color(0xFF5E1B59) // Drawing with the green color 0xFF5E1B59  // good violet 0xFF673AB7
-        )
+            Color(0xFF121212))
+
 
         // Now checking the percentage of the green color
-        if (calculateColorPercentage9(colorMatrix, Color(0xFF5E1B59)) > breakPointS9) {
+        if (calculateColorPercentage9(colorMatrix, Color(0xFF121212)) > breakPointS9) {
             drawRectangle9(
                 randomX,
                 randomY,

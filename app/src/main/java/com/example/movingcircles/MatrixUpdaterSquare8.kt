@@ -11,14 +11,14 @@ class MatrixUpdaterSquare8(
 ) {
     private val MatrixLengthS8: Int = matrix[0].size
     private val MatrixHeightS8: Int = matrix.size
-    val sleepTimeS8: Long = 15
-    val breakPointS8: Int = 12  // was  12
+    val sleepTimeS8: Long = 10
+    val breakPointS8: Int = 80  // was  12
 
 
-    val poolOfChar: Array<Char> = arrayOf('○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
+    val poolOfChar2: Array<Char> = arrayOf('○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
 
 
-    val poolOfChar2: Array<Char> = arrayOf(
+    val poolOfChar: Array<Char> = arrayOf(
         '§', '¶', '¬', '¢', '£',
         '¥', '®', '©', 'ª', 'k',
         'É', 'Ê', 'Ë', 'Ì', 'Í',
@@ -56,12 +56,14 @@ class MatrixUpdaterSquare8(
     }
 
 
+    val Red900 = Color(0xFFB71C1C)
+    val Red950 = Color(0xFFA20E0E)
+    val Red1000 = Color(0xFF8E0000)
 
-
-
-    val NeonGreen = Color(0xFF00FF00)
-    val Green500 = Color(0xFF4CAF50)
-     val Green400 = Color(0xFF66BB6A)
+    private val ElectricMagenta = Color(0xFFFF00FF)
+    private val RadioactivePink = Color(0xFFFF00AA)
+    private val CyberPink = Color(0xFFFF0099)
+    private val ScreamingPink = Color(0xFFFF00CC)
 
     private var counter8 = 0
 
@@ -72,19 +74,19 @@ class MatrixUpdaterSquare8(
 
         val (currentLength, currentWidth) = if (counter8 % 2 == 0) {
 
-            5 to 7  // 5 by 7
+            2 to 2  // 2 by 2
         } else {
 
-            5 to 7  // 5 by 7
+            2 to 2  // 2 by 2
         }
 
         // Randomly choose between 1 and 2
         val randomChoice = Random.nextInt(1, 3) // Generates 1 or 2
 
         val selectedColor = if (randomChoice == 1) {
-            Color(0xFF27882E)
+            Color(0xFFA20E0E)
         } else {
-            Color(0xFF356D36)
+            Color(0xFFB71C1C)
         }
 
         drawRectangle8(
@@ -92,18 +94,25 @@ class MatrixUpdaterSquare8(
             randomY,
             currentWidth,
             currentLength,
-            poolOfChar2,
+            poolOfChar,
             selectedColor
         )
 
-        if (calculateCharacterPercentage8(matrix, poolOfChar) < breakPointS8) {
+        // selectedColor2 now uses the same randomChoice
+        val selectedColor2 = if (randomChoice == 1) {
+            Color(0xFFD7A3E1)  // 0xFFD7A3E1  0xFFFF00EE
+        } else {
+            Color(0xFFD7A3E1)  // 0xFFC885D2   0xFFFF00EE
+        }
+
+        if (calculateCharacterPercentage8(matrix, poolOfChar) > breakPointS8) {
             drawRectangle8(
                 randomX,
                 randomY,
                 currentWidth,
                 currentLength,
-                poolOfChar,
-                Color(0xFF4CAF50)
+                poolOfChar2,
+                selectedColor2
             )
         }
         counter8++

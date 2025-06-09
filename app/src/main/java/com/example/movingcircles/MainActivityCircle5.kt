@@ -101,7 +101,7 @@ class MainActivityCircle5 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                CORAL ISLAND
+                                CIRCLE5
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

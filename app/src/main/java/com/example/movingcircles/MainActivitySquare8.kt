@@ -88,8 +88,7 @@ class MainActivitySquare8 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                EMERALD
-        
+                                SQUARE8    
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
                                         "${timeElapsed.first} min, ${timeElapsed.second} sec"
@@ -266,12 +265,12 @@ class MainActivitySquare8 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = MatrixCodeGreen,
-            fontFamily = FontFamily(Font(R.font.firacode_regular)),
+            fontFamily = FontFamily(Font(R.font.firacode_light)),
             fontWeight = FontWeight.Normal,
-            fontSize = 8.7.sp,
+            fontSize = 10.5.sp,
             letterSpacing = 0.sp,
             style = TextStyle(
-                lineHeight = 7.32.sp
+                lineHeight = 9.1.sp
             )
         )
     }

@@ -88,7 +88,7 @@ class MainActivitySquare5 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                GREEN DROPS
+                                S
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

@@ -293,7 +293,7 @@ val Gray70 = Color(0xFFB3B3B3)         // Slightly darker than White80
 val Gray60 = Color(0xFF999999)         // Medium-light gray
 val Gray40 = Color(0xFF666666)         // Medium-dark gray
 val Gray30 = Color(0xFF4D4D4D)         // Dark gray
-val Gray20 = Color(0xFF333333)         // Very dark gray
+val Gray20 = Color(0xFFFF2400)         // Very dark gray
 
 
 // ======================
@@ -306,12 +306,13 @@ private val RichBlack = Color(0xFF0A0A0A)
 private val InkBlack = Color(0xFF1A1A1A)
 private val Black1000 = Color(0xFF010101)
 private val Black950 = Color(0xFF0A0A0A)
-private val Black900 = Color(0xFF121212)
+
 // Near-black with subtle undertones
 val BlackCool = Color(0xFF050A0E)      // Blue-tinted near-black
 val BlackWarm = Color(0xFF0A0808)      // Red-brown tinted near-black
 val BlackViolet = Color(0xFF0D0714)    // Violet-tinged near-black
 val BlackGreen = Color(0xFF070D0A)     // Greenish near-black
+val Black900 = Color(0xFF121212)
 
 // ======================
 // Golds (elegant contrast)
@@ -333,3 +334,29 @@ val PinkAccent = Color(0xFFFF4081)
 
 private val DarkMaroon = Color(0xFF7B0E42)
 val LightMagenta = Color(0xFFAD1457)
+
+
+
+
+
+private val Yellow50 = Color(0xFFFFFF99)    // Very pale yellow
+private val Yellow100 = Color(0xFFFFFF66)   // Light pastel yellow
+private val Yellow200 = Color(0xFFFFFF00)   // Pure digital yellow
+private val Yellow300 = Color(0xFFFFF176)   // Soft warm yellow
+private val Yellow400 = Color(0xFFFFEB3B)   // Bright lemon yellow
+private val Yellow500 = Color(0xFFFFD600)   // Vivid golden yellow
+private val Yellow600 = Color(0xFFFFC107)   // Amber yellow (Material Design)
+private val Yellow700 = Color(0xFFFFB300)   // Rich golden yellow
+private val Yellow800 = Color(0xFFFFA000)   // Deep vibrant yellow
+private val Yellow900 = Color(0xFFFFA000)   // Orange-tinted yellow. Changed to Yellow900 instead of Yellow950 for consistency
+private val Yellow950 = Color(0xFFFF6F00)   // Bright amber. Changed to Yellow950 instead of Yellow1000 for consistency
+
+
+
+
+
+
+private val Orange1000 = Color(0xFF9E2C0A)   // Near-black orange
+private val OrangeBlack = Color(0xFF7F1D08)  // Maximum darkness while keeping orange hue
+
+

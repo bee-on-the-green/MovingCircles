@@ -88,7 +88,7 @@ class MainActivitySquare9 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                PURPLE RAIN
+                                SQUARE9
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -268,10 +268,10 @@ class MainActivitySquare9 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_regular)),
             fontWeight = FontWeight.Normal,
-            fontSize = 18.5.sp,  // 20.5
-            letterSpacing = 0.4.sp,  // 0.3
+            fontSize = 8.6.sp,  // 20.5
+            letterSpacing = 1.4.sp,  // 0.3
             style = TextStyle(
-                lineHeight = 17.0.sp
+                lineHeight = 11.0.sp
             )
         )
     }
