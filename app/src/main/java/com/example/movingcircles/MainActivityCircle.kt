@@ -94,7 +94,7 @@ class MainActivityCircle : ComponentActivity() {
 
                             Text(
                                 text = """
-                            BLOOD ORANGE LOSANGE
+                            Circle
         
                             Elapsed: ${
                                     if (timeElapsed.first > 0)

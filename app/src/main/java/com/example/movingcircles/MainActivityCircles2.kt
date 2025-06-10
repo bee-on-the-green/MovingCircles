@@ -95,7 +95,7 @@ class MainActivityCircles2 : ComponentActivity() {
                             val numberFormat = NumberFormat.getInstance()
                             Text(
                                 text = """
-                                FUEGO
+                                Circle2
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

@@ -88,7 +88,7 @@ class MainActivitySquare7 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                PURPLE RAIN
+                                Square7
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

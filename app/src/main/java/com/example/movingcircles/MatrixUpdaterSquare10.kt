@@ -11,8 +11,8 @@ class MatrixUpdaterSquare10(
 ) {
     private val MatrixLengthS10: Int = matrix[0].size
     private val MatrixHeightS10: Int = matrix.size
-    val sleepTimeS10: Long = 25
-    val breakPointS10: Int = 85
+    val sleepTimeS10: Long = 18
+    val breakPointS10: Int = 77
 
 
 // ('○', '°', '°', '○', ')', '(')
@@ -33,7 +33,7 @@ class MatrixUpdaterSquare10(
 
 
 
-    val poolOfChar2: Array<Char> = arrayOf('○', '°', '°', '○', ')', '(')
+    val poolOfChar2: Array<Char> = arrayOf(')', '(', '○', ')', '(')   //// // ('Ͽ', 'Ͼ')  ('○', '°', '°', '○', ')', '(')
 
 
 
@@ -97,6 +97,12 @@ class MatrixUpdaterSquare10(
     private val MonochromaticGreen2 = Color(0xFF33B33D)
     private val MonochromaticGreen3 = Color(0xFF40DD4B)
 
+
+
+    val YellowGreenMuted = Color(0xFFB5DC4C) // HSL: Hue ~90°, Saturation ~70%, Lightness ~52%
+    val YellowGreenPure = Color(0xFFCADD40)  // HSL: Hue ~80°, Saturation ~75%, Lightness ~55%
+    val PaleYellowSoft = Color(0xFFE6D666)   // HSL: Hue ~60°, Saturation ~60%, Lightness ~60%
+
     private var counter10 = 0
 
     private fun updateMatrix10() {
@@ -106,17 +112,17 @@ class MatrixUpdaterSquare10(
 
         val (currentLength, currentWidth) = if (counter10 % 2 == 0) {
 
-            5 to 7  // 5 by 7
+            60 to 1  // 5 by 7
         } else {
 
-            5 to 7  // 5 by 7
+            60 to 1  // 5 by 7
         }
 
         // Randomly choose between 1 and 2
         val randomChoice = Random.nextInt(1, 3) // Generates 1 or 2
 
         val selectedColor = if (randomChoice == 1) {
-            Color(0xFF27882E)
+            Color(0xFF4B7D4B)
         } else {
             Color(0xFF356D36)
         }
@@ -134,11 +140,11 @@ class MatrixUpdaterSquare10(
             drawRectangle10(
                 randomX,
                 randomY,
-                currentWidth,
-                currentLength,
+                1,
+                60,
                 poolOfChar2,
-                Color(0xFF4CAF50)
-            )
+                Color(0xFF40DD4B))  // is good  green 4B is excelllent  // gold is also fine 0xFFFFC107
+
         }
         counter10++
 

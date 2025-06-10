@@ -90,7 +90,7 @@ class MainActivitySquare : ComponentActivity() {
 
                             Text(
                                 text = """
-                            TREES
+                            Square
         
                             Elapsed: ${
                                     if (timeElapsed.first > 0)

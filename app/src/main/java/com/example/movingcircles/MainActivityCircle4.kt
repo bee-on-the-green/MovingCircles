@@ -99,7 +99,7 @@ class MainActivityCircle4 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                CORAL ISLAND
+                                Circle4
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

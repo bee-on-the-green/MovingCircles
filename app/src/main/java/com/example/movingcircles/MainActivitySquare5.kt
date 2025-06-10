@@ -88,7 +88,7 @@ class MainActivitySquare5 : ComponentActivity() {
 
                             Text(
                                 text = """
-                                S
+                                Square5
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)

@@ -139,33 +139,33 @@ fun WelcomeContent(
                 ) {
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
-                        iconResId = R.drawable.circle_icon,
-                        label = "Ellipse"
+                        iconResId = R.drawable.circle_icon,  // name okay  // icon okay
+                        label = "Main"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresClicked,
-                        iconResId = R.drawable.square_icon,
-                        label = "Trees"
+                        iconResId = R.drawable.square_icon,  // name okay  // icon okay
+                        label = "Square"
                     )
                     IconButtonWithLabel(
                         onClick = onSquaresSmallClicked,
-                        iconResId = R.drawable.circleforandroid,
-                        label = "Losange"
+                        iconResId = R.drawable.icon_sun,  //  name okay  // icon okay
+                        label = "Circle"
                     )
                     IconButtonWithLabel(
                         onClick = onCircles2Clicked,
-                        iconResId = R.drawable.icon_sun,
-                        label = "Fuego"
+                        iconResId = R.drawable.circleforandroid,  // name okay  // icon okay
+                        label = "Circle2"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares7Clicked,
-                        iconResId = R.drawable.squares_and_dots_midgray,
-                        label = "Magenta"
+                        iconResId = R.drawable.squares_and_dots_midgray,  // mame okay // icon okay
+                        label = "Square7"  // name okay
                     )
                     IconButtonWithLabel(
                         onClick = onSquares6Clicked,
-                        iconResId = R.drawable.pacman,
-                        label = "Neo"
+                        iconResId = R.drawable.pacman,  // name okay  // icon should be neo icon  pacman is icon  §§§§§§
+                        label = "Square6"
                     )
                 }
 
@@ -175,32 +175,32 @@ fun WelcomeContent(
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares2Clicked,
-                        iconResId = R.drawable.square_green_yellow,
-                        label = "Dice"
+                        iconResId = R.drawable.square_green_yellow,  // name okay  // icon okay
+                        label = "Square2"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares3Clicked,
-                        iconResId = R.drawable.carre_rond,
-                        label = "Archipel"
+                        iconResId = R.drawable.carre_rond,  // name okay // icon okay
+                        label = "Square3"  //
                     )
                     IconButtonWithLabel(
                         onClick = onSquares4Clicked,
-                        iconResId = R.drawable.rond,
-                        label = "Neon glow"
+                        iconResId = R.drawable.rond,  // name okay // icon okay
+                        label = "Square4"  // name okay
                     )
                     IconButtonWithLabel(
                         onClick = onCircles4Clicked,
-                        iconResId = R.drawable.icon_square_purple,
-                        label = "Island"
+                        iconResId = R.drawable.icon_square_purple,  // name okay  // icon okay
+                        label = "Circle4"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares5Clicked,
-                        iconResId = R.drawable.multiple_squares,
-                        label = "Drops"
+                        iconResId = R.drawable.multiple_squares,  // name okay  // icon okay
+                        label = "Square5"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares8Clicked,
-                        iconResId = R.drawable.intricate_red,
+                        iconResId = R.drawable.intricate_red,  // name okay  // icon oka
                         label = "Square8"
                     )
                 }
@@ -211,21 +211,21 @@ fun WelcomeContent(
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares9Clicked,
-                        iconResId = R.drawable.labirynte,
+                        iconResId = R.drawable.labirynte,  // name okay  // icon okay
                         label = "Square9"
                     )
                     IconButtonWithLabel(
                         onClick = onSquares10Clicked,
-                        iconResId = R.drawable.squaresdots,
+                        iconResId = R.drawable.squaresdots,  // name okay  // icon should be green with bonhome
                         label = "Square10"
                     )
                     IconButtonWithLabel(
-                        onClick = onCircles5Clicked,
+                        onClick = onCircles5Clicked,  // name okay
                         iconResId = R.drawable.oeil,
                         label = "Circle5"
                     )
                     IconButtonWithLabel(
-                        onClick = onSquares11Clicked,
+                        onClick = onSquares11Clicked,  // name okay
                         iconResId = R.drawable.flower,
                         label = "Square11"
                     )

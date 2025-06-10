@@ -187,7 +187,7 @@ fun MatrixScreen(
 
                 Text(
                     text = """
-        ELLIPSES
+        Main
         
         Elapsed: ${
                         if (timeElapsed.first > 0)
