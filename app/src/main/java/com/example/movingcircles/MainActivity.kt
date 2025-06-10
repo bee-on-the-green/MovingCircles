@@ -276,13 +276,3 @@ fun MatrixText(matrixString: String, innerPadding: PaddingValues) {
 
     )
 }
-
-
-/*
-fontSize = 8.2.sp,  // was 9
-style = TextStyle(
-lineHeight = 7.1.sp,  // was 6
-letterSpacing = 0.sp
-)
-
- */

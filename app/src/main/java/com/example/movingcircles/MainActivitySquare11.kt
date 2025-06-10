@@ -266,12 +266,12 @@ class MainActivitySquare11 : ComponentActivity() {
             text = annotatedString,
             modifier = Modifier.padding(innerPadding),
             color = MatrixCodeGreen,
-            fontFamily = FontFamily(Font(R.font.firacode_regular)),
+            fontFamily = FontFamily(Font(R.font.firacode_light)),
             fontWeight = FontWeight.Normal,
-            fontSize = 18.5.sp,  // 20.5
-            letterSpacing = 0.4.sp,  // 0.3
+            fontSize = 100.sp,  // 20.5
+            letterSpacing = 0.sp,  // 0.3
             style = TextStyle(
-                lineHeight = 19.9.sp
+                lineHeight = 58.sp
             )
         )
     }

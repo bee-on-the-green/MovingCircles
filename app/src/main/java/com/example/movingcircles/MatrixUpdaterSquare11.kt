@@ -11,14 +11,14 @@ class MatrixUpdaterSquare11(
 ) {
     private val MatrixLengthS11: Int = matrix[0].size
     private val MatrixHeightS11: Int = matrix.size
-    val sleepTimeS11: Long = 50
+    val sleepTimeS11: Long = 9
 
 
-    val breakPointS11: Int = 76
+    val breakPointS11: Int = 30
 
 
-    val poolOfChar2: Array<Char> = arrayOf('¿', '?', '¡', '!')  // Ͽ', 'Ͼ'  // '•', '•', ')
-    val poolOfChar: Array<Char> = arrayOf('¿', '?', '¡', '!')  // ○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
+    val poolOfChar2: Array<Char> = arrayOf('○')   //'○'
+    val poolOfChar: Array<Char> = arrayOf('○')
 
     /*
         val poolOfChar: Array<Char> = arrayOf(
@@ -38,27 +38,7 @@ class MatrixUpdaterSquare11(
     private var isRunning = false
     private var updateCount: Int = 0
 
-    suspend fun startUpdating11(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
-        isRunning = true
-        withContext(Dispatchers.IO) {
-            while (isRunning) {
-                updateMatrix11()
-                val matrixCopy = matrix.map { it.clone() }.toTypedArray()
-                val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
-                // Now we are calculating the percentage of a specific color, not characters from a pool
-                val switchValue = calculateColorPercentage11(colorMatrixCopy, Color(0xFF1B5E20))
-                onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
-                Thread.sleep(sleepTimeS11)
-            }
-        }
-    }
-
-
-    fun stopUpdating11() {
-        isRunning = false
-    }
-
-
+    // Your named color definitions are correctly placed here.
     val Violet400 = Color(0xFF7E57C2)    // Rich violet
     val Amethyst500 = Color(0xFF6D4B8C) // Stone-like
     val Magenta200 = Color(0xFFE040FB)  // Electric purple-pink
@@ -79,21 +59,51 @@ class MatrixUpdaterSquare11(
     private val TangerineBurst = Color(0xFFFF8C00)
     private val FlamingOrange = Color(0xFFFF7F33)
     private val CyberOrange = Color(0xFFFF4D00)
+    private val DarkGreen = Color(0xFF1B5E20) // This is where you defined DarkGreen
 
+    // List of colors for random selection
+    private val randomColorsForPool2 = listOf(
+        RadioactivePink,
+        ElectricMagenta,
+        CyberPink
+    )
+
+    suspend fun startUpdating11(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
+        isRunning = true
+        withContext(Dispatchers.IO) {
+            while (isRunning) {
+                updateMatrix11()
+                val matrixCopy = matrix.map { it.clone() }.toTypedArray()
+                val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
+                // Now we are calculating the percentage of a specific color, not characters from a pool
+                val switchValue = calculateColorPercentage11(colorMatrixCopy, Violet400) // Using the named color DarkGreen
+                onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
+                Thread.sleep(sleepTimeS11)
+            }
+        }
+    }
+
+
+    fun stopUpdating11() {
+        isRunning = false
+    }
 
 
     private var counter11 = 0
 
     private fun updateMatrix11() {
-
-
         val (randomX, randomY) = selectRandomCoordinate11()
 
+        val currentLength: Int
+        val currentWidth: Int
 
-
-        val currentLength = 2
-        val currentWidth = 3
-
+        if (counter11 % 2 == 0) {
+            currentLength = 1
+            currentWidth = 3
+        } else {
+            currentLength = 3
+            currentWidth = 1
+        }
 
         drawRectangle11(
             randomX,
@@ -101,22 +111,21 @@ class MatrixUpdaterSquare11(
             currentWidth,
             currentLength,
             poolOfChar,
-            Color(0xFF5E1B59)
+            Violet400 // Using the named color ComplementaryMagenta
         )
 
-        // Now checking the percentage of the green color
-        if (calculateColorPercentage11(colorMatrix, Color(0xFF5E1B59)) > breakPointS11) {
+
+        if (calculateColorPercentage11(colorMatrix, Violet400) > breakPointS11) {
             drawRectangle11(
                 randomX,
                 randomY,
                 currentWidth,
                 currentLength,
                 poolOfChar2,
-                Color(0xFFFF5500)
+                randomColorsForPool2.random() // Random color selected from the list
             )
         }
         counter11++
-
     }
 
 

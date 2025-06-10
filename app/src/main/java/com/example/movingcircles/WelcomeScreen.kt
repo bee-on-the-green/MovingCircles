@@ -17,6 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movingcircles.ui.theme.movingcirclesTheme
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 
 class WelcomeScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,8 +78,9 @@ fun IconButtonWithLabel(
         }
         Text(
             text = label,
-            fontSize = 10.sp,
-            modifier = Modifier.padding(top = 4.dp)
+            fontSize = 9.sp, // You can adjust this size as needed
+            fontFamily = FontFamily(Font(R.font.firacode_light)), // Use the font you already have
+            modifier = Modifier.padding(top = 0.dp)
         )
     }
 }
