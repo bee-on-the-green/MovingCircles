@@ -15,7 +15,7 @@ class MatrixUpdaterSquare12(
 
     val sleepTimeS12: Long = 15
 
-    val breakPointS12: Int = 70
+    val breakPointS12: Int = 84
 
 
     val poolOfChar2: Array<Char> = arrayOf('○')   //'○'  (•, •)  'Ͼ Ͽ'
@@ -70,19 +70,10 @@ class MatrixUpdaterSquare12(
     private fun updateMatrix12() {
         val (randomX, randomY) = selectRandomCoordinate12()
 
-        val currentLength = 22
+        val currentLength = 70  // 101
         val currentWidth = 1
 
 
-        /*
-        if (counter12 % 2 == 0) {
-            currentLength = 8
-            currentWidth = 1
-        } else {
-            currentLength = 8
-            currentWidth = 1
-        }
-        */
         drawRectangle12(
             randomX,
             randomY,

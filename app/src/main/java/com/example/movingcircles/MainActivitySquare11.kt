@@ -268,10 +268,10 @@ class MainActivitySquare11 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_light)),
             fontWeight = FontWeight.Normal,
-            fontSize = 78.sp,  // 20.5
-            letterSpacing = 0.4.sp,  // 0.3
+            fontSize = 7.5.sp,  // 20.5
+            letterSpacing = 0.sp,  // 0.3
             style = TextStyle(
-                lineHeight = 50.sp
+                lineHeight = 6.sp
             )
         )
     }

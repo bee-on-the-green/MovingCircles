@@ -5,10 +5,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class MatrixInitializerCircle5 {
-    val MatrixLengthC5: Int = 72// 72
-    val MatrixHeightC5: Int = MatrixLengthC5 * 49/ 100  // 50
+    val MatrixLengthC5: Int = 110//
+    val MatrixHeightC5: Int = MatrixLengthC5 * 82/ 100
     val resolution: Int = MatrixLengthC5 * MatrixHeightC5
-    val diameterToUseC5: Int = 6  // was 7
+    val diameterToUseC5: Int = 7  // 9 is fine
 
     val resolutionC: Int = MatrixLengthC5 * MatrixHeightC5
     private val poolOfCharsInit: Array<Char> = arrayOf(' ', ' ')

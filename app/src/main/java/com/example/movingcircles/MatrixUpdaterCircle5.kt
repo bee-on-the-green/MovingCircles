@@ -7,22 +7,29 @@ import kotlin.random.Random
 
 class MatrixUpdaterCircle5(
     var matrix: Array<Array<MatrixCell2>>,
-    val sleepTimeC5: Long = 28,
+    val sleepTimeC5: Long = 50,
     val diameterToUseC5: Int,
-    val breakPoint: Int = 86,  // was 86
-    val poolOfChar: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\''),
-    val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•')
+    val breakPoint: Int = 50,  // was 86
+    val poolOfChar: Array<Char> = arrayOf('○', 'o', '○', 'o', '1', '&', '8'),  // ○ and o and 0 and O
+    val poolOfChar2: Array<Char> = arrayOf('O', '0', 'O', '0', '2', '9', '@')  // ('•', '°', '○', '°', '•','•', '°')
 ) {
 
     val Pink300 = Color(0xFFFF6B8B)  // Bright pink
     val Pink400 = Color(0xFFF75990)  // Vibrant pink
-    val Pink500 = Color(0xFFE91E63)  // Classic Material pink (your reference)
-    val Pink600 = Color(0xFFD81B60)  // Rich pink
+    val Pink500 = Color(0xFFDE4F7F)  // Classic Material pink (your reference)
+    val Pink600 = Color(0xFFDE1860)  // Rich pink
 
-    private val Gray40 = Color(0xFF666666)       // Medium-dark gray
-    private val Gray30 = Color(0xFF4D4D4D)       // Dark gray
 
-    private val Yellow1000 = Color(0xFFFF5722)  // Fiery orange-yellow. Changed to Yellow1000 instead of Yellow1000 for consistency
+    val LightPink_custom = Color(0xFFCB849E)  // Rich pink
+    val LightPink_custom2 = Color(0xFFD387A2)  // Rich pink
+
+    private val Pink10 = Color(0xFFF6B1FD)   // Almost white with pink tint
+    private val Pink20 = Color(0xFFE1AAF5)   // Blush white
+    private val Pink50 = Color(0xFFEABFFA)
+
+
+    private val Yellow1000 = Color(0xFF913010)  // Fiery orange-yellow. Changed to Yellow1000 instead of Yellow1000 for consistency
+    private val Yellow1000_Custom = Color(0xFF79280E)
 
 
     private var isRunning = false
@@ -51,28 +58,21 @@ class MatrixUpdaterCircle5(
         val (myRandomX, myRandomY) = selectRandomCoordinate()
 
         if (updateCount % 2 == 0) {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar, Gray30)
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar, Pink50)
+            val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
+            if (mainCharPercentageAtCurrentTime > breakPoint) {
+                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar2, Pink400)
+            }
+        } else {
+            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar, Pink20)
             val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
             if (mainCharPercentageAtCurrentTime > breakPoint) {
                 drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar2, Pink300)
-            }
-        } else {
-            drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar, Gray30)
-            val mainCharPercentageAtCurrentTime = calculateCharacterPercentage(matrix, poolOfChar)
-            if (mainCharPercentageAtCurrentTime > breakPoint) {
-                drawCircle(matrix, myRandomX, myRandomY, diameterToUseC5, poolOfChar2, Pink500)
             }
         }
 
         updateCount++
     }
-
-
-
-
-
-
-
 
 
 
@@ -100,7 +100,7 @@ class MatrixUpdaterCircle5(
 
         for (y in yStart..yEnd) {
             for (x in xStart..xEnd) {
-                val aspectRatio = 1.9
+                val aspectRatio = 1.2 // 1;8
                 val dx = x - centerX
                 val dy = (y - centerY) * aspectRatio
                 if (dx * dx + dy * dy <= radius * radius) {
