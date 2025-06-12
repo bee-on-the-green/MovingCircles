@@ -11,9 +11,9 @@ class MatrixUpdaterSquare4(
 ) {
     private val MatrixLengthS4: Int = matrix[0].size
     private val MatrixHeightS4: Int = matrix.size
-    val sleepTimeS4: Long = 120
+    val sleepTimeS4: Long = 290
 
-    val breakPointS: Int = 88
+    val breakPointS: Int = 95
 
     val poolOfChar: Array<Char> = arrayOf(')', '(')  //  ɷ  ʊ ʋ  ŏőŐ
     val poolOfChar2: Array<Char> = arrayOf('•', '°', '○', '°', '•','•', '°')
@@ -135,7 +135,7 @@ class MatrixUpdaterSquare4(
     private fun updateMatrix4() {
         val (randomX, randomY) = selectRandomCoordinate4()
 
-        var currentLength = 12
+        var currentLength = 21
         var currentWidth = 1
 
 
@@ -181,6 +181,34 @@ class MatrixUpdaterSquare4(
         poolOfChar: Array<Char>,
         color: Color
     ) {
+        // Calculate the start and end coordinates for X (length)
+        val startX = centerX - length / 2
+        val endX = centerX + (length - 1) / 2
+
+        // Calculate the start and end coordinates for Y (width)
+        val startY = centerY - width / 2
+        val endY = centerY + (width - 1) / 2
+
+        // Clamp to matrix bounds and iterate
+        for (y in maxOf(startY, 0)..minOf(endY, MatrixHeightS4 - 1)) {
+            for (x in maxOf(startX, 0)..minOf(endX, MatrixLengthS4 - 1)) {
+                matrix[y][x] = poolOfChar.random()
+                colorMatrix[y][x] = color
+            }
+        }
+    }
+
+
+
+   /*
+    private fun drawRectangle4(
+        centerX: Int,
+        centerY: Int,
+        length: Int,
+        width: Int,
+        poolOfChar: Array<Char>,
+        color: Color
+    ) {
         val halfLength = length / 2
         val halfWidth = width / 2
 
@@ -192,7 +220,11 @@ class MatrixUpdaterSquare4(
         }
     }
 
+    */
+
+
     private fun calculateCharacterPercentage4(
+
         matrix: Array<CharArray>,
         poolOfChar: Array<Char>
     ): Double {

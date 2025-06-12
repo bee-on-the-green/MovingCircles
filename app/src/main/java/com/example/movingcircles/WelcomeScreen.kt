@@ -42,7 +42,8 @@ class WelcomeScreen : ComponentActivity() {
                         onSquares9Clicked = { startActivity(Intent(this, MainActivitySquare9::class.java)) },
                         onSquares10Clicked = { startActivity(Intent(this, MainActivitySquare10::class.java)) }, // New activity for Square10
                         onCircles5Clicked = { startActivity(Intent(this, MainActivityCircle5::class.java)) }, // New activity for Circle5
-                        onSquares11Clicked = { startActivity(Intent(this, MainActivitySquare11::class.java)) }
+                        onSquares11Clicked = { startActivity(Intent(this, MainActivitySquare11::class.java)) },
+                        onSquares12Clicked = { startActivity(Intent(this, MainActivitySquare12::class.java)) }
                     )
                 }
             }
@@ -102,7 +103,8 @@ fun WelcomeContent(
     onSquares9Clicked: () -> Unit,
     onSquares10Clicked: () -> Unit, // New parameter for Square10
     onCircles5Clicked: () -> Unit, // New parameter for Circle5
-    onSquares11Clicked: () -> Unit
+    onSquares11Clicked: () -> Unit,
+    onSquares12Clicked: () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -229,8 +231,13 @@ fun WelcomeContent(
                     )
                     IconButtonWithLabel(
                         onClick = onSquares11Clicked,  // name okay
-                        iconResId = R.drawable.flower,
-                        label = "Square11"
+                        iconResId = R.drawable.manjaro, //
+                        label = "Square11" //
+                    )
+                    IconButtonWithLabel(
+                        onClick = onSquares12Clicked,
+                        iconResId = R.drawable.flower, //
+                        label = "Square12"
                     )
                 }
             }

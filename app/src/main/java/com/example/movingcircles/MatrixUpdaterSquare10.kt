@@ -11,8 +11,8 @@ class MatrixUpdaterSquare10(
 ) {
     private val MatrixLengthS10: Int = matrix[0].size
     private val MatrixHeightS10: Int = matrix.size
-    val sleepTimeS10: Long = 18
-    val breakPointS10: Int = 77
+    val sleepTimeS10: Long = 400
+    val breakPointS10: Int = 80
 
 
 // ('○', '°', '°', '○', ')', '(')
@@ -110,13 +110,9 @@ class MatrixUpdaterSquare10(
 
         val (randomX, randomY) = selectRandomCoordinate10()
 
-        val (currentLength, currentWidth) = if (counter10 % 2 == 0) {
+        val currentLength = 110  // was 88
+        val currentWidth = 2
 
-            60 to 1  // 5 by 7
-        } else {
-
-            60 to 1  // 5 by 7
-        }
 
         // Randomly choose between 1 and 2
         val randomChoice = Random.nextInt(1, 3) // Generates 1 or 2
@@ -140,10 +136,10 @@ class MatrixUpdaterSquare10(
             drawRectangle10(
                 randomX,
                 randomY,
-                1,
-                60,
+                currentWidth,
+                currentLength,
                 poolOfChar2,
-                Color(0xFF40DD4B))  // is good  green 4B is excelllent  // gold is also fine 0xFFFFC107
+                Color(0xFF40DD4B))
 
         }
         counter10++
@@ -162,6 +158,40 @@ class MatrixUpdaterSquare10(
         )
     }
 
+
+
+    private fun drawRectangle10(
+        centerX: Int,
+        centerY: Int,
+        length: Int,
+        width: Int,
+        poolOfChar: Array<Char>,
+        color: Color
+    ) {
+        // Calculate the start and end coordinates for X (length)
+        val startX = centerX - length / 2
+        val endX = centerX + (length - 1) / 2
+
+        // Calculate the start and end coordinates for Y (width)
+        val startY = centerY - width / 2
+        val endY = centerY + (width - 1) / 2
+
+        // Clamp to matrix bounds and iterate
+        for (y in maxOf(startY, 0)..minOf(endY, MatrixHeightS10 - 1)) {
+            for (x in maxOf(startX, 0)..minOf(endX, MatrixLengthS10 - 1)) {
+                matrix[y][x] = poolOfChar.random()
+                colorMatrix[y][x] = color
+            }
+        }
+    }
+
+
+
+
+
+
+
+    /*
     private fun drawRectangle10(
         centerX: Int,
         centerY: Int,
@@ -180,6 +210,10 @@ class MatrixUpdaterSquare10(
             }
         }
     }
+*/
+
+
+
 
     private fun calculateCharacterPercentage10(
         matrix: Array<CharArray>,

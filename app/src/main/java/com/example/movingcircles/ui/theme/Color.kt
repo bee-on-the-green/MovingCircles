@@ -293,7 +293,7 @@ val Gray70 = Color(0xFFB3B3B3)         // Slightly darker than White80
 val Gray60 = Color(0xFF999999)         // Medium-light gray
 val Gray40 = Color(0xFF666666)         // Medium-dark gray
 val Gray30 = Color(0xFF4D4D4D)         // Dark gray
-val Gray20 = Color(0xFFFF2400)         // Very dark gray
+
 
 
 // ======================
@@ -358,5 +358,19 @@ private val Yellow950 = Color(0xFFFF6F00)   // Bright amber. Changed to Yellow95
 
 private val Orange1000 = Color(0xFF9E2C0A)   // Near-black orange
 private val OrangeBlack = Color(0xFF7F1D08)  // Maximum darkness while keeping orange hue
+
+
+
+private val PureDarkPurpleGrayed1 = Color(0xFF6D1844) // Slightly more gray
+
+private val PureDarkPurpleGrayed3 = Color(0xFF733153) // Even more gray
+
+
+
+private val DarkOrange600 = Color(0xFFF79200) // A deep, rich orange
+private val DarkOrange700 = Color(0xFFE68500) // A slightly muted, more intense orange
+private val DarkOrange800 = Color(0xFFD47800) // A darker, almost brownish-orange
+private val BurntOrange = Color(0xFFCC5500) // A strong, reddish-orange
+private val RustOrange = Color(0xFFB74100) // A deep, earthy orange, resembling rust
 
 

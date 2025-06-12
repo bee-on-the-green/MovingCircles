@@ -11,30 +11,16 @@ class MatrixUpdaterSquare7(
 ) {
     private val MatrixLengthS7: Int = matrix[0].size
     private val MatrixHeightS7: Int = matrix.size
-    val sleepTimeS7: Long = 50
+    val sleepTimeS7: Long = 700
 
 
-    val breakPointS7: Int = 94
+    val breakPointS7: Int = 87  // was 94
 
 
     val poolOfChar: Array<Char> = arrayOf('○', '°', '•', '○', '•', '•', ')', '(')
     val poolOfChar2: Array<Char> = arrayOf('○', '°', '•', '○', '°','•', ')', '(')  // ○', '°', '°', '○', ')', '(') // ('○', '°', '°', 'o', '°', '°', 'O')
 
-    /*
-        val poolOfChar: Array<Char> = arrayOf(
-            '§', '¶', '¬', '¢', '£',
-            '¥', '®', '©', 'ª', 'º',
-            'É', 'Ê', 'Ë', 'Ì', 'Í',
-            'K', 'L', 'M', 'N',
-            'u', 'v', 'w', 'x', 'y', 'z',
-            '!', '@', '#', '$', '%',
-            '^', '&', '*', '(', ')',
-            ']', '{',
-            ';', ':', '\'', '"', ',',
-            '.', '<', '>', '/', '?'
-        )
 
-    */
     private var isRunning = false
     private var updateCount: Int = 0
 
@@ -91,10 +77,10 @@ class MatrixUpdaterSquare7(
 
         val (currentLength, currentWidth) = if (counter7 % 2 == 0) {
 
-            14 to 1
+            39 to 2  // 14 to 1
         } else {
 
-            14 to 1
+            39 to 2
         }
 
 
@@ -138,11 +124,17 @@ class MatrixUpdaterSquare7(
         poolOfChar: Array<Char>,
         color: Color
     ) {
-        val halfLength = length / 2
-        val halfWidth = width / 2
+        // Calculate the start and end coordinates for X (length)
+        val startX = centerX - length / 2
+        val endX = centerX + (length - 1) / 2
 
-        for (y in maxOf(centerY - halfWidth, 0)..minOf(centerY + halfWidth, MatrixHeightS7 - 1)) {
-            for (x in maxOf(centerX - halfLength, 0)..minOf(centerX + halfLength, MatrixLengthS7 - 1)) {
+        // Calculate the start and end coordinates for Y (width)
+        val startY = centerY - width / 2
+        val endY = centerY + (width - 1) / 2
+
+        // Clamp to matrix bounds and iterate
+        for (y in maxOf(startY, 0)..minOf(endY, MatrixHeightS7 - 1)) {
+            for (x in maxOf(startX, 0)..minOf(endX, MatrixLengthS7 - 1)) {
                 matrix[y][x] = poolOfChar.random()
                 colorMatrix[y][x] = color
             }

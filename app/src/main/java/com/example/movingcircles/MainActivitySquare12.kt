@@ -25,11 +25,11 @@ import com.example.movingcircles.ui.theme.PureWhite
 import kotlin.math.roundToInt
 import java.text.NumberFormat
 
-class MainActivitySquare11 : ComponentActivity() {
-    private val matrixInitializer11 = MatrixInitializerSquare11()
+class MainActivitySquare12 : ComponentActivity() {
+    private val matrixInitializer12 = MatrixInitializerSquare12()
     private lateinit var matrix: Array<CharArray>
     private lateinit var colorMatrix: Array<Array<Color>>
-    private lateinit var matrixUpdater11: MatrixUpdaterSquare11
+    private lateinit var matrixUpdater12: MatrixUpdaterSquare12
 
     private var updateJob: Job? = null
     private var startTime: Long = 0
@@ -62,16 +62,16 @@ class MainActivitySquare11 : ComponentActivity() {
                             horizontalAlignment = Alignment.End
                         ) {
                             Spacer(modifier = Modifier.height(750.dp))
-                            BackToWelcomeButton11()
+                            BackToWelcomeButton12()
                             Spacer(modifier = Modifier.height(5.dp))
-                            PlayPauseButton11(
+                            PlayPauseButton12(
                                 isPaused = isPaused,
                                 onPauseToggled = {
                                     isPaused = !isPaused
                                     if (isPaused) {
                                         updateJob?.cancel()
                                     } else {
-                                        startMatrixUpdates11()
+                                        startMatrixUpdates12()
                                     }
                                 }
                             )
@@ -82,13 +82,13 @@ class MainActivitySquare11 : ComponentActivity() {
                 ) { innerPadding ->
                     Column(modifier = Modifier.fillMaxSize()) {
                         Box(modifier = Modifier.weight(1f)) {
-                            MatrixText11(matrixString, colorRanges, innerPadding)
+                            MatrixText12(matrixString, colorRanges, innerPadding)
 
                             val numberFormat = NumberFormat.getInstance()
 
                             Text(
                                 text = """
-                                Square11
+                                Square12
         
                                 Elapsed: ${
                                     if (timeElapsed.first > 0)
@@ -102,7 +102,7 @@ class MainActivitySquare11 : ComponentActivity() {
                                 Loop runtime: ${exactUpdateTime} ms
                                 Density: ${"%.2f".format(SwitchValue)}%
         
-                                Resolution: ${matrixInitializer11.resolution11} px (${matrixInitializer11.MatrixLengthS11}×${matrixInitializer11.MatrixHeightS11})
+                                Resolution: ${matrixInitializer12.resolution12} px (${matrixInitializer12.MatrixLengthS12}×${matrixInitializer12.MatrixHeightS12})
                                 Shape size: 1x35 px
                                 Encoding: UFT-8
                                 """.trimIndent(),
@@ -123,22 +123,22 @@ class MainActivitySquare11 : ComponentActivity() {
 
                 LaunchedEffect(Unit) {
                     launch(Dispatchers.Default) {
-                        val (charMatrix, colorMatrix) = matrixInitializer11.initializeMatrix11()
+                        val (charMatrix, colorMatrix) = matrixInitializer12.initializeMatrix12()
                         matrix = charMatrix
-                        this@MainActivitySquare11.colorMatrix = colorMatrix
+                        this@MainActivitySquare12.colorMatrix = colorMatrix
                         matrixString = matrix.joinToString("\n") { it.joinToString("") }
-                        matrixUpdater11 = MatrixUpdaterSquare11(matrix, colorMatrix)
-                        Hz = (1000.0 / matrixUpdater11.sleepTimeS11.toDouble()).roundToInt()
-                        startMatrixUpdates11()
+                        matrixUpdater12 = MatrixUpdaterSquare12(matrix, colorMatrix)
+                        Hz = (1000.0 / matrixUpdater12.sleepTimeS12.toDouble()).roundToInt()
+                        startMatrixUpdates12()
                     }
                 }
             }
         }
     }
 
-    private fun startMatrixUpdates11() {
+    private fun startMatrixUpdates12() {
         updateJob = lifecycleScope.launch {
-            matrixUpdater11.startUpdating11 { updatedMatrix, updatedColorMatrix, switchValue ->
+            matrixUpdater12.startUpdating12 { updatedMatrix, updatedColorMatrix, switchValue ->
                 launch(Dispatchers.Main) {
                     val currentTime = System.currentTimeMillis()
 
@@ -156,7 +156,7 @@ class MainActivitySquare11 : ComponentActivity() {
                     colorRanges = buildColorRanges(updatedColorMatrix, matrixString)
 
                     calculateElapsedTime()
-                    Hz = (1000.0 / matrixUpdater11.sleepTimeS11.toDouble()).roundToInt()
+                    Hz = (1000.0 / matrixUpdater12.sleepTimeS12.toDouble()).roundToInt()
                     SwitchValue = switchValue
                     updateCount++
                 }
@@ -186,7 +186,7 @@ class MainActivitySquare11 : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         updateJob?.cancel()
-        matrixUpdater11.stopUpdating11()
+        matrixUpdater12.stopUpdating12()
     }
 
     private fun calculateElapsedTime() {
@@ -198,10 +198,10 @@ class MainActivitySquare11 : ComponentActivity() {
     }
 
     @Composable
-    fun BackToWelcomeButton11() {
+    fun BackToWelcomeButton12() {
         IconButton(
             onClick = {
-                startActivity(Intent(this@MainActivitySquare11, WelcomeScreen::class.java))
+                startActivity(Intent(this@MainActivitySquare12, WelcomeScreen::class.java))
                 finish()
             },
             modifier = Modifier
@@ -219,7 +219,7 @@ class MainActivitySquare11 : ComponentActivity() {
     }
 
     @Composable
-    fun PlayPauseButton11(
+    fun PlayPauseButton12(
         isPaused: Boolean,
         onPauseToggled: () -> Unit
     ) {
@@ -240,7 +240,7 @@ class MainActivitySquare11 : ComponentActivity() {
     }
 
     @Composable
-    fun MatrixText11(
+    fun MatrixText12(
         matrixString: String,
         colorRanges: List<AnnotatedString.Range<Color>>,
         innerPadding: PaddingValues
@@ -268,10 +268,10 @@ class MainActivitySquare11 : ComponentActivity() {
             color = MatrixCodeGreen,
             fontFamily = FontFamily(Font(R.font.firacode_light)),
             fontWeight = FontWeight.Normal,
-            fontSize = 78.sp,  // 20.5
-            letterSpacing = 0.4.sp,  // 0.3
+            fontSize = 45.sp,  // 90 excellent
+            letterSpacing = 0.42.sp,  // 0.1 excellent
             style = TextStyle(
-                lineHeight = 50.sp
+                lineHeight = 5.sp  // 10 is excellent
             )
         )
     }

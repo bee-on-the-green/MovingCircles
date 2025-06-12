@@ -11,7 +11,7 @@ class MatrixUpdaterSquare11(
 ) {
     private val MatrixLengthS11: Int = matrix[0].size
     private val MatrixHeightS11: Int = matrix.size
-    val sleepTimeS11: Long = 9
+    val sleepTimeS11: Long = 7
 
 
     val breakPointS11: Int = 30
@@ -63,9 +63,9 @@ class MatrixUpdaterSquare11(
 
     // List of colors for random selection
     private val randomColorsForPool2 = listOf(
-        RadioactivePink,
-        ElectricMagenta,
-        CyberPink
+        FlamingOrange,    // RadioactivePink
+        PumpkinGlow,
+        CyberOrange
     )
 
     suspend fun startUpdating11(onMatrixUpdated: (Array<CharArray>, Array<Array<Color>>, Double) -> Unit) {
@@ -76,7 +76,7 @@ class MatrixUpdaterSquare11(
                 val matrixCopy = matrix.map { it.clone() }.toTypedArray()
                 val colorMatrixCopy = colorMatrix.map { it.clone() }.toTypedArray()
                 // Now we are calculating the percentage of a specific color, not characters from a pool
-                val switchValue = calculateColorPercentage11(colorMatrixCopy, Violet400) // Using the named color DarkGreen
+                val switchValue = calculateColorPercentage11(colorMatrixCopy, Amethyst500)
                 onMatrixUpdated(matrixCopy, colorMatrixCopy, switchValue)
                 Thread.sleep(sleepTimeS11)
             }
@@ -99,9 +99,9 @@ class MatrixUpdaterSquare11(
 
         if (counter11 % 2 == 0) {
             currentLength = 1
-            currentWidth = 3
+            currentWidth = 6
         } else {
-            currentLength = 3
+            currentLength = 6
             currentWidth = 1
         }
 
@@ -111,11 +111,11 @@ class MatrixUpdaterSquare11(
             currentWidth,
             currentLength,
             poolOfChar,
-            Violet400 // Using the named color ComplementaryMagenta
+            Amethyst500
         )
 
 
-        if (calculateColorPercentage11(colorMatrix, Violet400) > breakPointS11) {
+        if (calculateColorPercentage11(colorMatrix, Amethyst500) > breakPointS11) {
             drawRectangle11(
                 randomX,
                 randomY,
