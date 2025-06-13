@@ -13,12 +13,12 @@ class MatrixUpdaterSquare12(
     private val MatrixHeightS12: Int = matrix.size
 
 
-    val sleepTimeS12: Long = 15
+    val sleepTimeS12: Long = 20
 
-    val breakPointS12: Int = 84
+    val breakPointS12: Int = 67
 
 
-    val poolOfChar2: Array<Char> = arrayOf('○')   //'○'  (•, •)  'Ͼ Ͽ'
+       //'○'  (•, •)  'Ͼ Ͽ'
 
     val poolOfChar: Array<Char> = arrayOf('○')
 
@@ -70,7 +70,7 @@ class MatrixUpdaterSquare12(
     private fun updateMatrix12() {
         val (randomX, randomY) = selectRandomCoordinate12()
 
-        val currentLength = 70  // 101
+        val currentLength = 70  // 70
         val currentWidth = 1
 
 
@@ -90,7 +90,7 @@ class MatrixUpdaterSquare12(
                 randomY,
                 currentWidth,
                 currentLength,
-                poolOfChar2,
+                poolOfChar,
                 randomColorsForPool2.random() // Random color selected from the list
             )
         }

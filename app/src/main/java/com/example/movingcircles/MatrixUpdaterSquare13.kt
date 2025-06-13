@@ -27,9 +27,9 @@ class MatrixUpdaterSquare13(
     val Amethyst500 = Color(0xFF724785) // Stone-like
     val Magenta200 = Color(0xFF6E3985)  // Electric purple-pink
 
-    private val PumpkinGlow = Color(0xFFC42D68)
+    private val PumpkinGlow = Color(0xFF9F2C59)
     private val CyberOrange = Color(0xFFB71D59)
-    private val FlamingOrange = Color(0xFFB43D6C)
+    private val FlamingOrange = Color(0xFFB94E78)
 
 
 
@@ -70,7 +70,7 @@ class MatrixUpdaterSquare13(
         val currentWidth: Int
 
 
-            currentLength = 25
+            currentLength = 70
             currentWidth = 1
 
         drawRectangle13(

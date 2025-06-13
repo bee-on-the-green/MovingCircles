@@ -9,8 +9,8 @@ class MatrixUpdaterSquare(
     private val MatrixLengthS: Int = MatrixInitializerSquare().MatrixLengthS,  // Reference from MatrixInitializerSquare
     private val MatrixHeigthS: Int = MatrixInitializerSquare().MatrixHeightS,  // Reference from MatrixInitializerSquare
     val resolutionS: Int = MatrixLengthS * MatrixHeigthS,
-    val sleepTimeM: Long = 250,
-    val breakPoint2: Int = 15,  // 65
+    val sleepTimeM: Long = 1200,
+    val breakPoint2: Int = 25,  // 65
 
     val poolOfChar2: Array<Char> = arrayOf('(', ')'), // ('0', '0', '1') '.', '·' ○
     val poolOfChar: Array<Char> = arrayOf('·', '.', '·', ' ', ' ', ' ', ' ', '·', ' ', ' ', '.', '·', '.', '·', '°')

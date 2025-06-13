@@ -34,9 +34,9 @@ class MatrixUpdaterSquare3(
 ) {
     private val MatrixLengthS3: Int = matrix[0].size
     private val MatrixHeightS3: Int = matrix.size
-    val sleepTimeS3: Long = 13
+    val sleepTimeS3: Long = 20
 
-    val breakPoint: Int = 83  // ws 60
+    val breakPoint: Int = 80  // ws 60
     val poolOfChar2: Array<Char> = arrayOf('°', '²', ',', ',', '•') //
     val poolOfChar: Array<Char> = arrayOf('·', '.', '\'', '·', '.', '.', '\'')
 

@@ -13,7 +13,7 @@ class MatrixUpdaterSquare4(
     private val MatrixHeightS4: Int = matrix.size
     val sleepTimeS4: Long = 290
 
-    val breakPointS: Int = 95
+    val breakPointS: Int = 82
 
     val poolOfChar: Array<Char> = arrayOf(')', '(')  //  ɷ  ʊ ʋ  ŏőŐ
     val poolOfChar2: Array<Char> = arrayOf('•', '°', '○', '°', '•','•', '°')

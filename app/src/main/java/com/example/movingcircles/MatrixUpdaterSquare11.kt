@@ -11,7 +11,7 @@ class MatrixUpdaterSquare11(
 ) {
     private val MatrixLengthS11: Int = matrix[0].size
     private val MatrixHeightS11: Int = matrix.size
-    val sleepTimeS11: Long = 80
+    val sleepTimeS11: Long = 120
 
 
     val breakPointS11: Int = 35

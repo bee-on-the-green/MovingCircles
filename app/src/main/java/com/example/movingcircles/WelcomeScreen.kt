@@ -112,29 +112,19 @@ fun WelcomeContent(
         modifier = Modifier.fillMaxSize()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.pool_of_char),
-            contentDescription = "Pool of Characters",
-            modifier = Modifier
-                .size(530.dp)
-                .offset(y = (-480).dp, x = 0.dp)
-                .align(Alignment.Center)
-        )
-
-        Image(
             painter = painterResource(id = R.drawable.welcome_image),
             contentDescription = "Welcome Image",
             modifier = Modifier
-                .size(600.dp)
+                .size(648.dp)
                 .padding(top = 50.dp, bottom = 20.dp)
-                .offset(y = (-170).dp, x = 0.dp)
+                .offset(y = (-210).dp, x = 0.dp)  // was -170
                 .align(Alignment.Center)
         )
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 80.dp),  // was 200
+                .padding(bottom = 110.dp),  // was 80
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
@@ -142,7 +132,7 @@ fun WelcomeContent(
                 horizontalAlignment = Alignment.Start
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     IconButtonWithLabel(
                         onClick = onCirclesClicked,
@@ -178,7 +168,7 @@ fun WelcomeContent(
 
                 Spacer(modifier = Modifier.height(8.dp))  // was 16
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)  // was 20  //////////
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares2Clicked,
@@ -214,7 +204,7 @@ fun WelcomeContent(
 
                 Spacer(modifier = Modifier.height(8.dp))  // was 16
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(20.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     IconButtonWithLabel(
                         onClick = onSquares9Clicked,
